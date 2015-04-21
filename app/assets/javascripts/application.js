@@ -12,4 +12,5 @@
 //= require jquery
 //= require pickadate/picker
 //= require pickadate/picker.date
+//= require bootstrap-sprockets
 //= require snapsecret

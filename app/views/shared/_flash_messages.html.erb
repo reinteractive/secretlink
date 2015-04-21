@@ -1,6 +1,10 @@
 <% if flash[:error] %>
-  <div id="flash-error"><p><%= flash[:error] %></p></div>
+  <div class="row flash">
+    <span id="flash-error" class="label label-danger"><%= flash[:error] %></span>
+  </div>
 <% end %>
 <% if flash[:message] %>
-  <div id="flash-message"><p><%= flash[:message] %></p></div>
+  <div class="row flash">
+    <span id="flash-message" class="label label-info"><%= flash[:message].html_safe %></span>
+  </div>
 <% end %>
