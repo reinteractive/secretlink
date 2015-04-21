@@ -21,6 +21,8 @@ The typical workflow is:
 ## Dev Setup
 System is pretty vanilla.
 
+YOu can run the tests with `rspec spec`.
+
 One of the main interfaces of the app is emails.
 To test emails, we use mailcatcher.
 
