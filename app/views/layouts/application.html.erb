@@ -7,8 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>SnapSecret</h1>
-  <%= render partial: 'shared/flash_messages' %>
-  <%= yield %>
+  <%= render partial: 'shared/header' %>
+  <div class='container'>
+    <%= render partial: 'shared/flash_messages' %>
+    <%= yield %>
+  </div>
 </body>
 </html>

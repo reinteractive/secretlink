@@ -13,12 +13,17 @@ class AuthTokensController < ApplicationController
   end
 
   def new
+    if session[:email]
+      flash.now[:message] = "You have already verified your email as #{session[:email]}.
+      If you want to view and create secrets with this address, click
+      <a href='secrets/new'>here</a>."
+    end
   end
 
   def create
     auth_token = AuthToken.new(auth_token_params).generate
     auth_token.notify(request.protocol + request.host_with_port)
-    flash[:message] = "Token has been generated and sent to #{auth_token.email}"
+    flash[:message] = "A token has been generated and sent to #{auth_token.email}"
     render :new
   end
 
