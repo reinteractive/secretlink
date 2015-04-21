@@ -36,6 +36,15 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Emails via Mailcatcher
+  # `gem install mailcatcher` (it's not in the Gemfile)
+  # Launche the server in the terminal with `mailcatcher`
+  # Browse to `http://127.0.0.1:1080`
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "localhost", :port => 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
