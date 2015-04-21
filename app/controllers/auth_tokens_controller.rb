@@ -23,7 +23,7 @@ class AuthTokensController < ApplicationController
   def create
     auth_token = AuthToken.new(auth_token_params).generate
     auth_token.notify(request.protocol + request.host_with_port)
-    flash[:message] = "A token has been generated and sent to #{auth_token.email}"
+    flash.now[:message] = "A token has been generated and sent to #{auth_token.email}"
     render :new
   end
 
