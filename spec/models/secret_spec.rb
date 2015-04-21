@@ -17,6 +17,10 @@ describe Secret do
       expect(secret.expired?).to be(false)
     end
 
+    it 'is false if the expiry date is nil' do
+      secret.update_attributes(expire_at: nil)
+      expect(secret.expired?).to be(false)
+    end
 
   end
 

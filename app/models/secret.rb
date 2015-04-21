@@ -14,6 +14,6 @@ class Secret < ActiveRecord::Base
   end
 
   def expired?
-    expire_at < Time.now
+    expire_at.present? && expire_at < Time.now
   end
 end
