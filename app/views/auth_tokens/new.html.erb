@@ -1,0 +1,20 @@
+<p>Share secrets such as passwords, api keys, and ssl certificates securely.</p>
+
+<%= simple_form_for :auth_token, url: auth_tokens_url do |f| %>
+  <%= f.input :email %>
+  <%= f.submit 'Send' %>
+<% end %>
+
+<ol>
+  <li>Enter your email address, a link with a one-time authentication token will be sent to you.</li>
+  <li>Follow the link to a page where you can view the status of previous enter the recipients address, and enter or attach the secret information.</li>
+  <li>A link with a one-time authentication token will be sent to the recipients address.</li>
+  <li>The recipient views the information and it is deleted from the database.</li>
+</ol>
+
+<ul>
+  <li>The one-time authentication tokens are hashed.</li>
+  <li>The secret information is encrypted. A component of the decryption key is sent in the email to the recipient and not stored in the database.</li>
+  <li>Secrets have an optional expiry.</li>
+  <li>Sending this information via email or a chat application isn't particularly secure or professional. Ideally the recipient would view the secret and save it in a password manager application, but this isn't required.</li>
+</ul>

@@ -1,0 +1,5 @@
+Hello <%= @email %>
+
+Here is the requested authentication token that will allow you to create and share a secret:
+
+<%= link_to "#{@request_host}/auth_tokens/#{@token}", "#{@request_host}/auth_tokens/#{@token}" %>
