@@ -1,0 +1,11 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: snapsecret_development
+test:
+  <<: *default
+  database: snapsecret_test
