@@ -61,13 +61,13 @@ describe AuthToken do
     it 'does not allow auth tokens to be created when the email domain does not match the config setting' do
       allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { 'd.com' }
       expect(auth_token).to_not be_valid
-      expect(auth_token.errors[:email]).to eq(['Email addresses @c.com are not authorised to create secrets'])
+      expect(auth_token.errors[:email]).to include('Email addresses @c.com are not authorised to create secrets')
     end
 
     it 'does not allow auth tokens to be created when the email domain is not one of those provided in the config setting' do
       allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { ['d.com', 'e.com'] }
       expect(auth_token).to_not be_valid
-      expect(auth_token.errors[:email]).to eq(['Email addresses @c.com are not authorised to create secrets'])
+      expect(auth_token.errors[:email]).to include('Email addresses @c.com are not authorised to create secrets')
     end
 
   end

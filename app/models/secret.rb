@@ -33,7 +33,7 @@ class Secret < ActiveRecord::Base
     email_domain = to_email.to_s.split('@')[1]
     if authorised_domains && email_domain && [authorised_domains].flatten.exclude?(email_domain)
       errors.add(:to_email, "Secrets can only be shared with emails " +
-        [authorised_domains].flatten.join(', ').map { |e| '@'+e } )
+        [authorised_domains].flatten.map { |e| '@'+e }.join(', ') )
     end
     true
   end

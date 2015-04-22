@@ -56,4 +56,39 @@ describe Secret do
 
   end
 
+  describe '#to_email_domain_authorised' do
+
+    let(:secret) {
+      Secret.new(secret: 'something', from_email: 'a@a.com', to_email: 'b@b.com', secret_key: 'abc', expire_at: Date.today+2)
+    }
+
+    it 'allows secrets to be created when the config setting is nil' do
+      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { nil }
+      expect(secret).to be_valid
+    end
+
+    it 'allows secrets to be created when to to_email domain matches the config setting' do
+      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'b.com' }
+      expect(secret).to be_valid
+    end
+
+    it 'allows secrets to be created when to to_email domain is one of those provided in the config setting' do
+      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['b.com', 'c.com'] }
+      expect(secret).to be_valid
+    end
+
+    it 'does not allow secrets to be created when the to_email does not match the config setting' do
+      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'c.com' }
+      expect(secret).to_not be_valid
+      expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com')
+    end
+
+    it 'does not allow secrets to be created when the to_email is not one of those provided in the config setting' do
+      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['c.com','d.com'] }
+      expect(secret).to_not be_valid
+      expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com, @d.com')
+    end
+
+  end
+
 end

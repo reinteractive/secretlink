@@ -46,9 +46,6 @@ describe Secret do
       expect(secret.secret_key).to be_nil
     end
 
-    it 'advises of restriction on email addresses that can create secrets'
-      # maybe a config option? such as only allowing email addresses @acme.com to share secrets
-
     it 'allows oauth to authenticate when creating a secret'
 
   end
@@ -114,14 +111,21 @@ describe Secret do
     let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
 
     before do
+      allow(Rails.application.config).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'a.com' }
       auth_token.notify('https://www.example.com')
       visit auth_token_path(auth_token.hashed_token)
-      click_button 'Create'
     end
 
     it 'provides validation of missing/incorrect info in the form' do
+      click_button 'Create'
       expect(page).to have_content("Please enter the recipient's email address")
       expect(page).to have_content("Please enter a secret to share with the recipient")
+    end
+
+    it 'advises of restriction on email addresses that can create secrets' do
+      fill_in "Recipient's email address", with: 'b@b.com'
+      click_button 'Create'
+      expect(page).to have_content('Secrets can only be shared with emails @a.com')
     end
 
   end
