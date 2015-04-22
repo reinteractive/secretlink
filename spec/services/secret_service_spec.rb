@@ -21,7 +21,10 @@ describe SecretService do
 
   describe '#decrypt_secret' do
 
-    let!(:secret) { SecretService.encrypt_secret({secret: 'aBc123', to_email: 'a@a.com', from_email: 'b@b.com'}, 'https://example.com') }
+    let!(:secret) {
+      SecretService.encrypt_secret({secret: 'aBc123', to_email: 'a@a.com', from_email: 'b@b.com', expire_at: Time.now + 7.days},
+        'https://example.com')
+    }
     let!(:retrieved_secret) { Secret.find(secret.id) }
     let(:secret_key) { ActionMailer::Base.deliveries.last.body.to_s.match(/https:\/\/example.com\/[\w-]*\/(\w*)\//)[1] }
 

@@ -24,4 +24,36 @@ describe Secret do
 
   end
 
+  describe '#expire_at_within_limit' do
+
+    let(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+      secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
+    }
+
+    before do
+      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 6.days.to_i }
+    end
+
+    it 'does not allow secrets with a longer expiry than specified in the config' do
+      expect(secret).to_not be_valid
+      expect(secret.errors[:expire_at]).to eq([
+        "Maximum expiry allowed is #{(Time.now + 6.days).strftime('%d %B %Y')}"
+      ])
+    end
+
+    it 'allows secrets with a shorter expiry than specified in the config' do
+      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 7.days.to_i }
+      expect(secret).to be_valid
+    end
+
+    it 'does not allow secrets with no expiry with an expiry specified in the config' do
+      secret.expire_at = nil
+      expect(secret).to_not be_valid
+      expect(secret.errors[:expire_at]).to eq([
+        "Maximum expiry allowed is #{(Time.now + 6.days).strftime('%d %B %Y')}"
+      ])
+    end
+
+  end
+
 end

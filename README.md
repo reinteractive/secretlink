@@ -7,7 +7,8 @@ Sharing of passwords, keys, and files can be difficult to perform securely. This
 Configuration options are stored in config/initializers/snapsecret.rb, and can be used to:
 
 - Restrict creation of secrets to email addresses from certain domains.
-- Allow various oauth providers to authenticate when creating a secret
+- Restrict sharing of secrets to email addresses from certain domains.
+- Set a maximum expiry time for secrets.
 
 The typical workflow is:
 
