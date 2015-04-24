@@ -4,11 +4,7 @@ class SecretsController < ApplicationController
   before_filter :check_session, only: [:new, :create]
 
   def show
-    begin
-      @unencrypted_secret = SecretService.decrypt_secret(@secret, params[:secret_key])
-    rescue StandardError => e
-      flash[:message] = "An error occurred while trying to decrypt the secret: #{e}"
-    end
+    @secret = Secret.find_by_uuid(params[:uuid])
   end
 
   def new
@@ -32,31 +28,12 @@ class SecretsController < ApplicationController
       .merge(from_email: session[:email])
   end
 
-  private
-
-  def retrieve_secret
-    @secret = Secret.where(uuid: params[:uuid], from_email: session[:email]).first
-    if !@secret
-      flash[:error] = "Secret not found"
-      redirect_to new_auth_token_path
-    end
-    if @secret.expired?
-      flash[:error] = "That secret has expired"
-      redirect_to(new_auth_token_path)
-    end
-    true
-  end
-
   def check_auth_token
     auth_token = AuthToken.find_by_hashed_token(params[:auth_token])
     if auth_token
       session[:email] = auth_token.email
       auth_token.delete
     end
-  end
-
-  def check_session
-    redirect_to new_auth_token_path if session[:email].blank?
   end
 
 end
