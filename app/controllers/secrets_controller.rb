@@ -13,7 +13,6 @@ class SecretsController < ApplicationController
 
   def create
     @secret = SecretService.encrypt_secret(secret_params, request.protocol + request.host_with_port)
-    puts @secret.errors.inspect
     if @secret.persisted?
       flash[:message] = "The secret has been encrypted and an email sent to the recipient"
       redirect_to new_secret_path
