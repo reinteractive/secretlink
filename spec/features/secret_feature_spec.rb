@@ -140,4 +140,48 @@ describe Secret do
 
   end
 
+  describe 'viewing a history of secrets created in the past' do
+
+    let!(:auth_token) { AuthToken.create(email: 'a@a.com').generate }
+
+    let!(:pending_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+    let!(:expired_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now - 3600}, 'https://example.com')
+    }
+    let!(:viewed_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+    let!(:decryption_key) { ActionMailer::Base.deliveries.last.body.match(/https?:\/\/[^\/]+\/[^\/]+\/([^\/]+)\//)[1] }
+
+    before do
+      SecretService.decrypt_secret(viewed_secret, decryption_key)
+      visit auth_token_path(auth_token.hashed_token)
+    end
+
+    it 'shows pending secrets as pending' do
+      within "#secret-#{pending_secret.id}" do
+        expect(page).to have_content('pending')
+      end
+    end
+
+    it 'shows expired secrets as expired' do
+      within "#secret-#{expired_secret.id}" do
+        expect(page).to have_content('expired')
+      end
+    end
+
+    it 'shows viewed secrets as viewed' do
+      within "#secret-#{viewed_secret.id}" do
+        expect(page).to have_content('viewed')
+      end
+    end
+
+
+  end
+
 end

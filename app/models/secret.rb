@@ -7,6 +7,8 @@ class Secret < ActiveRecord::Base
   validate :expire_at_within_limit
   validate :to_email_domain_authorised
 
+  scope :created_by_email, ->(email) { where(from_email: email) }
+
   def delete_encrypted_information
     update_attribute(:secret, nil)
   end
@@ -37,6 +39,18 @@ class Secret < ActiveRecord::Base
         [authorised_domains].flatten.map { |e| '@'+e }.join(', ') )
     end
     true
+  end
+
+  def status
+    if encrypted_secret.blank?
+      'viewed'
+    elsif expire_at && expire_at < Time.now
+      'expired'
+    elsif (!expire_at || expire_at > Time.now) && encrypted_secret.present?
+      'pending'
+    else
+      'unknown'
+    end
   end
 
   def self.expire_at_hint

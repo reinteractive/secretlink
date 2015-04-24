@@ -9,6 +9,7 @@ class SecretsController < ApplicationController
 
   def new
     @secret = Secret.new
+    @secrets = Secret.created_by_email(session[:email])
   end
 
   def create
@@ -17,6 +18,7 @@ class SecretsController < ApplicationController
       flash[:message] = "The secret has been encrypted and an email sent to the recipient"
       redirect_to new_secret_path
     else
+      @secrets = Secret.where(from_email: session[:email])
       render :new
     end
   end

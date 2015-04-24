@@ -91,4 +91,59 @@ describe Secret do
 
   end
 
+  describe '#status' do
+
+    let!(:pending_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+    let!(:expired_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now - 3600}, 'https://example.com')
+    }
+    let!(:viewed_secret) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+
+    let!(:decryption_key) { ActionMailer::Base.deliveries.last.body.match(/https?:\/\/[^\/]+\/[^\/]+\/([^\/]+)\//)[1] }
+
+    before do
+      SecretService.decrypt_secret(viewed_secret, decryption_key)
+    end
+
+    it 'returns "pending" for pending secrets' do
+      expect(pending_secret.status).to eq('pending')
+    end
+
+    it 'returns "expired" for expired secrets' do
+      expect(expired_secret.status).to eq('expired')
+    end
+
+    it 'returns "viewed" for viewed secrets' do
+      expect(viewed_secret.status).to eq('viewed')
+    end
+
+  end
+
+  describe '.created_by_email' do
+    let!(:secret_one) {
+      SecretService.encrypt_secret({
+        from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+    let!(:secret_two) {
+      SecretService.encrypt_secret({
+        from_email: 'b@b.com', to_email: 'c@c.com', secret: 'cdefg', expire_at: Time.now + 3600}, 'https://example.com')
+    }
+
+    let!(:secrets) {
+      Secret.created_by_email('a@a.com')
+    }
+
+    it 'returns all secrets for a given email' do
+      expect(secrets).to eq([secret_one])
+    end
+
+  end
+
 end
