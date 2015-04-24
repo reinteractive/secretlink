@@ -22,8 +22,9 @@ class Secret < ActiveRecord::Base
   def expire_at_within_limit
     if Rails.application.config.snapsecret_maximum_expiry_time
       max_expiry_in_config = (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).to_i
-      if !expire_at || (expire_at && expire_at.to_i > max_expiry_in_config)
-        errors.add(:expire_at, Secret.expire_at_hint)
+      if expire_at.blank? || (expire_at && expire_at.to_i > max_expiry_in_config)
+        errors.add(:expire_at, "Maximum expiry allowed is " +
+        (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y'))
       end
     end
   end
@@ -40,7 +41,7 @@ class Secret < ActiveRecord::Base
 
   def self.expire_at_hint
     if Rails.application.config.snapsecret_maximum_expiry_time
-      "Maximum expiry allowed is " +
+      (Date.today + 1).strftime('%d %B %Y') + ' - ' +
       (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y')
     end
   end

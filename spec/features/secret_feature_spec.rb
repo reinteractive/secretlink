@@ -62,13 +62,21 @@ describe Secret do
       visit link_to_secret
     end
 
+    it 'provides a link to show the secret but does not delete it yet' do
+      expect(page.html).to match('Click here to show the secret')
+      expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
+    end
+
     it 'retrieves and decrypts the secret' do
+      click_button 'Click here to show the secret'
       expect(page).to have_content('cdefg')
     end
 
     it 'works with attachments'
 
     it 'deletes the secret after it has been accessed' do
+      click_button 'Click here to show the secret'
+      expect(page).to have_content('cdefg')
       secret.reload
       expect(secret.encrypted_secret).to be_nil
       expect(secret.consumed_at).to_not be_nil
@@ -77,6 +85,8 @@ describe Secret do
     it 'deletes an attachment after it has been accessed'
 
     it 'notifies the creator of the secret that it has been accessed and deleted' do
+      click_button 'Click here to show the secret'
+      expect(page).to have_content('cdefg')
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq(['a@a.com'])
       expect(email.subject).to eq('Secret consumed on snapsecret')
