@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.2.1'
 
 gem 'attr_encrypted'
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -13,6 +13,7 @@ gem 'pickadate-rails'
 gem 'sass-rails', '>= 3.2'
 gem 'simple_form'
 gem 'unicorn'
+gem 'logstasher', '~> 0.6.5'
 
 group :development do
   gem 'better_errors'

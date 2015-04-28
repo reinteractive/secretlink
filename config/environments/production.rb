@@ -76,4 +76,26 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # SMTP / Email config.
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address:              ENV['SMTP_HOST'],
+    port:                 ENV['SMTP_PORT'],
+    user_name:            ENV['SMTP_USERNAME'],
+    password:             ENV['SMTP_PASSWORD'],
+    authentication:       ENV['SMTP_AUTHENTICATION'],
+    enable_starttls_auto: true,
+    domain:               ENV['SMTP_DOMAIN']
+  }
+
+  config.action_mailer.default_options = {from: 'snapsecret@reinteractive.net'}
+  config.action_mailer.default_url_options = {host: 'snapsecret.reinteractive.net'}
+
+  # Enable the logstasher logs for the current environment
+  config.logstasher.enabled = true
+
+  # This line is optional if you do not want to suppress app logs in your <environment>.log
+  config.logstasher.suppress_app_log = false
 end
