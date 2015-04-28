@@ -14,6 +14,9 @@ gem 'sass-rails', '>= 3.2'
 gem 'simple_form'
 gem 'unicorn'
 gem 'logstasher', '~> 0.6.5'
+gem 'therubyracer'
+gem 'uglifier'
+
 
 group :development do
   gem 'better_errors'
