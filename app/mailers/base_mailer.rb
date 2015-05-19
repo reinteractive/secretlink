@@ -1,3 +1,3 @@
 class BaseMailer < ActionMailer::Base
-  layout 'application_mail'
+  default from: "noreply@snap-secret.com"
 end

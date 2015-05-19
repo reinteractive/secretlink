@@ -1,4 +1,4 @@
-class SecretMailer < ActionMailer::Base
+class SecretMailer < BaseMailer
 
   def secret_notification(secret, request_host)
     @request_host = request_host

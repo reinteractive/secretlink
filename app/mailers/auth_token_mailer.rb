@@ -1,4 +1,4 @@
-class AuthTokenMailer < ActionMailer::Base
+class AuthTokenMailer < BaseMailer
 
   def auth_token(email, token, request_host)
     @email = email
