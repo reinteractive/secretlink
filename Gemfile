@@ -21,6 +21,7 @@ group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rubocop'
+  gem 'dotenv-rails'
 end
 
 group :test do
