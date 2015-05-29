@@ -14,7 +14,6 @@ describe Secret do
       fill_in "Recipient's email addres", with: 'example@example.com'
       fill_in "Secret", with: 'AbC123'
       fill_in 'Comments', with: 'Some super secret info'
-      attach_file('secret_secret_file',"#{Rails.root}/spec/support/example_attachment.png")
       fill_in 'Expire at', with: (Time.current + 1.day).strftime('%d %B, %Y')
       click_button 'Create'
       expect(page).to have_content('The secret has been encrypted and an email sent to the recipient')
@@ -25,7 +24,6 @@ describe Secret do
       expect(secret.from_email).to eq('test@test.com')
       expect(secret.to_email).to eq('example@example.com')
       expect(secret.comments).to eq('Some super secret info')
-      expect(secret.secret_file.to_s).to eq("/uploads/secret/secret_file/#{secret.id}/example_attachment.png")
       expect(secret.expire_at).to eq((Date.current + 1).strftime('%Y-%m-%d'))
       expect(secret.secret_file).to_not be_nil
     end
@@ -34,8 +32,8 @@ describe Secret do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq(['example@example.com'])
       expect(email.subject).to eq('A secret has been shared with you via SnapSecret')
-      expect(email.body.to_s).to match("This link will show you the secret:")
-      expect(email.body.to_s).to match("/#{secret.uuid}/.+/.+")
+      expect(email.text_part.to_s).to match("This link will show you the secret:")
+      expect(email.text_part.to_s).to match("/#{secret.uuid}/.+/.+")
     end
 
     it 'encrypts the secret in the db' do
@@ -56,7 +54,7 @@ describe Secret do
     let!(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
       secret: 'cdefg', expire_at: Time.current + 7.days}, 'https://example.com')
     }
-    let!(:link_to_secret) { ActionMailer::Base.deliveries.last.body.to_s.match(/http[^"]+/)}
+    let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/) }
 
     before do
       visit link_to_secret
@@ -90,8 +88,8 @@ describe Secret do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq(['a@a.com'])
       expect(email.subject).to eq('Secret consumed on snapsecret')
-      expect(email.body.to_s).to match('b@b.com')
-      expect(email.body.to_s).to match('The encrypted information has now been deleted from the database')
+      expect(email.text_part.to_s).to match('b@b.com')
+      expect(email.text_part.to_s).to match('The encrypted information has now been deleted from the database')
     end
 
     it 'does not notify the creator if they selected not to be notified'
@@ -104,7 +102,7 @@ describe Secret do
     let!(:secret) { SecretService.encrypt_secret({
       from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now - 1}, 'https://example.com')
     }
-    let!(:link_to_secret) { ActionMailer::Base.deliveries.last.body.to_s.match(/http[^"]+/)}
+    let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/)}
 
     # there should also be a worker that cleans expired secrets up,
     # but even if that isn't working the secret shouldn't be accessible
