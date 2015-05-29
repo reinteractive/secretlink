@@ -35,7 +35,7 @@ describe AuthToken do
 
     it 'sends an email to the recipient with a link auth link' do
       expect(email.to).to eq(['b@b.com'])
-      expect(email.body.to_s).to match(/https:\/\/example.com\/auth_tokens\/\S+/)
+      expect(email.text_part.to_s).to match(/https:\/\/example.com\/auth_tokens\/\S+/)
     end
   end
 
