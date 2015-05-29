@@ -119,7 +119,9 @@ describe Secret do
     let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
 
     before do
-      allow(Rails.application.config).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'a.com' }
+
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+      allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'test.com' }
       auth_token.notify('https://www.example.com')
       visit auth_token_path(auth_token.hashed_token)
     end
@@ -133,7 +135,7 @@ describe Secret do
     it 'advises of restriction on email addresses that can create secrets' do
       fill_in "Recipient's email address", with: 'b@b.com'
       click_button 'Create'
-      expect(page).to have_content('Secrets can only be shared with emails @a.com')
+      expect(page).to have_content('Secrets can only be shared with emails @test.com')
     end
 
   end

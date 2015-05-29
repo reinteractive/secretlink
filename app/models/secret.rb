@@ -5,7 +5,7 @@ class Secret < ActiveRecord::Base
   validates_presence_of :to_email, message: "Please enter the recipient's email address"
   validates_presence_of :secret, message: "Please enter a secret to share with the recipient"
   validate :expire_at_within_limit
-  validate :to_email_domain_authorised
+  validate :email_domain_authorised
 
   def delete_encrypted_information
     update_attribute(:secret, nil)
@@ -29,14 +29,33 @@ class Secret < ActiveRecord::Base
     end
   end
 
-  def to_email_domain_authorised
-    authorised_domains = Rails.application.config.snapsecret_domains_allowed_to_receive_secrets
-    email_domain = to_email.to_s.split('@')[1]
-    if authorised_domains && email_domain && [authorised_domains].flatten.exclude?(email_domain)
-      errors.add(:to_email, "Secrets can only be shared with emails " +
-        [authorised_domains].flatten.map { |e| '@'+e }.join(', ') )
+  def email_domain_authorised
+    authd_domain = Rails.configuration.snapsecret_authorised_domain
+    case Rails.configuration.snapsecret_authorisation_setting
+    when :closed
+      if to_email_domain != authd_domain
+        errors.add(:to_email, "Secrets can only be shared with emails @" + authd_domain)
+      end
+      if from_email_domain != authd_domain
+        errors.add(:from_email, "Secrets can only be shared by emails @" + authd_domain)
+      end
+    when :limited
+      if to_email_domain != authd_domain && from_email_domain != authd_domain
+        errors.add(:base, "Secrets can only be shared by or with emails @" + authd_domain)
+      end
+    when :closed
+      if to_email_domain != authd_domain || from_email_domain != authd_domain
+        errors.add(:base, "Secrets can only be shared by or with emails @" + authd_domain)
+      end
     end
-    true
+  end
+
+  def to_email_domain
+    to_email.to_s.split('@')[1]
+  end
+
+  def from_email_domain
+    from_email.to_s.split('@')[1]
   end
 
   def self.expire_at_hint

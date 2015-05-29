@@ -56,37 +56,75 @@ describe Secret do
 
   end
 
-  describe '#to_email_domain_authorised' do
+  describe 'email_domain_authorised' do
 
-    let(:secret) {
-      Secret.new(secret: 'something', from_email: 'a@a.com', to_email: 'b@b.com', secret_key: 'abc', expire_at: Date.today+2)
+    let(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+      secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
     }
 
-    it 'allows secrets to be created when the config setting is nil' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { nil }
-      expect(secret).to be_valid
+    before do
+      allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'a.com' }
     end
 
-    it 'allows secrets to be created when to to_email domain matches the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'b.com' }
-      expect(secret).to be_valid
+    context 'the snapsecret_authorisation_setting is :open' do
+
+      before do
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
+      end
+
+      it 'is valid' do
+        expect(secret).to be_valid
+      end
+
     end
 
-    it 'allows secrets to be created when to to_email domain is one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['b.com', 'c.com'] }
-      expect(secret).to be_valid
+    context 'the snapsecret_authorisation_setting is :closed' do
+
+      before do
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+      end
+
+      it 'is valid if the to_email and from_email domains are both a.com' do
+        secret.from_email = 'a@a.com'
+        secret.to_email = 'b@a.com'
+        expect(secret).to be_valid
+      end
+
+      it 'is invalid if the to_email domain is not a.com' do
+        secret.from_email = 'a@a.com'
+        secret.to_email = 'b@b.com'
+        expect(secret).to be_invalid
+      end
+
+      it 'is invalid if the from_email domain is not a.com' do
+        secret.from_email = 'b@b.com'
+        secret.to_email = 'b@a.com'
+        expect(secret).to be_invalid
+      end
+
     end
 
-    it 'does not allow secrets to be created when the to_email does not match the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'c.com' }
-      expect(secret).to_not be_valid
-      expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com')
-    end
+    context 'the snapsecret_authorisation_setting is :limited' do
 
-    it 'does not allow secrets to be created when the to_email is not one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['c.com','d.com'] }
-      expect(secret).to_not be_valid
-      expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com, @d.com')
+      before do
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :limited }
+      end
+
+      it 'is valid if the to_email or from_email domains are from a.com' do
+        secret.from_email = 'a@a.com'
+        secret.to_email = 'b@b.com'
+        expect(secret).to be_valid
+        secret.to_email = 'a@a.com'
+        secret.from_email = 'b@b.com'
+        expect(secret).to be_valid
+      end
+
+      it 'is invalid if both the to_email and from_email domains are not from a.com' do
+        secret.from_email = 'a@b.com'
+        secret.to_email = 'b@b.com'
+        expect(secret).to be_invalid
+      end
+
     end
 
   end

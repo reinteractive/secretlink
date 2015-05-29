@@ -3,7 +3,7 @@ require 'rails_helper'
 describe AuthToken do
 
   before do
-    allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { nil }
+    allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
   end
 
   describe '#generate' do
@@ -43,31 +43,40 @@ describe AuthToken do
 
     let(:auth_token) { AuthToken.new(email: 'c@c.com') }
 
-    it 'allows auth tokens to be created when the config setting is nil' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { nil }
+    it 'is valid if the snapsecret_authorisation_setting is :open' do
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
       expect(auth_token).to be_valid
     end
 
-    it 'allows auth tokens to be created when the email domain matches the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { 'c.com' }
+    it 'is valid if the snapsecret_authorisation_setting is :limited' do
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :limited }
       expect(auth_token).to be_valid
     end
 
-    it 'allows auth tokens to be created when the email domain is one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { ['b.com', 'c.com'] }
-      expect(auth_token).to be_valid
+    context 'the snapsecret_authorised_domains includes the email domain' do
+
+      before do
+        allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'c.com' }
+      end
+
+      it 'is valid if the snapsecret_authorisation_setting is :closed' do
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+        expect(auth_token).to be_valid
+      end
+
     end
 
-    it 'does not allow auth tokens to be created when the email domain does not match the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { 'd.com' }
-      expect(auth_token).to_not be_valid
-      expect(auth_token.errors[:email]).to include('Email addresses @c.com are not authorised to create secrets')
-    end
+    context 'the snapsecret_authorised_domains does not include the email domain' do
 
-    it 'does not allow auth tokens to be created when the email domain is not one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_create_secrets) { ['d.com', 'e.com'] }
-      expect(auth_token).to_not be_valid
-      expect(auth_token.errors[:email]).to include('Email addresses @c.com are not authorised to create secrets')
+      before do
+        allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'd.com' }
+      end
+
+      it 'is invalid if the snapsecret_authorisation_setting is :closed' do
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+        expect(auth_token).to_not be_valid
+      end
+
     end
 
   end
