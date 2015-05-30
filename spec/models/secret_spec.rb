@@ -69,7 +69,7 @@ describe Secret do
     context 'the snapsecret_authorisation_setting is :open' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'open' }
       end
 
       it 'is valid' do
@@ -81,7 +81,7 @@ describe Secret do
     context 'the snapsecret_authorisation_setting is :closed' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'closed' }
       end
 
       it 'is valid if the to_email and from_email domains are both a.com' do
@@ -107,7 +107,7 @@ describe Secret do
     context 'the snapsecret_authorisation_setting is :limited' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :limited }
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'limited' }
       end
 
       it 'is valid if the to_email or from_email domains are from a.com' do

@@ -50,7 +50,6 @@ describe Secret do
 
   describe 'accessing a secret' do
 
-
     let!(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
       secret: 'cdefg', expire_at: Time.current + 7.days}, 'https://example.com')
     }
@@ -120,7 +119,7 @@ describe Secret do
 
     before do
 
-      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'closed' }
       allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'test.com' }
       auth_token.notify('https://www.example.com')
       visit auth_token_path(auth_token.hashed_token)

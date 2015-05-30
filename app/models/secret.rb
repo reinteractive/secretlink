@@ -32,18 +32,18 @@ class Secret < ActiveRecord::Base
   def email_domain_authorised
     authd_domain = Rails.configuration.snapsecret_authorised_domain
     case Rails.configuration.snapsecret_authorisation_setting
-    when :closed
+    when 'closed'
       if to_email_domain != authd_domain
         errors.add(:to_email, "Secrets can only be shared with emails @" + authd_domain)
       end
       if from_email_domain != authd_domain
         errors.add(:from_email, "Secrets can only be shared by emails @" + authd_domain)
       end
-    when :limited
+    when 'limited'
       if to_email_domain != authd_domain && from_email_domain != authd_domain
-        errors.add(:base, "Secrets can only be shared by or with emails @" + authd_domain)
+        errors.add(:to_email, "Secrets can only be shared by or with emails @" + authd_domain)
       end
-    when :closed
+    when 'closed'
       if to_email_domain != authd_domain || from_email_domain != authd_domain
         errors.add(:base, "Secrets can only be shared by or with emails @" + authd_domain)
       end

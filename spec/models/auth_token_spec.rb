@@ -3,7 +3,7 @@ require 'rails_helper'
 describe AuthToken do
 
   before do
-    allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
+    allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'open' }
   end
 
   describe '#generate' do
@@ -44,12 +44,12 @@ describe AuthToken do
     let(:auth_token) { AuthToken.new(email: 'c@c.com') }
 
     it 'is valid if the snapsecret_authorisation_setting is :open' do
-      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :open }
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'open' }
       expect(auth_token).to be_valid
     end
 
     it 'is valid if the snapsecret_authorisation_setting is :limited' do
-      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :limited }
+      allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'limited' }
       expect(auth_token).to be_valid
     end
 
@@ -60,7 +60,7 @@ describe AuthToken do
       end
 
       it 'is valid if the snapsecret_authorisation_setting is :closed' do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'closed' }
         expect(auth_token).to be_valid
       end
 
@@ -73,7 +73,7 @@ describe AuthToken do
       end
 
       it 'is invalid if the snapsecret_authorisation_setting is :closed' do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { :closed }
+        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'closed' }
         expect(auth_token).to_not be_valid
       end
 

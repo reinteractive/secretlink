@@ -13,7 +13,7 @@ class AuthToken < ActiveRecord::Base
 
   def email_domain_authorised
     email_domain = email.to_s.split('@')[1]
-    if Rails.configuration.snapsecret_authorisation_setting == :closed &&
+    if Rails.configuration.snapsecret_authorisation_setting == 'closed' &&
       email_domain != Rails.configuration.snapsecret_authorised_domain
       errors.add(:email, "Email addresses @#{email_domain} are not authorised to create secrets")
     end
