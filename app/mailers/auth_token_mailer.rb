@@ -4,7 +4,7 @@ class AuthTokenMailer < BaseMailer
     @email = email
     @request_host = request_host
     @token = token
-    mail(to: email, subject: 'SnapSecret authentication token')
+    mail(to: email, subject: 'Topsekrit authentication token')
   end
 
 end

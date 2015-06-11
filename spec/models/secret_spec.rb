@@ -31,7 +31,7 @@ describe Secret do
     }
 
     before do
-      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 6.days.to_i }
+      allow(Rails.application.config).to receive(:topsekrit_maximum_expiry_time) { 6.days.to_i }
     end
 
     it 'does not allow secrets with a longer expiry than specified in the config' do
@@ -42,7 +42,7 @@ describe Secret do
     end
 
     it 'allows secrets with a shorter expiry than specified in the config' do
-      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 7.days.to_i }
+      allow(Rails.application.config).to receive(:topsekrit_maximum_expiry_time) { 7.days.to_i }
       expect(secret).to be_valid
     end
 
@@ -63,28 +63,28 @@ describe Secret do
     }
 
     it 'allows secrets to be created when the config setting is nil' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { nil }
+      allow(Rails.configuration).to receive(:topsekrit_domains_allowed_to_receive_secrets) { nil }
       expect(secret).to be_valid
     end
 
     it 'allows secrets to be created when to to_email domain matches the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'b.com' }
+      allow(Rails.configuration).to receive(:topsekrit_domains_allowed_to_receive_secrets) { 'b.com' }
       expect(secret).to be_valid
     end
 
     it 'allows secrets to be created when to to_email domain is one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['b.com', 'c.com'] }
+      allow(Rails.configuration).to receive(:topsekrit_domains_allowed_to_receive_secrets) { ['b.com', 'c.com'] }
       expect(secret).to be_valid
     end
 
     it 'does not allow secrets to be created when the to_email does not match the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'c.com' }
+      allow(Rails.configuration).to receive(:topsekrit_domains_allowed_to_receive_secrets) { 'c.com' }
       expect(secret).to_not be_valid
       expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com')
     end
 
     it 'does not allow secrets to be created when the to_email is not one of those provided in the config setting' do
-      allow(Rails.configuration).to receive(:snapsecret_domains_allowed_to_receive_secrets) { ['c.com','d.com'] }
+      allow(Rails.configuration).to receive(:topsekrit_domains_allowed_to_receive_secrets) { ['c.com','d.com'] }
       expect(secret).to_not be_valid
       expect(secret.errors[:to_email]).to include('Secrets can only be shared with emails @c.com, @d.com')
     end

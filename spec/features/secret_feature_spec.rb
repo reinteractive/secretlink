@@ -31,7 +31,7 @@ describe Secret do
     it 'sends an email to the recipient' do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq(['example@example.com'])
-      expect(email.subject).to eq('A secret has been shared with you via SnapSecret')
+      expect(email.subject).to eq('A secret has been shared with you via Topsekrit')
       expect(email.text_part.to_s).to match("This link will show you the secret:")
       expect(email.text_part.to_s).to match("/#{secret.uuid}/.+/.+")
     end
@@ -87,7 +87,7 @@ describe Secret do
       expect(page).to have_content('cdefg')
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq(['a@a.com'])
-      expect(email.subject).to eq('Secret consumed on snapsecret')
+      expect(email.subject).to eq('Secret consumed on topsekrit')
       expect(email.text_part.to_s).to match('b@b.com')
       expect(email.text_part.to_s).to match('The encrypted information has now been deleted from the database')
     end
@@ -119,7 +119,7 @@ describe Secret do
     let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
 
     before do
-      allow(Rails.application.config).to receive(:snapsecret_domains_allowed_to_receive_secrets) { 'a.com' }
+      allow(Rails.application.config).to receive(:topsekrit_domains_allowed_to_receive_secrets) { 'a.com' }
       auth_token.notify('https://www.example.com')
       visit auth_token_path(auth_token.hashed_token)
     end

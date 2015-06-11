@@ -12,7 +12,7 @@ class AuthToken < ActiveRecord::Base
   end
 
   def email_domain_authorised
-    authorised_domains = Rails.application.config.snapsecret_domains_allowed_to_create_secrets
+    authorised_domains = Rails.application.config.topsekrit_domains_allowed_to_create_secrets
     email_domain = email.to_s.split('@')[1]
     if authorised_domains && email_domain && [authorised_domains].flatten.exclude?(email_domain)
       errors.add(:email, "Email addresses @#{email_domain} are not authorised to create secrets")
