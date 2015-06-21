@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'rails', '~> 4.2.1'
 
 gem 'attr_encrypted'
@@ -22,7 +23,6 @@ group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rubocop'
-  gem 'dotenv-rails'
 end
 
 group :test do
@@ -31,4 +31,9 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+end
+
+group :development, :test do
+  gem 'byebug'
+  gem 'dotenv-rails'
 end
