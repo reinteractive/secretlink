@@ -18,3 +18,5 @@
 /public/uploads/*
 /config/database.yml
 .DS_Store
+.env
+.ruby-gemset

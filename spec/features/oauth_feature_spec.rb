@@ -6,6 +6,10 @@ describe 'oauth via google' do
     OmniAuth.config.test_mode = true
   end
 
+  after do
+    OmniAuth.config.mock_auth[:google_oauth2] = nil
+  end
+
   describe 'successful auth' do
 
     before do

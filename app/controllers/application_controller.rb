@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
     @secret = Secret.where(uuid: params[:uuid], from_email: session[:email]).first
     if !@secret
       flash[:error] = "Secret not found"
-      redirect_to new_auth_token_path
+      redirect_to new_auth_token_path and return
     end
     if @secret.expired?
       flash[:error] = "That secret has expired"
-      redirect_to(new_auth_token_path)
+      redirect_to(new_auth_token_path) and return
     end
     true
   end
