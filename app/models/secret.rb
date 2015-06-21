@@ -20,48 +20,42 @@ class Secret < ActiveRecord::Base
   end
 
   def expire_at_within_limit
-    if Rails.application.config.snapsecret_maximum_expiry_time
-      max_expiry_in_config = (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).to_i
+    if Rails.application.config.topsekrit_maximum_expiry_time
+      max_expiry_in_config = (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).to_i
       if expire_at.blank? || (expire_at && expire_at.to_i > max_expiry_in_config)
         errors.add(:expire_at, "Maximum expiry allowed is " +
-        (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y'))
+        (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y'))
       end
     end
   end
 
   def email_domain_authorised
-    authd_domain = Rails.configuration.snapsecret_authorised_domain
-    case Rails.configuration.snapsecret_authorisation_setting
-    when 'closed'
-      if to_email_domain != authd_domain
+    authd_domain = Rails.configuration.topsekrit_authorised_domain
+    case Rails.configuration.topsekrit_authorisation_setting
+    when :open
+      return
+    when :closed
+      if email_does_not_match?(to_email)
         errors.add(:to_email, "Secrets can only be shared with emails @" + authd_domain)
       end
-      if from_email_domain != authd_domain
+      if email_does_not_match?(from_email)
         errors.add(:from_email, "Secrets can only be shared by emails @" + authd_domain)
       end
-    when 'limited'
-      if to_email_domain != authd_domain && from_email_domain != authd_domain
+    when :limited
+      if email_does_not_match?(to_email) && email_does_not_match?(from_email)
         errors.add(:to_email, "Secrets can only be shared by or with emails @" + authd_domain)
-      end
-    when 'closed'
-      if to_email_domain != authd_domain || from_email_domain != authd_domain
-        errors.add(:base, "Secrets can only be shared by or with emails @" + authd_domain)
       end
     end
   end
 
-  def to_email_domain
-    to_email.to_s.split('@')[1]
-  end
-
-  def from_email_domain
-    from_email.to_s.split('@')[1]
+  def email_does_not_match?(email)
+    AuthorisedEmailService.email_domain_does_not_match?(email)
   end
 
   def self.expire_at_hint
-    if Rails.application.config.snapsecret_maximum_expiry_time
+    if Rails.application.config.topsekrit_maximum_expiry_time
       (Date.today + 1).strftime('%d %B %Y') + ' - ' +
-      (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y')
+      (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y')
     end
   end
 end

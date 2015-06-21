@@ -31,7 +31,8 @@ describe Secret do
     }
 
     before do
-      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 6.days.to_i }
+      allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
+      allow(Rails.application.config).to receive(:topsekrit_maximum_expiry_time) { 6.days.to_i }
     end
 
     it 'does not allow secrets with a longer expiry than specified in the config' do
@@ -42,7 +43,7 @@ describe Secret do
     end
 
     it 'allows secrets with a shorter expiry than specified in the config' do
-      allow(Rails.application.config).to receive(:snapsecret_maximum_expiry_time) { 7.days.to_i }
+      allow(Rails.application.config).to receive(:topsekrit_maximum_expiry_time) { 7.days.to_i }
       expect(secret).to be_valid
     end
 
@@ -63,13 +64,13 @@ describe Secret do
     }
 
     before do
-      allow(Rails.configuration).to receive(:snapsecret_authorised_domain) { 'a.com' }
+      allow(Rails.configuration).to receive(:topsekrit_authorised_domain) { 'a.com' }
     end
 
-    context 'the snapsecret_authorisation_setting is :open' do
+    context 'the topsekrit_authorisation_setting is :open' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'open' }
+        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
       end
 
       it 'is valid' do
@@ -78,10 +79,10 @@ describe Secret do
 
     end
 
-    context 'the snapsecret_authorisation_setting is :closed' do
+    context 'the topsekrit_authorisation_setting is :closed' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'closed' }
+        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :closed }
       end
 
       it 'is valid if the to_email and from_email domains are both a.com' do
@@ -104,10 +105,10 @@ describe Secret do
 
     end
 
-    context 'the snapsecret_authorisation_setting is :limited' do
+    context 'the topsekrit_authorisation_setting is :limited' do
 
       before do
-        allow(Rails.configuration).to receive(:snapsecret_authorisation_setting) { 'limited' }
+        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :limited }
       end
 
       it 'is valid if the to_email or from_email domains are from a.com' do

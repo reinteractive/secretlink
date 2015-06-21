@@ -4,6 +4,7 @@
       <%= f.input :email, wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } %>
       <div class='form-group'>
         <%= f.submit 'Send', class: 'btn btn-primary' %>
+        <%= link_to image_tag('g64.png', alt: 'g+'), '/auth/google_oauth2', id: 'oauth-google' %>
       </div>
     <% end %>
   </div>

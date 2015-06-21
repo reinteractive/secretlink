@@ -90,8 +90,8 @@ Rails.application.configure do
     domain:               ENV['SMTP_DOMAIN']
   }
 
-  config.action_mailer.default_options = {from: 'snapsecret@reinteractive.net'}
-  config.action_mailer.default_url_options = {host: 'snapsecret.reinteractive.net'}
+  config.action_mailer.default_options = {from: 'info@topsekr.it'}
+  config.action_mailer.default_url_options = {host: 'topsekr.it'}
 
   # Enable the logstasher logs for the current environment
   config.logstasher.enabled = true

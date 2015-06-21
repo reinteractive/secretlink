@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe SecretService do
 
+  before do
+    allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
+  end
+
   describe '#encrypt_secret' do
 
     let(:secret) { SecretService.encrypt_secret({secret: 'aBc123', to_email: 'a@a.com', from_email: 'b@b.com'}, 'https://example.com') }

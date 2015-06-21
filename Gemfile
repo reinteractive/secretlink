@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'rails', '~> 4.2.1'
 
 gem 'attr_encrypted'
@@ -8,6 +9,7 @@ gem 'carrierwave'
 gem 'email_validator'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'pickadate-rails'
 gem 'sass-rails', '>= 3.2'
@@ -21,7 +23,6 @@ group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rubocop'
-  gem 'dotenv-rails'
 end
 
 group :test do
@@ -31,4 +32,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'faker'
+end
+
+group :development, :test do
+  gem 'byebug'
+  gem 'dotenv-rails'
 end
