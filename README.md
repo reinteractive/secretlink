@@ -1,10 +1,10 @@
-# SnapSecret
+# Topsekrit
 
 _An application that facilitates sharing secrets._
 
 Sharing of passwords, keys, and files can be difficult to perform securely. This application allows a secret to be shared and viewed via a unique url. After the secret is viewed once, it is deleted.
 
-Configuration options are stored in config/initializers/snapsecret.rb, and can be used to:
+Configuration options are stored in config/initializers/topsekrit.rb, and can be used to:
 
 - Restrict creation of secrets to email addresses from certain domains.
 - Restrict sharing of secrets to email addresses from certain domains.

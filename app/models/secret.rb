@@ -20,17 +20,17 @@ class Secret < ActiveRecord::Base
   end
 
   def expire_at_within_limit
-    if Rails.application.config.snapsecret_maximum_expiry_time
-      max_expiry_in_config = (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).to_i
+    if Rails.application.config.topsekrit_maximum_expiry_time
+      max_expiry_in_config = (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).to_i
       if expire_at.blank? || (expire_at && expire_at.to_i > max_expiry_in_config)
         errors.add(:expire_at, "Maximum expiry allowed is " +
-        (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y'))
+        (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y'))
       end
     end
   end
 
   def to_email_domain_authorised
-    authorised_domains = Rails.application.config.snapsecret_domains_allowed_to_receive_secrets
+    authorised_domains = Rails.application.config.topsekrit_domains_allowed_to_receive_secrets
     email_domain = to_email.to_s.split('@')[1]
     if authorised_domains && email_domain && [authorised_domains].flatten.exclude?(email_domain)
       errors.add(:to_email, "Secrets can only be shared with emails " +
@@ -40,9 +40,9 @@ class Secret < ActiveRecord::Base
   end
 
   def self.expire_at_hint
-    if Rails.application.config.snapsecret_maximum_expiry_time
+    if Rails.application.config.topsekrit_maximum_expiry_time
       (Date.today + 1).strftime('%d %B %Y') + ' - ' +
-      (Time.now + Rails.application.config.snapsecret_maximum_expiry_time).strftime('%d %B %Y')
+      (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y')
     end
   end
 end

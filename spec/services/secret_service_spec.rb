@@ -26,7 +26,7 @@ describe SecretService do
         'https://example.com')
     }
     let!(:retrieved_secret) { Secret.find(secret.id) }
-    let(:secret_key) { ActionMailer::Base.deliveries.last.body.to_s.match(/https:\/\/example.com\/[\w-]*\/(\w*)\//)[1] }
+    let(:secret_key) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/https:\/\/example.com\/[\w-]*\/(\w*)\//)[1] }
 
     it 'raises an error if no key is provided' do
       expect{

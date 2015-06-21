@@ -4,7 +4,7 @@ class CreateSecrets < ActiveRecord::Migration
       t.string :title
       t.string :from_email, required: true
       t.string :to_email, required: true
-      t.string :encrypted_secret
+      t.text :encrypted_secret
       t.string :encrypted_secret_salt
       t.string :encrypted_secret_iv
       t.string :uuid

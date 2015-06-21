@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: snapsecret_development
+  database: topsekrit_development
 test:
   <<: *default
-  database: snapsecret_test
+  database: topsekrit_test
