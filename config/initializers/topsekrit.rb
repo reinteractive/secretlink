@@ -18,3 +18,8 @@ Rails.configuration.topsekrit_domains_allowed_to_create_secrets = ENV['TOPSEKRIT
 # Takes a single string: 'acme.com' or an array: ['acme.com', 'acme.org']
 # Set to nil or comment the line if you don't want to enforce this restriction
 Rails.configuration.topsekrit_domains_allowed_to_receive_secrets = ENV['TOPSEKRIT_ALLOWED_RECEIVE']
+
+# Path for the google oauth2 callback URL, this is what is set with google
+# when you are setting up the client key for the application
+Rails.configuration.topsekrit_domains_allowed_to_receive_secrets = ENV['GOOGLE_OAUTH_CALLBACK_PATH']
+
