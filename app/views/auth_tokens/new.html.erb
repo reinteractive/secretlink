@@ -1,25 +1,115 @@
-<div class='row'>
-  <div class="col-md-6">
-    <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-inline' } do |f| %>
-      <%= f.input :email, wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } %>
-      <div class='form-group'>
-        <%= f.submit 'Send', class: 'btn btn-primary' %>
-        <%= link_to image_tag('g64.png', alt: 'g+'), '/auth/google_oauth2', id: 'oauth-google' %>
+<div class="container introduction">
+  <div class="row">
+    <div class="col-xs-12">
+      <p class="lead text-center">Share secrets such as passwords, api keys, and ssl certificates securely.</p>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
+          <span class="glyphicon glyphicon-lock pull-right" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-9 col-sm-7 col-md-5">
+          <p class="lead"><strong>Your secret is yours to keep and share</strong></p>
+          <p>topserk.it uses state-of-the-art encryption to keep your data safe.</p>
+        </div>
       </div>
-    <% end %>
+      <div class="row">
+        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
+          <span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-9 col-sm-7 col-md-5">
+          <p class="lead"><strong>The messenger works fast and is conveniently forgetful</strong></p>
+          <p>topserk.it doesn't store the encrypted data longer than absolutely necessary. As soon as your recipient reads it, it's permanently deleted from our servers.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
+          <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-9 col-sm-7 col-md-5">
+          <p class="lead"><strong>It's simple & efficient</strong></p>
+          <p>All you need is a valid email. No new passwords to remember, no accounts to worry about.</p>
+        </div>
+      </div>
+      <div class="row center-block" style="width: 50%;">
+        <div class="col-sm-12 text-center">
+          <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-inline' } do |f| %>
+            <%= f.input :email, wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } %>
+            <div class='form-group'>
+              <%= f.submit 'Send', class: 'btn btn-primary' %>
+              <%= link_to image_tag('g64.png', alt: 'g+'), '/auth/google_oauth2', id: 'oauth-google' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<ol id='instructions'>
-  <li>Enter your email address and a link with a one-time authentication token will be sent to you.</li>
-  <li>Follow the link to a page where you can view the status of previously shared secrets and share new secrets.</li>
-  <li>Enter the recipients email address, and enter or attach the secret information.</li>
-  <li>A link with a one-time authentication token is sent to the recipient's address.</li>
-  <li>When the recipient views the information, it is deleted from the database.</li>
-</ol>
-
-<ul class='list-group'>
-  <li>The secret information is encrypted. A component of the decryption key is sent in the email to the recipient and not stored in the database.</li>
-  <li>Secrets have an optional expiry.</li>
-  <li>Sending this information via email or a chat application isn't particularly secure or professional. Ideally the recipient would view the secret and save it in a password manager application, but this isn't required.</li>
-</ul>
+<div class="container instructions">
+  <h2 class="text-center">How it works</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="instruction">
+        <span class="step text-center">1</span>
+        <h3>Email</h3>
+        <p>We will email you a link with a one-time authentication token.</p>
+        <p>Follow the link to share a new secret. You can also view the status of past secrets.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="instruction">
+        <span class="step text-center">2</span>
+        <h3>Create</h3>
+        <p>Enter the recipients email address, and enter or attach the secret information.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="instruction">
+        <span class="step text-center">3</span>
+        <h3>Share</h3>
+        <p>A link with a one-time authentication token is sent to the recipient's address.</p>
+        <p>When the recipient views the information, it is deleted from the database.</p>
+      </div>
+    </div>
+    <!-- <div class="col-md-3">
+      <div class="instruction">
+        <span class="step text-center">4</span>
+        <h3>Send the secret</h3>
+        <p>A link with a one-time authentication token is sent to the recipient's address.</p>
+        <p>When the recipient views the information, it is deleted from the database.</p>
+      </div>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <h5 class="text-center">And what goes on behind the scenes?</h5>
+      <p>The secret is encrypted with a salt and IV using the aes-256-cbc algorithm. If it isn’t accessed before the provided expiry time it is automatically deleted</p>
+    </div>
+  </div>
+</div>
+<div class="faq">
+  <div class="container">
+    <h2 class="text-center">Frequently Asked Questions</h2>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-4">
+        <p class="lead">Question</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+      </div>
+      <div class="col-md-4">
+        <p class="lead">Question</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-4">
+        <p class="lead">Question</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+      </div>
+      <div class="col-md-4">
+        <p class="lead">Question</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+      </div>
+    </div>
+  </div>
+</div>
