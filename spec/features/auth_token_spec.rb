@@ -16,6 +16,7 @@ describe AuthToken do
 
     email = ActionMailer::Base.deliveries[0]
     expect(email.to).to eq(['test@test.com'])
+    expect(email.from).to eq(['info@topsekr.it'])
     expect(email.subject).to eq('Topsekrit authentication token')
     expect(email.text_part.to_s).to match(auth_token.hashed_token)
   end

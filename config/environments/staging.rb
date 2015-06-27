@@ -90,7 +90,7 @@ Rails.application.configure do
     domain:               ENV['SMTP_DOMAIN']
   }
 
-  config.action_mailer.default_options = {from: 'info@topsekr.it'}
+  config.action_mailer.default_options = {from: 'Topsekrit <info@topsekr.it>'}
   config.action_mailer.default_url_options = {host: 'staging.topsekr.it'}
 
   # Enable the logstasher logs for the current environment
