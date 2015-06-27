@@ -24,10 +24,10 @@ The typlical workflow:
 ---------------------------
 
 - Someone visits [https://topsekr.it/](https://topsekr.it/) and enters their email
-  address.
+  address and the recipient's email address. The recipient's email address isn't strictly necessary at this point but it reduces confusion for non-technical users.
 - An email link with a one-time authentication token is sent to the email.
 - They follow the link to a form where they can enter the secret info that they want
-  to share, including the recipient's email address.
+  to share. The recipient's email address will automatically be filled in if it was provided when creating the auth token.
 - The secret is encrypted with a one time key, the encrypted secret is stored on the
   server without the key.
 - A link to decrypt the secret is sent to the recipient's email address including the

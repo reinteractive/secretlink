@@ -8,7 +8,7 @@ class SecretsController < ApplicationController
   end
 
   def new
-    @secret = Secret.new
+    @secret = Secret.new(to_email: params[:recipient_email])
   end
 
   def create
