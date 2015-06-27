@@ -36,6 +36,7 @@ describe Secret do
       it 'sends an email to the recipient' do
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['example@example.com'])
+        expect(email.from).to eq(['info@topsekr.it'])
         expect(email.subject).to eq('A secret has been shared with you via Topsekrit')
         expect(email.text_part.to_s).to match("This link will show you the secret:")
         expect(email.text_part.to_s).to match("/#{secret.uuid}/.+/.+")
@@ -91,6 +92,7 @@ describe Secret do
         expect(page).to have_content('cdefg')
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['a@a.com'])
+        expect(email.from).to eq(['info@topsekr.it'])
         expect(email.subject).to eq('Secret consumed on topsekrit')
         expect(email.text_part.to_s).to match('b@b.com')
         expect(email.text_part.to_s).to match('The encrypted information has now been deleted from the database')
