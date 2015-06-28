@@ -1,45 +1,58 @@
-<div class="container introduction">
-  <div class="row">
-    <div class="col-xs-12">
-      <p class="lead text-center">Share secrets such as passwords, api keys, and ssl certificates securely.</p>
-    </div>
+<div class="introduction">
+  <div class="container">
     <div class="row">
+      <div class="col-xs-12">
+        <p class="lead text-center">Share secrets such as passwords, api keys, and ssl certificates securely.</p>
+      </div>
+    </div>
+    <div class="introduction-content">
       <div class="row">
-        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
-          <span class="glyphicon glyphicon-lock pull-right" aria-hidden="true"></span>
+        <div class="col-xs-2 col-sm-offset-1 col-md-2 col-md-offset-2">
+          <div class="glyphicon-lead-bg pull-right text-center">
+            <span class="glyphicon glyphicon-lead glyphicon-lock" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="col-xs-9 col-sm-7 col-md-5">
-          <p class="lead"><strong>Your secret is yours to keep and share</strong></p>
+        <div class="col-xs-9 col-sm-7 col-md-8">
+          <p class="lead"><strong>Your <span class="secret">secret</span> is yours to keep and share</strong></p>
           <p>topserk.it uses state-of-the-art encryption to keep your data safe.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
-          <span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span>
+        <div class="col-xs-2 col-sm-offset-1 col-md-2 col-md-offset-2">
+          <div class="glyphicon-lead-bg pull-right text-center">
+            <span class="glyphicon glyphicon-lead glyphicon-time" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="col-xs-9 col-sm-7 col-md-5">
+        <div class="col-xs-9 col-sm-7 col-md-6">
           <p class="lead"><strong>The messenger works fast and is conveniently forgetful</strong></p>
           <p>topserk.it doesn't store the encrypted data longer than absolutely necessary. As soon as your recipient reads it, it's permanently deleted from our servers.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-2 col-sm-offset-1 col-md-offset-2">
-          <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
+        <div class="col-xs-2 col-sm-offset-1 col-md-2 col-md-offset-2">
+          <div class="glyphicon-lead-bg pull-right text-center">
+            <span class="glyphicon glyphicon-lead glyphicon-ok" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="col-xs-9 col-sm-7 col-md-5">
+        <div class="col-xs-9 col-sm-7 col-md-6">
           <p class="lead"><strong>It's simple & efficient</strong></p>
           <p>All you need is a valid email. No new passwords to remember, no accounts to worry about.</p>
         </div>
       </div>
-      <div class="row center-block" style="width: 50%;">
-        <div class="col-sm-12 text-center">
-          <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-inline' } do |f| %>
-            <%= f.input :email, wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } %>
-            <div class='form-group'>
-              <%= f.submit 'Send', class: 'btn btn-primary' %>
-              <%= link_to image_tag('g64.png', alt: 'g+'), '/auth/google_oauth2', id: 'oauth-google' %>
-            </div>
-          <% end %>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p class="lead btn-lead-outline">
+            <span class="btn-lead">Share a Secret</span>
+          </p>
+          <div class="auth-form hidden">
+            <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-inline' } do |f| %>
+              <%= f.input :email, wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } %>
+              <div class='form-group'>
+                <%= f.submit 'Send', class: 'btn btn-primary' %>
+                <%= link_to image_tag('g64.png', alt: 'g+'), '/auth/google_oauth2', id: 'oauth-google' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -49,28 +62,28 @@
 <div class="container instructions">
   <h2 class="text-center">How it works</h2>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
       <div class="instruction">
         <span class="step text-center">1</span>
         <h3>You enter your email</h3>
         <p>We'll never use this email for anything other than sending secrets requested by you.</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
       <div class="instruction">
         <span class="step text-center">2</span>
         <h3>You receive link to create the secret</h3>
         <p>Each new secret is created by accessing a one-use, unique URL only you can see.</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
       <div class="instruction">
         <span class="step text-center">3</span>
         <h3>You add secret + recipient</h3>
         <p>You can set when you want your secret to expire and such as well.</p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
       <div class="instruction">
         <span class="step text-center">4</span>
         <h3>Your recipient receives a link to the secret</h3>
@@ -79,15 +92,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 behind-scenes">
       <h3 class="text-center">And what goes on behind the scenes?</h3>
-      <p>The secret is encrypted with a salt and IV using the aes-256-cbc algorithm. If it isn’t accessed before the provided expiry time it is automatically deleted</p>
+      <p class="text-center">The secret is encrypted with a salt and IV using the aes-256-cbc algorithm. If it isn’t accessed before the provided expiry time it is automatically deleted</p>
     </div>
   </div>
 </div>
+
 <div class="faq">
   <div class="container">
-    <h2 class="text-center">Frequently Asked Questions</h2>
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center">Frequently Asked Questions</h2>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-offset-2 col-md-4">
         <p class="lead">Question</p>

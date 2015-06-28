@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150416012902) do
     t.string   "title"
     t.string   "from_email"
     t.string   "to_email"
-    t.string   "encrypted_secret"
+    t.text     "encrypted_secret"
     t.string   "encrypted_secret_salt"
     t.string   "encrypted_secret_iv"
     t.string   "uuid"
