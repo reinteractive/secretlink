@@ -5,7 +5,7 @@ class AuthTokensController < ApplicationController
     if auth_token
       session[:email] = auth_token.email
       auth_token.delete
-      redirect_to new_secret_path
+      redirect_to new_secret_path(recipient_email: auth_token.recipient_email)
     else
       flash[:message] = "Token not found"
       render :new
@@ -30,7 +30,7 @@ class AuthTokensController < ApplicationController
   private
 
   def auth_token_params
-    params.require(:auth_token).permit(:email)
+    params.require(:auth_token).permit(:email, :recipient_email)
   end
 
 end

@@ -5,12 +5,14 @@ describe AuthToken do
   it 'generates an auth token' do
     visit root_url
     expect(page).to have_content('Enter your email address')
-    fill_in 'Email', with: 'test@test.com'
+    fill_in 'Your Email', with: 'test@test.com'
+    fill_in 'Their Email', with: 'test@example.com'
     click_button 'Send'
 
     auth_token = AuthToken.last
     expect(auth_token.hashed_token).to_not be_nil
     expect(auth_token.expire_at).to_not be_nil
+    expect(auth_token.recipient_email).to eq('test@example.com')
 
     email = ActionMailer::Base.deliveries[0]
     expect(email.to).to eq(['test@test.com'])
@@ -25,7 +27,12 @@ describe AuthToken do
 
   describe 'with an existing auth token saved to the database' do
 
-    let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
+    let!(:auth_token) {
+      AuthToken.create(
+        email: 'test@test.com',
+        recipient_email: 'test@example.com'
+      ).generate
+    }
 
     before do
       auth_token.notify('https://www.example.com')
@@ -36,9 +43,10 @@ describe AuthToken do
       expect(AuthToken.where(hashed_token: auth_token.hashed_token).count).to eq(0)
     end
 
-    it 'redirects to the new secret page' do
+    it 'redirects to the new secret page with the recipient\'s address filled in' do
       visit "/auth_tokens/#{auth_token.hashed_token}"
       expect(current_path).to eq("/secrets/new")
+      expect(find('#secret_to_email').value).to eq('test@example.com')
     end
 
   end
