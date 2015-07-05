@@ -1,20 +1,23 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700,300);
+
 $primary-color: #1C7279;
 
+body {
+  font-family: 'Oxygen', sans-serif;
+}
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
-
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 h2 {
   margin-bottom: 1.5em;
 }
-
 a:hover {
   text-decoration: none;
-}
-
-ul {
-  list-style: none;
 }
 
 form.form-inline {
@@ -48,34 +51,43 @@ div.secret_secret textarea {
   width: 45em;
 }
 
-.glyphicon-lg,
-.navbar-brand {
-  font-size: 28px;
+/***** NAVBAR *****/
+
+.navbar {
+  background-color: #fff;
+  margin-bottom: 0;
+  font-size: 20px;
+  border: none;
+}
+.navbar .navbar-brand,
+.glyphicon-lg {
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: top;
 }
 .glyphicon-lg {
-  padding-right: 1em;
+  padding-right: 0.5em;
+  line-height: 0.75;
 }
-
-.navbar-default {
-  background-color: #fff;
-}
-
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a {
   color: $primary-color;
 }
-
-.navbar-default .navbar-nav {
-  text-transform: uppercase;
-}
-
-.navbar-default {
+.navbar-toggle {
   border: none;
 }
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #fff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $primary-color;
+}
 
-nav.navbar {
+.navbar {
   a.github {
-    padding: 10px;
+    line-height: 1.5;
+    display: none;
   }
   img {
     height: 32px;
@@ -83,6 +95,7 @@ nav.navbar {
   }
 }
 
+/***** INTRODUCTION *****/
 
 .introduction {
   background: $primary-color url(../assets/background-img.png) no-repeat center center;
@@ -91,24 +104,23 @@ nav.navbar {
   -o-background-size: cover;
   background-size: cover;
 }
-
 .introduction p.lead {
   color: #fff;
   font-weight: 400;
-  padding: 2.5em 0 2em 0;
 }
-
+.introduction-lead {
+  background: rgba(28, 114, 121, 0.4);
+  padding: 3em 0 2em 0;
+}
 .introduction-content {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   padding: 3.5em 0;
   margin-bottom: 3em;
 }
-
 .introduction-content p.lead {
   color: #333;
   padding: 1em 0 0 0;
 }
-
 .glyphicon-lead-bg {
   border-radius: 50%;
   width: 60px;
@@ -116,21 +128,17 @@ nav.navbar {
   background-color: #fff;
   margin-top: 1em;
 }
-
 .glyphicon-lead {
   padding-left: 0.1em;
   font-size: 20px;
   line-height: 3;
 }
-
 .secret {
   text-decoration: underline;
 }
-
 .btn-lead-outline {
   margin: 1.5em 0;
 }
-
 .btn-lead {
   background-color: $primary-color;
   border-radius: 6px;
@@ -138,31 +146,29 @@ nav.navbar {
   color: #fff;
   cursor: pointer;
 }
-
 .btn-lead:hover {
   background-color: #fff;
   color: $primary-color;
   font-weight: 400;
 }
 
+/***** HOW IT WORKS *****/
 
 .instructions {
-  padding: 3em 0;
-}
-.behind-scenes {
+  background-color: #fff;
+  padding: 3em 0 5em 0;
   color: $primary-color;
 }
-
-.instructions .instruction {
-  height: 300px;
+.instructions h2 {
+  color: #333;
 }
-
-.instruction {
+.instruction-container {
   background-color: #F2F2F2;
+  height: 250px;
   padding: 2em;
   margin: 2em 0;
+  color: #333;
 }
-
 .step {
   background-color: #7DACAF;
   border-radius: 50%;
@@ -175,11 +181,25 @@ nav.navbar {
   color: #fff;
   font-weight: bold;
 }
+.other-details {
+  padding: 1.5em 0;
+}
+/***** FAQ *****/
 
 .faq {
   background-color: #7DACAF;
   padding: 3em 0;
 }
+.faq h2 {
+  padding: 1em 0;
+}
+.container-faq {
+  background-color: #F2F2F2;
+  padding: 1em;
+  margin-bottom: 1.5em;
+}
+
+/***** FOOTER *****/
 
 .footer-primary {
   color: #fff;
