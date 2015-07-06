@@ -17,7 +17,7 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'logstasher', '~> 0.6.5'
 gem 'uglifier'
-
+gem 'bugsnag'
 
 group :development do
   gem 'better_errors'
