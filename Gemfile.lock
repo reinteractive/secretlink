@@ -216,6 +216,8 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    skylight (0.6.1)
+      activesupport (>= 3.0.0)
     sprockets (3.0.1)
       rack (~> 1.0)
     sprockets-rails (2.2.4)
@@ -269,6 +271,7 @@ DEPENDENCIES
   rubocop
   sass-rails (>= 3.2)
   simple_form
+  skylight
   uglifier
   unicorn
 
