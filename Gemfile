@@ -18,6 +18,7 @@ gem 'unicorn'
 gem 'logstasher', '~> 0.6.5'
 gem 'uglifier'
 gem 'bugsnag'
+gem 'skylight'
 
 group :development do
   gem 'better_errors'
