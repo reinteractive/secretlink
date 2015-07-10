@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:reinteractive/opscare.git
-  revision: ce368527043e09c600a7e59f00d8b8e490bed641
+  revision: 389985998ceb1d0f1f9d246bf337f60948d085c9
   specs:
     opscare (1.0.0)
       bugsnag (~> 2.0.3)
