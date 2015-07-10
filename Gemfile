@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 4.2.3'
 
 gem 'attr_encrypted'
 gem 'bootstrap-sass', '~> 3.3.4'

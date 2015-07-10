@@ -1,0 +1,6 @@
+---
+authentication: <%= ENV['SKYLIGHT_AUTHENTICATION'] %>
+ignored_endpoints:
+  - ok_computer#index
+  - ok_computer#show
+alert_log_file: log/skylight.log
