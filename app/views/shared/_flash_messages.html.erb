@@ -4,7 +4,12 @@
   </div>
 <% end %>
 <% if flash[:message] %>
-  <div class="row flash">
-    <span id="flash-message" class="label label-info"><%= flash[:message].html_safe %></span>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <div class="flash alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="flash-message"><%= flash[:message].html_safe %></span>
+      </div>
+    </div>
   </div>
 <% end %>
