@@ -20,13 +20,13 @@ a:hover {
   text-decoration: none;
 }
 
-form.form-inline {
+form.form-horizontal {
   abbr {
     display: none;
   }
-  input.email {
-    margin-left: 5px;
-  }
+  // input.email {
+  //   margin-left: 5px;
+  // }
 }
 
 .flash {
@@ -39,10 +39,6 @@ form.form-inline {
 
 .field_with_errors .error {
   color: red;
-}
-
-#oauth-google img {
-  height: 32px;
 }
 
 div.secret_secret textarea {
@@ -142,7 +138,7 @@ div.secret_secret textarea {
 .btn-lead {
   background-color: $primary-color;
   border-radius: 6px;
-  padding: 0.75em 2em;
+  padding: 0.5em 2em;
   color: #fff;
   cursor: pointer;
 }
@@ -151,7 +147,44 @@ div.secret_secret textarea {
   color: $primary-color;
   font-weight: 400;
 }
-
+.auth-form {
+  background-color: #fff;
+  margin: 3em 0;
+  padding: 3em 2em;
+  label {
+    font-size: 16px;
+  }
+  input[type="email"] {
+    padding: 1.5em 1em;
+    line-height: 3;
+    outline: none;
+  }
+  input[type="submit"] {
+    font-size: 16px;
+    font-weight: 700;
+    height: 46px;
+    width: 225px;
+  }
+  .form-control:focus {
+    box-shadow: none;
+  }
+}
+.half-rule {
+  width: 100px;
+  margin: 40px auto;
+  border-top: 1px solid #DEDEDE;
+}
+.btn-google {
+  background-color: #dd4b39;
+  img {
+    height: 32px;
+  }
+  span {
+    font-size: 16px;
+    color: #fff;
+    padding: 0 1em;
+  }
+}
 /***** HOW IT WORKS *****/
 
 .instructions {
