@@ -105,9 +105,14 @@ form.send-secret-form {
   padding: 3em 0 2em 0;
 }
 .introduction-content {
+  font-size: 120%;
   background: rgba(255, 255, 255, 0.4);
   padding: 3.5em 0;
   margin-bottom: 3em;
+}
+.introduction-content p {
+  color: #333;
+  padding: 0 0 0 0;
 }
 .introduction-content p.lead {
   color: #333;
