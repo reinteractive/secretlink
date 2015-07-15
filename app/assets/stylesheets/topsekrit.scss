@@ -151,9 +151,10 @@ form.send-secret-form {
     font-size: 16px;
   }
   input[type="email"] {
-    padding: 1.5em 1em;
+    padding: 0.25em 1em;
     line-height: 3;
     outline: none;
+    height: auto;
   }
   input[type="submit"] {
     font-size: 16px;
@@ -231,14 +232,14 @@ form.send-secret-form {
 /***** ABOUT *****/
 
 .about a {
-  color: #ddd;
+  color: #eee;
   text-decoration: underline;
 }
 
 /***** FOOTER *****/
 
 .footer-primary {
-  color: #fff;
+  color: #ddd;
   background-color: #227278;
   padding: 2em;
 }
@@ -254,11 +255,19 @@ form.send-secret-form {
   background-color: #062B2F;
 }
 .footer-links {
-  padding: 2em 1em 1.5em 1em;
+  padding: 1em 1em 1.5em 1em;
   li {
     display: inline-block;
     padding: 0.5em 1em;
     line-height: 1.5;
+  }
+}
+
+.attribution {
+  margin: 1em 0 0 0;
+  color: #ddd;
+  a {
+    color: #fff;
   }
 }
 

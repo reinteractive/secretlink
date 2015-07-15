@@ -42,18 +42,22 @@
       <div class="row">
         <div class="col-sm-12 text-center">
           <p class="lead btn-lead-outline">
-            <span class="btn-lead" role="button">Send a Secret</span>
+            <span class="btn-lead" role="button">Share a secret now...</span>
           </p>
           <div class="auth-form hidden">
-            <h2>Send a secret</h2>
+            <h2>Share a secret now...</h2>
+            <p>All we need is your email, and theirs to get started.</p>
             <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-horizontal col-md-6 col-md-offset-3' } do |f| %>
               <div class="form-group  text-center">
                 <%= f.input :email, label: false, placeholder: 'Your email', input_html: { class: 'form-control center-block' } %>
-                <%= f.input :recipient_email, label: false, placeholder: 'Recipient email', input_html: { class: 'form-control center-block' } %>
+                <%= f.input :recipient_email, label: false, placeholder: 'Recipient email (optional)', input_html: { class: 'form-control center-block' } %>
               </div>
               <div class="form-group center-block">
                 <div class="col-sm-12">
-                  <%= f.button :submit, 'Send', class: 'btn btn-primary' %>
+                  <%= f.button :submit, 'Send TopSekrit Token', class: 'btn btn-primary' %>
+                  <p>
+                    <small>Pressing send only sends an email to you</small>
+                  </p>
                 </div>
               </div>
               <hr class="half-rule">
@@ -206,6 +210,38 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="about container-fluid footer-primary">
+  <h2 id="about" class="text-center">About TopSekr.it</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-2">
+      <p>
+        TopSekr.it is available for anyone to use, it is a Ruby on Rails application created and built
+        by <%= link_to('reinteractive', 'https://reinteractive.net') %> and hosted thorugh
+        reinteractive's <%= link_to('OpsCare', 'https://reinteractive.net/service/ops-care/') %>
+        service. It has been made open source to ensure transparency on the service and to
+        encourage contribution to improve the security of the application.
+      </p>
+      <p>
+        It is free to use and is governed by our <%= link_to('Terms and Conditions', '#') %>.
+      </p>
+      <p>
+        If you do not want to (or can not) use our hosted version, you are welcome to run your
+        own version for your own company or organisation, we only stipulate that you may not run
+        it as a service for third parties in competition to https://TopSekr.it/
+      </p>
+      <p>
+        If you would like assistance getting TopSekr.it (or any other Rails application)
+        setup, hosted and maintained on AWS, please consider
+        <%= link_to('contacting us', 'https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+about+reinteractive...') %>
+        to get more information about our Ruby on Rails <%= link_to('OpsCare', 'https://reinteractive.net/service/ops-care/') %>
+        and <%= link_to('CodeCare', 'https://reinteractive.net/service/code-care/') %> services.
+      </p>
+    </div>
+    <div class="col-xs-8 col-sm-4 col-md-2 center-block">
+      <%= image_tag('reinteractive-logo-dark.png', class: "img-responsive footer-logo", alt: "reinteractive logo") %>
     </div>
   </div>
 </div>

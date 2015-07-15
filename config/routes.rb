@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'oauth_callbacks#auth_failure'
   get '/:uuid/:secret_key/:auth_token', to: 'secrets#show'
   root 'auth_tokens#new'
+
+  get '/copyright',            to: 'pages#copyright'
+  get '/privacy_policy',       to: 'pages#privacy_policy'
+  get '/terms_and_conditions', to: 'pages#terms_and_conditions'
 end
