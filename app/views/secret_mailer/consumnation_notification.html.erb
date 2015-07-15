@@ -1,13 +1,28 @@
-Hello <%= @secret.from_email %><br />
-<br />
-This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("TopSekr.it", "https://TopSekr.it") %>.<br />
-<br />
+<p>
+  Hello <%= @secret.from_email %>
+</p>
+<p>
+  This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("TopSekr.it", "https://TopSekr.it") %>.
+</p>
 <% if @secret.title.present? %>
+<p>
   The title of the viewed secret was: <%= @secret.title %>
-<% elsif @secret.comments.present? %>
-  The comments on the viewed secret were: <%= @secret.title %>
+</p>
 <% end %>
-<br />
-This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.<br />
-<br />
-The encrypted information has now been deleted from the database.<br />
+<% if @secret.comments.present? %>
+<p>
+  The comments on the viewed secret were:
+</p>
+<pre>
+<%= @secret.title %>
+</pre>
+<% end %>
+<p>
+  This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
+</p>
+<p>
+  The encrypted information has now been deleted from the database.
+</p>
+<p>
+  Thank you for using <%= link_to("TopSekr.it", "https://TopSekr.it") %>!
+</p>

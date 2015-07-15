@@ -19,6 +19,7 @@ describe AuthToken do
     expect(page).to have_content('All we need is your email, and theirs to get started')
     fill_in 'auth_token[email]', with: 'test@test.com'
     fill_in 'auth_token[recipient_email]', with: 'test@example.com'
+    page.driver.scroll_to(0, 500)
     expect {
       click_button 'Send TopSekr.it Token'
     }.to change(AuthToken, :count).by(1)
