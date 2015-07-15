@@ -30,7 +30,7 @@ Rails.application.config.before_initialize do
   # write up at https://github.com/zquestz/omniauth-google-oauth2#google-api-setup
   Rails.configuration.topsekrit_google_oauth_client_secret = ENV['GOOGLE_OAUTH_CLIENT_SECRET']
 
-  # Base URL for the running site. For the production site at https://topsekr.it/ the
-  # Base URL would be: https://topsekr.it/, for development this might be http://lvh.me:3000/
+  # Base URL for the running site. For the production site at https://TopSekr.it/ the
+  # Base URL would be: https://TopSekr.it/, for development this might be http://lvh.me:3000/
   Rails.configuration.topsekrit_base_url = ENV['BASE_URL']
 end

@@ -90,8 +90,8 @@ Rails.application.configure do
     domain:               ENV['SMTP_DOMAIN']
   }
 
-  config.action_mailer.default_options = {from: 'TopSekr.it Sharing <info@topsekr.it>'}
-  config.action_mailer.default_url_options = {host: 'topsekr.it'}
+  config.action_mailer.default_options = {from: 'TopSekr.it Sharing <info@TopSekr.it>'}
+  config.action_mailer.default_url_options = {host: 'TopSekr.it'}
 
   # Enable the logstasher logs for the current environment
   config.logstasher.enabled = true

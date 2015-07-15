@@ -11,7 +11,7 @@ a) The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
 
 b) The software is not used to commercially compete with the service
-provided at https://topsekr.it/
+provided at https://TopSekr.it/
 
 c) THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF

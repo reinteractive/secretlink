@@ -20,7 +20,7 @@ a:hover {
   text-decoration: none;
 }
 
-form.form-horizontal {
+form.send-secret-form {
   abbr {
     display: none;
   }
@@ -146,6 +146,7 @@ form.form-horizontal {
   background-color: #fff;
   margin: 3em 0;
   padding: 3em 2em;
+  overflow: auto;
   label {
     font-size: 16px;
   }

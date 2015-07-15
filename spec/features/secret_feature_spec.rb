@@ -37,7 +37,7 @@ describe Secret do
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['example@example.com'])
         expect(email.subject).to eq("Topsekrit ID#{Secret.last.id}: A secret has been shared with you")
-        expect(email.from).to eq(['info@topsekr.it'])
+        expect(email.from).to eq(['info@TopSekr.it'])
         expect(email.text_part.to_s).to match("This link will show you the secret:")
         expect(email.text_part.to_s).to match("/#{secret.uuid}/.+/.+")
       end
@@ -93,7 +93,7 @@ describe Secret do
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['a@a.com'])
         expect(email.subject).to eq("Secret ID#{Secret.last.id} consumed on topsekrit")
-        expect(email.from).to eq(['info@topsekr.it'])
+        expect(email.from).to eq(['info@TopSekr.it'])
         expect(email.text_part.to_s).to match('b@b.com')
         expect(email.text_part.to_s).to match('The encrypted information has now been deleted from the database')
       end
