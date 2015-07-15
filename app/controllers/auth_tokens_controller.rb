@@ -14,7 +14,7 @@ class AuthTokensController < ApplicationController
 
   def new
     if session[:email]
-      flash.now[:message] = "You have already verified your email as #{session[:email]}.
+      flash.now[:message] = "You have already verified your email as #{session[:email]}.<br/>
       If you want to view and create secrets with this address, click
       <a href='secrets/new'>here</a>."
     end
