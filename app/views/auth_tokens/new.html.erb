@@ -91,20 +91,20 @@
         <div class="instruction-container">
           <span class="step text-center">2</span>
           <h3>You receive link to create the secret</h3>
-          <p>Each new secret is created by accessing a one-use, unique URL only you can see.</p>
+          <p>This confirms your email is who you say you are so you can then send secrets to other people.</p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <div class="instruction-container">
           <span class="step text-center">3</span>
-          <h3>You add secret + recipient</h3>
-          <p>You can set when you want your secret to expire and such as well.</p>
+          <h3>You add the secret sauce</h3>
+          <p>You add the secret, ensure the recipient is correct, any comments and also set when your secret should expire.</p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <div class="instruction-container">
           <span class="step text-center">4</span>
-          <h3>Your recipient receives a link to the secret</h3>
+          <h3>Your recipient receives a link</h3>
           <p>Once they view the secret, all sensitive data is deleted from our servers. We keep a log of senders-recipients but not the secrets themselves.</p>
         </div>
       </div>
@@ -113,8 +113,18 @@
       <div class="col-xs-10 col-xs-offset-1">
         <div class="other-details">
           <h3 class="text-center">And what goes on behind the scenes?</h3>
-          <p class="text-center">The secret is encrypted with a salt and IV using the aes-256-cbc algorithm.<br>
-            If it isn’t accessed before the provided expiry time it is automatically deleted</p>
+          <p class="text-center">
+            The secret is encrypted with a salt and IV using the aes-256-cbc algorithm. Only the encrypted secret is stored
+            and the key is emailed to your receipient within the link they need to click to read it. We don't store the key
+            on our servers, so once sent, that's it, you, us, anyone except the person recieving the email can not decrypt
+            the secret.
+          </p>
+          <p class="text-center">
+            Also, if the secret isn’t read before the provided expiry time the encrypted version is also automatically deleted.
+          </p>
+          <p class="text-center">
+            Nice and simple.  We like it that way :)
+          </p>
         </div>
       </div>
     </div>
@@ -122,11 +132,6 @@
 </div>
 <div class="faq">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 id="faq" class="text-center">Frequently Asked Questions</h2>
-      </div>
-    </div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
