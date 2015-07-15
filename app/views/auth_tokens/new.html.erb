@@ -76,7 +76,7 @@
 </div>
 <div class="instructions">
   <div class="container">
-    <h2 class="text-center">How it works</h2>
+    <h2 id="how" class="text-center">How it works</h2>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <div class="instruction-container pull-left">
@@ -121,47 +121,91 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="text-center">Frequently Asked Questions</h2>
+        <h2 id="faq" class="text-center">Frequently Asked Questions</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">Why is this useful?</p>
+          <p>
+            Instead of secrets being sent by email, in support systems, via instant messaging services
+            or the like, a unique link is sent instead, which only works once.
+          </p>
+          <p>
+            This way, only an unusable link will remain protecting the secret from further prying eyes.
+          </p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">Why should we trust you?</p>
+          <p>
+            We built this service to solve our own problem of sharing secrets with customers. We know
+            trust is a thing, so we <%= link_to("open sourced the whole project", "https://github.com/reinteractive/topsekrit") %> for any peer review.
+          </p>
+          <p>
+            If you find something, please let us know or send a pull request and we'll get it fixed.
+          </p>
         </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">Are secrets stored in the database?</p>
+          <p>
+            Yes, but only until the secret is consumed, then we only keep the meta data
+            in the system for your recods.
+          </p>
+          <p>
+            In future versions we will implement a simple dashboard allowing you to
+            view the meta data of what was sent and when it was consumed.  But we'll
+            never keep the original secret in the database. This is an important
+            security feature.
+          </p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">How much does this cost?</p>
+          <p>
+            It's free for you to use to send secrets to whomever you want - we
+            just ask that you don't do anything that could be against the law
+            or harrass anyone with this service.
+          </p>
+          <p>
+            We might introduce a paid version to allow other things (like history)
+            or sending larger files and the like, but all of that is still being
+            worked out, for now, enjoy :)
+          </p>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">Can we run TopSekr.it internally?</p>
+          <p>
+            Of course, we just ask you don't compete with this service in doing so
+            by only use it internally for your staff and clients.
+          </p>
+          <p>
+            We trust you to do the right thing :)
+          </p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
         <div class="container-faq">
-          <p class="lead">Question</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque reiciendis ipsum quis, ratione eos deleniti amet esse incidunt sapiente, dignissimos numquam iusto libero neque repudiandae aliquid accusantium, similique labore doloremque.</p>
+          <p class="lead">Can you help us set this up?</p>
+          <p>
+            Sure, <%= link_to('contact us', 'https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+TopSekr.it...') %>
+            to get more information about our Ruby on Rails <%= link_to('OpsCare', 'https://reinteractive.net/service/ops-care/') %>
+            and <%= link_to('CodeCare', 'https://reinteractive.net/service/code-care/') %> services.
+          </p>
+          <p>
+            We are experts at keeping critical Rails applications online.
+          </p>
         </div>
       </div>
     </div>

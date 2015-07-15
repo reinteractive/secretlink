@@ -41,12 +41,6 @@ form.form-horizontal {
   color: red;
 }
 
-div.secret_secret textarea {
-  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-  height: 15em;
-  width: 45em;
-}
-
 /***** NAVBAR *****/
 
 .navbar {
@@ -233,6 +227,13 @@ div.secret_secret textarea {
   margin-bottom: 1.5em;
 }
 
+/***** ABOUT *****/
+
+.about a {
+  color: #ddd;
+  text-decoration: underline;
+}
+
 /***** FOOTER *****/
 
 .footer-primary {
@@ -263,4 +264,11 @@ div.secret_secret textarea {
 .footer-links a {
   color: #fff;
   text-transform: uppercase;
+}
+
+/***** SECRET *****/
+
+div.secret_secret textarea, div.secret_comments textarea {
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  height: 10em;
 }
