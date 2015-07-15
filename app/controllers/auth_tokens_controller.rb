@@ -1,5 +1,8 @@
 class AuthTokensController < ApplicationController
 
+  def new
+  end
+
   def show
     auth_token = AuthToken.find_by_hashed_token(params[:id])
     if auth_token

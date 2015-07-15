@@ -41,10 +41,10 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-          <p class="lead btn-lead-outline">
-            <span class="btn-lead" role="button">Share a secret now...</span>
+          <p class="lead btn-lead-outline <%= 'hidden' if auth_new_page? %>">
+            <a href="/auth/new" class="btn-lead" role="button">Share a secret now...</a>
           </p>
-          <div class="auth-form hidden">
+          <div class="auth-form <%= 'hidden' unless auth_new_page? %>">
             <h2>Share a secret now...</h2>
             <p>All we need is your email, and theirs to get started.</p>
             <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-horizontal col-md-6 col-md-offset-3' } do |f| %>
@@ -54,7 +54,7 @@
               </div>
               <div class="form-group center-block">
                 <div class="col-sm-12">
-                  <%= f.button :submit, 'Send TopSekrit Token', class: 'btn btn-primary' %>
+                  <%= f.button :submit, 'Send TopSekr.it Token', class: 'btn btn-primary' %>
                   <p>
                     <small>Pressing send only sends an email to you</small>
                   </p>

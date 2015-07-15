@@ -1,7 +1,8 @@
 $(document).ready(function() {
-  $('.btn-lead-outline').click(function() {
-        $('.btn-lead-outline').hide();
-        $('.auth-form').removeClass('hidden');
+  $('.btn-lead-outline').click(function(e) {
+    $('.btn-lead-outline').hide();
+    $('.auth-form').removeClass('hidden');
+    e.preventDefault();
   });
 
   $('.datepicker').pickadate();
