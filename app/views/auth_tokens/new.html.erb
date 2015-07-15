@@ -158,14 +158,13 @@
         <div class="container-faq">
           <p class="lead">Are secrets stored in the database?</p>
           <p>
-            Yes, but only until the secret is consumed, then we only keep the meta data
-            in the system for your reference.
+            Yes, but encrypted with a one way cipher that we don't have the key for.
+            The key is only sent to the receipient you specify.
           </p>
           <p>
-            In future versions we will implement a simple dashboard allowing you to
-            view the meta data of what was sent and when it was consumed.  But we'll
-            never keep the original secret in the database. This is an important
-            security feature.
+            Once the secret is read by the recipient, we even delete the encrypted version
+            from the database, just leaving the meta data behind so in future versions you
+            can have a dashboard to see what you sent to whom (comming soon).
           </p>
         </div>
       </div>
