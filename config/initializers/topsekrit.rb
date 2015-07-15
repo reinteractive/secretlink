@@ -15,7 +15,7 @@ Rails.application.config.before_initialize do
   # :limited - emails from the topsekrit_authorised_domain domain can send secrets to anyone and can
   #            receive secrets from anyone, but emails from other domains can't send/receive secrets
   #            to/from each other
-  Rails.configuration.topsekrit_authorisation_setting = ENV['TOPSEKRIT_AUTHORISATION_SETTING'].to_sym
+  Rails.configuration.topsekrit_authorisation_setting = ENV['TOPSEKRIT_AUTHORISATION_SETTING'].to_s.to_sym
   Rails.configuration.topsekrit_authorised_domain = ENV['TOPSEKRIT_AUTHORISED_DOMAIN']
 
   # Path for the google oauth2 callback URL, this is what is set with google
