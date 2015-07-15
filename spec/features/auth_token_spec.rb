@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe AuthToken do
 
-  it 'generates an auth token' do
-    visit root_url
-    expect(page).to have_content('Enter your email address')
-    fill_in 'Your Email', with: 'test@test.com'
-    fill_in 'Their Email', with: 'test@example.com'
-    click_button 'Send'
+  it 'generates an auth token', js: true do
+    visit root_path
+    click_link('Share a secret now...')
+    expect(page).to have_content('All we need is your email, and theirs to get started')
+    fill_in 'auth_token[email]', with: 'test@test.com'
+    fill_in 'auth_token[recipient_email]', with: 'test@example.com'
+    click_button 'Send TopSekr.it Token'
 
     auth_token = AuthToken.last
     expect(auth_token.hashed_token).to_not be_nil
