@@ -41,12 +41,6 @@ form.form-horizontal {
   color: red;
 }
 
-div.secret_secret textarea {
-  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-  height: 15em;
-  width: 45em;
-}
-
 /***** NAVBAR *****/
 
 .navbar {
@@ -231,6 +225,20 @@ div.secret_secret textarea {
   background-color: #F2F2F2;
   padding: 1em;
   margin-bottom: 1.5em;
+}
+
+/***** SECRET FORM *****/
+
+.secret-container {
+  margin: 2em 0;
+}
+.instructions-container {
+  background-color: #F2F2F2;
+  padding: 2em 2.5em 2em 2em;
+}
+div.secret_secret textarea {
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  height: 15em;
 }
 
 /***** FOOTER *****/
