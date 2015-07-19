@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 4.2.3'
 
 gem 'attr_encrypted'
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -17,7 +17,7 @@ gem 'simple_form'
 gem 'unicorn'
 gem 'logstasher', '~> 0.6.5'
 gem 'uglifier'
-
+gem "opscare", :git => 'git@github.com:reinteractive/opscare.git'
 
 group :development do
   gem 'better_errors'

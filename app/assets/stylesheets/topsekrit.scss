@@ -228,17 +228,48 @@ form.form-horizontal {
 }
 
 /***** SECRET FORM *****/
-
-.secret-container {
+.container-secret-form {
   margin: 2em 0;
+  font-size: 16px;
+  h2 {
+    padding-bottom: 1em;
+  }
 }
-.instructions-container {
+.secret-form {
+  input[type="email"] {
+    padding: 1.5em 1em;
+    line-height: 3;
+    outline: none;
+  }
+  input[type="submit"] {
+    font-size: 16px;
+    font-weight: 700;
+    height: 46px;
+    width: 225px;
+  }
+  .form-control:focus {
+    box-shadow: none;
+  }
+}
+.container-instructions {
   background-color: #F2F2F2;
-  padding: 2em 2.5em 2em 2em;
+  padding: 1.5em;
+  h3 {
+    margin-top: 0;
+    -webkit-margin-before: 0;
+    padding-bottom: 0.5em;
+  }
 }
-div.secret_secret textarea {
-  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-  height: 15em;
+
+
+#instructions li {
+  padding-bottom: 0.75em;
+}
+/***** ABOUT *****/
+
+.about a {
+  color: #ddd;
+  text-decoration: underline;
 }
 
 /***** FOOTER *****/
@@ -271,4 +302,11 @@ div.secret_secret textarea {
 .footer-links a {
   color: #fff;
   text-transform: uppercase;
+}
+
+/***** SECRET *****/
+
+div.secret_secret textarea, div.secret_comments textarea {
+  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  height: 10em;
 }
