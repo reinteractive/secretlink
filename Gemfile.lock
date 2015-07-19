@@ -1,9 +1,11 @@
 GIT
-  remote: git@github.com:reinteractive/opscare.git
-  revision: 4cd044e5c0e8421f468296e2491585a6d3aa765a
+  remote: git@github.com:reinteractive/OpsCare.git
+  revision: a45d97ae73b6c053da14a7b6a716a0f0baba96a7
+  branch: master
   specs:
-    opscare (1.0.0)
-      bugsnag (~> 2.0.3)
+    ops_care (1.0.0)
+      bugsnag (~> 2.8.10)
+      logstasher (~> 0.6.5)
       okcomputer (~> 1.4.0)
       skylight (~> 0.6.1)
 
@@ -62,9 +64,8 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bugsnag (2.0.3)
-      httparty (>= 0.6, < 1.0)
-      multi_json (~> 1.0)
+    bugsnag (2.8.10)
+      json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -105,9 +106,6 @@ GEM
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
-    httparty (0.13.5)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -277,7 +275,7 @@ DEPENDENCIES
   launchy
   logstasher (~> 0.6.5)
   omniauth-google-oauth2
-  opscare!
+  ops_care!
   pg
   pickadate-rails
   poltergeist
