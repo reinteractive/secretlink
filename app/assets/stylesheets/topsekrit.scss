@@ -224,14 +224,14 @@ a:hover {
 
 #faq {
   background-color: #7DACAF;
-  padding: 3em 0;
+  padding: 6em 0 3em 0;
 }
 #faq h2 {
   padding: 1em 0;
 }
 .container-faq {
   background-color: #F2F2F2;
-  padding: 1em;
+  padding: 1.5em 2em;
   margin-bottom: 1.5em;
 }
 
@@ -279,13 +279,13 @@ a:hover {
   padding-bottom: 0.75em;
 }
 /***** ABOUT *****/
-.about {
+#about {
   color: #ddd;
   background-color: #227278;
   padding: 2em;
 }
 
-.about a {
+#about a {
   color: #eee;
   text-decoration: underline;
 }
