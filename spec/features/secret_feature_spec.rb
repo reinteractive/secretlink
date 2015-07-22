@@ -16,11 +16,11 @@ describe Secret do
         auth_token.notify('https://www.example.com')
         visit auth_token_path(auth_token.hashed_token)
         fill_in 'Title', with: 'Super Secret'
-        fill_in "Recipient's email addres", with: 'example@example.com'
+        fill_in "Recipient", with: 'example@example.com'
         fill_in "Secret", with: 'AbC123'
         fill_in 'Comments', with: 'Some super secret info'
         fill_in 'Expire at', with: (Time.current + 1.day).strftime('%d %B, %Y')
-        click_button 'Create'
+        click_button 'Send your Secret'
         expect(page).to have_content('The secret has been encrypted and an email sent to the recipient')
       end
 
@@ -36,8 +36,8 @@ describe Secret do
       it 'sends an email to the recipient' do
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['example@example.com'])
-        expect(email.subject).to eq("Topsekrit ID#{Secret.last.id}: A secret has been shared with you")
-        expect(email.from).to eq(['info@topsekr.it'])
+        expect(email.subject).to eq("TopSekr.it: A secret has been shared with you - UUID #{Secret.last.uuid}")
+        expect(email.from).to eq(['info@TopSekr.it'])
         expect(email.text_part.to_s).to match("This link will show you the secret:")
         expect(email.text_part.to_s).to match("/#{secret.uuid}/.+/.+")
       end
@@ -92,8 +92,8 @@ describe Secret do
         expect(page).to have_content('cdefg')
         email = ActionMailer::Base.deliveries.last
         expect(email.to).to eq(['a@a.com'])
-        expect(email.subject).to eq("Secret ID#{Secret.last.id} consumed on topsekrit")
-        expect(email.from).to eq(['info@topsekr.it'])
+        expect(email.subject).to eq("Your secret was consumed on TopSekr.it - UUID #{Secret.last.uuid}")
+        expect(email.from).to eq(['info@TopSekr.it'])
         expect(email.text_part.to_s).to match('b@b.com')
         expect(email.text_part.to_s).to match('The encrypted information has now been deleted from the database')
       end
@@ -135,14 +135,14 @@ describe Secret do
       end
 
       it 'provides validation of missing/incorrect info in the form' do
-        click_button 'Create'
+        click_button 'Send your Secret'
         expect(page).to have_content("Please enter the recipient's email address")
         expect(page).to have_content("Please enter a secret to share with the recipient")
       end
 
       it 'advises of restriction on email addresses that can create secrets' do
-        fill_in "Recipient's email address", with: 'b@b.com'
-        click_button 'Create'
+        fill_in "Recipient", with: 'b@b.com'
+        click_button 'Send your Secret'
         expect(page).to have_content('Secrets can only be shared with emails @test.com')
       end
 

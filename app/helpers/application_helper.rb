@@ -22,5 +22,8 @@ module ApplicationHelper
     AuthorisedEmailService.email_domain_does_not_match?(email)
   end
 
+  def auth_new_page?
+    request.path == '/auth_tokens/new'
+  end
 
 end

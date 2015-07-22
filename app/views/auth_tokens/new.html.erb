@@ -1,7 +1,7 @@
 <div class="introduction">
   <div class="row introduction-lead">
     <div class="col-xs-10 col-xs-offset-1">
-      <p class="lead text-center">Share secrets such as passwords, api keys, and ssl certificates securely.</p>
+      <p class="lead text-center">Share secrets such as passwords, API keys, and SSL certificates simply and securely.</p>
     </div>
   </div>
   <div class="row introduction-content">
@@ -14,7 +14,7 @@
         </div>
         <div class="col-xs-8 col-xs-offset-1 col-sm-offset-0">
           <p class="lead"><strong>Your <span class="secret">secret</span> is yours to keep and share</strong></p>
-          <p>topserk.it uses state-of-the-art encryption to keep your data safe.</p>
+          <p>TopSekr.it uses state-of-the-art encryption to keep your data safe AND we don't store keys or unencrypted secrets in our database.</p>
         </div>
       </div>
       <div class="row">
@@ -24,8 +24,8 @@
           </div>
         </div>
         <div class="col-xs-8 col-xs-offset-1 col-sm-offset-0">
-          <p class="lead"><strong>The messenger works fast and is conveniently forgetful</strong></p>
-          <p>topserk.it doesn't store the encrypted data longer than absolutely necessary. As soon as your recipient reads it, it's permanently deleted from our servers.</p>
+          <p class="lead"><strong>It works fast and is conveniently forgetful</strong></p>
+          <p>TopSekr.it doesn't store the encrypted data longer than absolutely necessary. As soon as your recipient reads the secret, even the encrypted data is permanently deleted from our servers.</p>
         </div>
       </div>
       <div class="row">
@@ -41,21 +41,23 @@
       </div>
       <div class="row">
         <div class="col-sm-12 text-center">
-          <p class="lead btn-lead-outline">
-            <span class="btn-lead" role="button">Send a Secret</span>
+          <p class="lead btn-lead-outline <%= 'hidden' if auth_new_page? %>">
+            <a href="/auth/new" class="btn-lead" role="button">Share a secret now...</a>
           </p>
-          <div class="auth-form hidden">
-            <h2>Send a secret</h2>
-            <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-horizontal' } do |f| %>
-              <div class="form-group">
-                <%= f.input :email, label: 'Your email', placeholder: 'Your email', wrapper_html: { class: 'col-sm-offset-2 col-sm-8' }, input_html: { class: 'form-control center-block' } %>
-              </div>
-              <div class="form-group">
-                <%= f.input :recipient_email, label: 'Recipient email', placeholder: 'Recipient email', wrapper_html: { class: 'col-sm-offset-2 col-sm-8' }, input_html: { class: 'form-control center-block' } %>
+          <div class="auth-form <%= 'hidden' unless auth_new_page? %>">
+            <h2>Share a secret now...</h2>
+            <p>All we need is your email, and theirs to get started.</p>
+            <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: 'form-horizontal col-md-6 col-md-offset-3' } do |f| %>
+              <div class="form-group  text-center">
+                <%= f.input :email, label: false, placeholder: 'Your email', input_html: { class: 'form-control center-block' } %>
+                <%= f.input :recipient_email, label: false, placeholder: 'Recipient email (optional)', input_html: { class: 'form-control center-block' } %>
               </div>
               <div class="form-group center-block">
                 <div class="col-sm-12">
-                  <%= f.submit 'Send', class: 'btn btn-default' %>
+                  <%= f.button :submit, 'Send TopSekr.it Token', class: 'btn btn-primary' %>
+                  <p>
+                    <small>Pressing send only sends an email to you</small>
+                  </p>
                 </div>
               </div>
               <hr class="half-rule">
@@ -89,20 +91,20 @@
         <div class="instruction-container">
           <span class="step text-center">2</span>
           <h3>You receive link to create the secret</h3>
-          <p>Each new secret is created by accessing a one-use, unique URL only you can see.</p>
+          <p>This confirms your email is who you say you are so you can then send secrets to other people.</p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <div class="instruction-container">
           <span class="step text-center">3</span>
-          <h3>You add secret + recipient</h3>
-          <p>You can set when you want your secret to expire and such as well.</p>
+          <h3>You add the secret sauce</h3>
+          <p>You add the secret, ensure the recipient is correct, any comments and also set when your secret should expire.</p>
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <div class="instruction-container">
           <span class="step text-center">4</span>
-          <h3>Your recipient receives a link to the secret</h3>
+          <h3>Your recipient receives a link</h3>
           <p>Once they view the secret, all sensitive data is deleted from our servers. We keep a log of senders-recipients but not the secrets themselves.</p>
         </div>
       </div>
@@ -111,7 +113,21 @@
       <div class="col-xs-10 col-xs-offset-1">
         <div class="other-details">
           <h3 class="text-center">And what goes on behind the scenes?</h3>
-          <p class="text-center">The secret is encrypted with a salt and IV using the aes-256-cbc algorithm. If it isn’t accessed before the provided expiry time it is automatically deleted</p>
+          <p class="text-center">
+            Shhh!  It's a secret!
+          </p>
+          <p class="text-center">
+            Your private data is encrypted with a salt and IV using the aes-256-cbc algorithm. Only the encrypted secret is stored
+            and the key is emailed to your receipient within the link they need to click to read it. We don't store the key
+            on our servers, so once sent, that's it, you, us, anyone except the person recieving the email can not decrypt
+            the secret.
+          </p>
+          <p class="text-center">
+            Also, if the secret isn’t read before the provided expiry time the encrypted version is also automatically deleted.
+          </p>
+          <p class="text-center">
+            Nice and simple.  We like it that way :)
+          </p>
         </div>
       </div>
     </div>
@@ -119,11 +135,6 @@
 </div>
 <div class="faq">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 id="faq" class="text-center">Frequently Asked Questions</h2>
-      </div>
-    </div>
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
@@ -153,16 +164,15 @@
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
-          <p class="lead">Are secrets stored in the database?</p>
+          <p class="lead">Are secrets stored?</p>
           <p>
-            Yes, but only until the secret is consumed, then we only keep the meta data
-            in the system for your recods.
+            Yes, but encrypted with a one way cipher that we don't have the key for.
+            The key is only sent to the receipient you specify.
           </p>
           <p>
-            In future versions we will implement a simple dashboard allowing you to
-            view the meta data of what was sent and when it was consumed.  But we'll
-            never keep the original secret in the database. This is an important
-            security feature.
+            Once the secret is read by the recipient, we even delete the encrypted version
+            from the database, just leaving the meta data behind so in future versions you
+            can have a dashboard to see what you sent to whom (comming soon).
           </p>
         </div>
       </div>
@@ -185,7 +195,7 @@
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="container-faq">
-          <p class="lead">Can we run TopSekr.it internally?</p>
+          <p class="lead">Can we run our own copy?</p>
           <p>
             Of course, we just ask you don't compete with this service in doing so
             by only use it internally for your staff and clients.
@@ -208,6 +218,38 @@
           </p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="about">
+  <h2 id="about" class="text-center">About TopSekr.it</h2>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-2">
+      <p>
+        TopSekr.it is available for anyone to use, it is a Ruby on Rails application created and built
+        by <%= link_to('reinteractive', 'https://reinteractive.net') %> and hosted thorugh
+        reinteractive's <%= link_to('OpsCare', 'https://reinteractive.net/service/ops-care/') %>
+        service. It has been made open source to ensure transparency on the service and to
+        encourage contribution to improve the security of the application.
+      </p>
+      <p>
+        It is free to use and is governed by our <%= link_to('Terms and Conditions', '/terms_and_conditions') %>.
+      </p>
+      <p>
+        If you do not want to (or can not) use our hosted version, you are welcome to run your
+        own version for your own company or organisation, we only stipulate that you may not run
+        it as a service for third parties in competition to https://TopSekr.it/
+      </p>
+      <p>
+        If you would like assistance getting TopSekr.it (or any other Rails application)
+        setup, hosted and maintained on AWS, please consider
+        <%= link_to('contacting us', 'https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+about+reinteractive...') %>
+        to get more information about our Ruby on Rails <%= link_to('OpsCare', 'https://reinteractive.net/service/ops-care/') %>
+        and <%= link_to('CodeCare', 'https://reinteractive.net/service/code-care/') %> services.
+      </p>
+    </div>
+    <div class="col-xs-8 col-sm-4 col-md-2 center-block">
+      <%= image_tag('reinteractive-logo-dark.png', class: "img-responsive footer-logo", alt: "reinteractive logo") %>
     </div>
   </div>
 </div>

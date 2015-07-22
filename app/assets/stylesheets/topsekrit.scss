@@ -8,6 +8,7 @@ body {
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 90px;
 }
 .row {
   margin-left: 0;
@@ -20,7 +21,7 @@ a:hover {
   text-decoration: none;
 }
 
-form.form-horizontal {
+.form-horizontal {
   abbr {
     display: none;
   }
@@ -89,7 +90,7 @@ form.form-horizontal {
 /***** INTRODUCTION *****/
 
 .introduction {
-  background: $primary-color url(../assets/background-img.png) no-repeat center center;
+  background: $primary-color image-url("background-img.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -104,9 +105,14 @@ form.form-horizontal {
   padding: 3em 0 2em 0;
 }
 .introduction-content {
+  font-size: 120%;
   background: rgba(255, 255, 255, 0.4);
   padding: 3.5em 0;
   margin-bottom: 3em;
+}
+.introduction-content p {
+  color: #333;
+  padding: 0 0 0 0;
 }
 .introduction-content p.lead {
   color: #333;
@@ -146,13 +152,15 @@ form.form-horizontal {
   background-color: #fff;
   margin: 3em 0;
   padding: 3em 2em;
+  overflow: auto;
   label {
     font-size: 16px;
   }
   input[type="email"] {
-    padding: 1.5em 1em;
+    padding: 0.25em 1em;
     line-height: 3;
     outline: none;
+    height: auto;
   }
   input[type="submit"] {
     font-size: 16px;
@@ -236,6 +244,9 @@ form.form-horizontal {
   }
 }
 .secret-form {
+  .form-horizontal {
+    width: 90%;
+  }
   input[type="email"] {
     padding: 1.5em 1em;
     line-height: 3;
@@ -246,12 +257,14 @@ form.form-horizontal {
     font-weight: 700;
     height: 46px;
     width: 225px;
+    margin-bottom: 2em;
   }
   .form-control:focus {
     box-shadow: none;
   }
 }
 .container-instructions {
+  width: 95%;
   background-color: #F2F2F2;
   padding: 1.5em;
   h3 {
@@ -266,18 +279,23 @@ form.form-horizontal {
   padding-bottom: 0.75em;
 }
 /***** ABOUT *****/
+.about {
+  color: #ddd;
+  background-color: #227278;
+  padding: 2em;
+}
 
 .about a {
-  color: #ddd;
+  color: #eee;
   text-decoration: underline;
 }
 
 /***** FOOTER *****/
 
-.footer-primary {
-  color: #fff;
-  background-color: #227278;
-  padding: 2em;
+.footer .container-fluid {
+  padding: 0;
+  font-size: 90%;
+  background-color: #062B2F;
 }
 .footer-content {
   padding: 0 3.5em 2.5em 0;
@@ -287,15 +305,20 @@ form.form-horizontal {
   border-radius: 6px;
   padding: 1em;
 }
-.footer-secondary {
-  background-color: #062B2F;
-}
 .footer-links {
-  padding: 2em 1em 1.5em 1em;
+  padding: 1em 1em 1.5em 1em;
   li {
     display: inline-block;
     padding: 0.5em 1em;
     line-height: 1.5;
+  }
+}
+
+.attribution {
+  margin: 1em 0 0 0;
+  color: #ddd;
+  a {
+    color: #fff;
   }
 }
 

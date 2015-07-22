@@ -1,5 +1,8 @@
 class AuthTokensController < ApplicationController
 
+  def new
+  end
+
   def show
     auth_token = AuthToken.find_by_hashed_token(params[:id])
     if auth_token
@@ -14,9 +17,8 @@ class AuthTokensController < ApplicationController
 
   def new
     if session[:email]
-      flash.now[:message] = "You have already verified your email as #{session[:email]}.
-      If you want to view and create secrets with this address, click
-      <a href='secrets/new'>here</a>."
+      flash.now[:message] = "You have already verified your email as #{session[:email]}.<br/>
+      If you want, you can just go ahead and <a href='secrets/new'>create another secret</a> with this address."
     end
   end
 

@@ -1,13 +1,20 @@
 Hello <%= @secret.from_email %>
 
-This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via topsekrit.
+This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via TopSekr.it.
 
 <% if @secret.title.present? %>
 The title of the viewed secret was: <%= @secret.title %>
-<% elsif @secret.comments.present? %>
-The comments on the viewed secret were: <%= @secret.title %>
+<% end %>
+
+<% if @secret.comments.present? %>
+The comments on the viewed secret were:
+------------------------------------------
+<%= @secret.comments %>
+------------------------------------------
 <% end %>
 
 This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
 
 The encrypted information has now been deleted from the database.
+
+Thank you for using TopSekr.it - https://TopSekr.it

@@ -1,8 +1,21 @@
-Hello <%= @email %><br />
-<br />
-Here is the requested authentication token that will allow you to access Topsekrit:<br />
-<%= link_to "#{@request_host}/auth_tokens/#{@token}", "#{@request_host}/auth_tokens/#{@token}" %><br />
-<br />
-<br />
-<br />
-If you didn't expect to receive this message, please contact <%= mail_to "topsekrit@reinteractive.net" %>
+<p>
+  Hello <%= @email %>
+</p>
+
+<p>
+  Here is the requested authentication token that will allow you to access <%= link_to("TopSekr.it", "https://TopSekr.it") %>:
+</p>
+<p>
+  <%= link_to "#{@request_host}/auth_tokens/#{@token}", "#{@request_host}/auth_tokens/#{@token}" %>
+</p>
+
+<p>
+  Thank you for using <%= link_to("TopSekr.it", "https://TopSekr.it") %>!
+</p>
+
+
+
+<br><br>
+<p>
+  If you didn't expect to receive this message, please contact <%= mail_to "info@topsekr.it" %>.
+</p>
