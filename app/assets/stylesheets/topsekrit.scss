@@ -2,14 +2,21 @@
 
 $primary-color: #1C7279;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: 'Oxygen', sans-serif;
+  margin-bottom: 60px;
 }
+
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
-  padding-bottom: 90px;
 }
+
 .row {
   margin-left: 0;
   margin-right: 0;
@@ -291,6 +298,12 @@ a:hover {
 }
 
 /***** FOOTER *****/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
 
 .footer .container-fluid {
   padding: 0;
