@@ -9,6 +9,7 @@ html {
 
 body {
   font-family: 'Oxygen', sans-serif;
+  font-size: 16px;
   margin-bottom: 60px;
 }
 
@@ -24,6 +25,42 @@ body {
 h2 {
   margin-bottom: 1.5em;
 }
+.btn {
+  font-size: 16px;
+  padding: 0.75em 2em;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #1C7279;
+  border-color: transparent;
+  &:active {
+    color: #fff;
+    background-color: #1C7279;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  &:active:hover,
+  &:active:focus {
+    color: #fff;
+    background-color: #1C7279;
+    border-color: transparent;
+    box-shadow: none;
+    outline: none;
+  }
+  &:hover {
+    color: #1C7279;
+    background-color: transparent;
+    border-color: #1C7279;
+  }
+  &:focus {
+    color: #1C7279;
+    background-color: transparent;
+    border-color: #1C7279;
+    outline: none;
+  }
+
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -57,6 +94,7 @@ a:hover {
   padding: 0.75em 0;
   font-size: 20px;
   border: none;
+  box-shadow: 0px 0px 20px 0px rgba(51,51,51,0.3);
 }
 .navbar .navbar-brand,
 .glyphicon-lg {
@@ -112,7 +150,7 @@ a:hover {
   padding: 3em 0 2em 0;
 }
 .introduction-content {
-  font-size: 120%;
+  // font-size: 120%;
   background: rgba(255, 255, 255, 0.4);
   padding: 3.5em 0;
   margin-bottom: 3em;
@@ -149,11 +187,11 @@ a:hover {
   padding: 0.5em 2em;
   color: #fff;
   cursor: pointer;
-}
-.btn-lead:hover {
-  background-color: #fff;
-  color: $primary-color;
-  font-weight: 400;
+  &:hover {
+    background-color: #fff;
+    color: $primary-color;
+    font-weight: 400;
+  }
 }
 .auth-form {
   background-color: #fff;
@@ -259,13 +297,6 @@ a:hover {
     line-height: 3;
     outline: none;
   }
-  input[type="submit"] {
-    font-size: 16px;
-    font-weight: 700;
-    height: 46px;
-    width: 225px;
-    margin-bottom: 2em;
-  }
   .form-control:focus {
     box-shadow: none;
   }
@@ -343,6 +374,21 @@ a:hover {
 /***** SECRET *****/
 
 div.secret_secret textarea, div.secret_comments textarea {
-  font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+  // font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
   height: 10em;
+}
+.container-secret {
+  margin: 3em 0;
+}
+.secret-details {
+  background-color: #F2F2F2;
+  padding: 3.5em 2em;
+  margin-bottom: 3em;
+}
+
+.label-secret {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #333;
+  line-height: 2;
 }
