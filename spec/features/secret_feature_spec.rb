@@ -3,25 +3,31 @@ require 'rails_helper'
 describe Secret do
 
   describe "on an open system" do
-    before do
+    before(:each) do
       allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
+      allow_any_instance_of(AuthToken).to receive(:notify).and_return(true)
+      allow(SecureRandom).to receive(:hex).and_return('10'.to_s)
     end
 
     describe 'creating a secret' do
 
-      let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
+      let(:access_key) { SecureRandom.hex(10) }
+      let(:auth_token_params) { { 'email'=>'test@test.com', 'recipient_email' => 'test@example.com'} }
+      let!(:auth_token) {
+        AuthTokenService.generate(auth_token_params, 'http://test.com.au' )
+        AuthToken.where(email: 'test@test.com').first
+      }
       let(:secret) { Secret.last }
 
       before do
-        auth_token.notify('https://www.example.com')
-        visit auth_token_path(auth_token.hashed_token)
+        visit auth_token_path([auth_token.hashed_token, access_key].join('-'))
         fill_in 'Title', with: 'Super Secret'
         fill_in "Recipient", with: 'example@example.com'
         fill_in "Secret", with: 'AbC123'
         fill_in 'Comments', with: 'Some super secret info'
         fill_in 'Expire at', with: (Time.current + 1.day).strftime('%d %B, %Y')
         click_button 'Send your Secret'
-        expect(page).to have_content('The secret has been encrypted and an email sent to the recipient')
+        expect(current_path).to eql(root_path)
       end
 
       it 'allows a secret to be created' do
@@ -56,7 +62,7 @@ describe Secret do
 
     describe 'accessing a secret' do
 
-      let!(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+      let!(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
         secret: 'cdefg', expire_at: Time.current + 7.days}, 'https://example.com')
       }
       let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/) }
@@ -105,7 +111,7 @@ describe Secret do
 
     describe 'trying to access an expired secret' do
 
-      let!(:secret) { SecretService.encrypt_secret({
+      let!(:secret) { SecretService.encrypt_new_secret({
         from_email: 'a@a.com', to_email: 'b@b.com', secret: 'cdefg', expire_at: Time.now - 1}, 'https://example.com')
       }
       let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/)}
@@ -123,18 +129,22 @@ describe Secret do
 
   describe "on a closed system" do
 
+    before(:each) { allow(SecureRandom).to receive(:hex).and_return('10'.to_s) }
+
     describe 'validations' do
 
-      let!(:auth_token) { AuthToken.create(email: 'test@test.com').generate }
-
-      before do
+      before(:each) do
         allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :closed }
         allow(Rails.configuration).to receive(:topsekrit_authorised_domain) { 'test.com' }
-        auth_token.notify('https://www.example.com')
-        visit auth_token_path(auth_token.hashed_token)
+        #auth_token.notify('https://www.example.com')
+        #allow_any_instance_of(AuthToken).to receive(:notify).and_return(true)
+        #visit auth_token_path(auth_token.hashed_token)
+        #visit auth_token_path([auth_token.hashed_token, access_key].join('-'))
       end
 
-      it 'provides validation of missing/incorrect info in the form' do
+
+      it 'provides validation of missing/incorrect info in the form', js: true do
+        visit new_secret_path
         click_button 'Send your Secret'
         expect(page).to have_content("Please enter the recipient's email address")
         expect(page).to have_content("Please enter a secret to share with the recipient")

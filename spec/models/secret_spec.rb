@@ -4,7 +4,7 @@ describe Secret do
 
   describe "#expired?" do
 
-    let!(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+    let!(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
       secret: 'cdefg', expire_at: Time.now - 7.days}, 'https://example.com')
     }
 
@@ -26,7 +26,7 @@ describe Secret do
 
   describe '#expire_at_within_limit' do
 
-    let(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+    let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
       secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
     }
 
@@ -59,7 +59,7 @@ describe Secret do
 
   describe 'email_domain_authorised' do
 
-    let(:secret) { SecretService.encrypt_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+    let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
       secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
     }
 
@@ -126,6 +126,27 @@ describe Secret do
         expect(secret).to be_invalid
       end
 
+    end
+
+  end
+
+  describe '#exist?' do
+    let(:email) { 'email@email.com' }
+    let(:access_key) { '12345' }
+    let!(:secret) { Secret.new(from_email: email, access_key: access_key).save(validate: false) }
+
+    context 'when you have a matching access key' do
+
+      it 'should return as secret exist' do
+        expect(Secret.exist?(email, '12345')).to be_truthy
+      end
+    end
+
+    context "when you dont have a matching access key" do
+
+      it 'should return as secren doesnt exist' do
+        expect(Secret.exist?(email, 'abc')).to be_falsey
+      end
     end
 
   end

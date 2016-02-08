@@ -10,7 +10,7 @@ describe AuthToken do
     fill_in 'auth_token[recipient_email]', with: 'test@example.com'
     expect {
       click_button 'Send TopSekr.it Token'
-    }.to change(AuthToken, :count).by(1)
+    }.to change(AuthToken, :count).by(2)
   end
 
   it 'generates an auth token', js: true do
@@ -22,7 +22,7 @@ describe AuthToken do
     page.driver.scroll_to(0, 500)
     expect {
       click_button 'Send TopSekr.it Token'
-    }.to change(AuthToken, :count).by(1)
+    }.to change(AuthToken, :count).by(2)
 
     auth_token = AuthToken.last
     expect(auth_token.hashed_token).to_not be_nil
@@ -35,6 +35,18 @@ describe AuthToken do
     expect(email.subject).to eq('Topsekrit authentication token')
     expect(email.text_part.to_s).to match(auth_token.hashed_token)
   end
+
+  it "when only generating auth token" do
+    # with out filing the recipient email
+    visit root_path
+    click_link('Share a secret now...')
+    expect(page).to have_content('All we need is your email, and theirs to get started')
+    fill_in 'auth_token[email]', with: 'test@test.com'
+    expect {
+      click_button 'Send TopSekr.it Token'
+    }.to change(AuthToken, :count).by(1)
+  end
+
 
   it 'provides a message if a token is invalid' do
     visit "/auth_tokens/ijustmadethisup"

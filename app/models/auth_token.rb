@@ -7,8 +7,8 @@ class AuthToken < ActiveRecord::Base
     self
   end
 
-  def notify(request_host)
-    AuthTokenMailer.auth_token(email, hashed_token, request_host).deliver_now
+  def notify(request_host, access_key = nil)
+    AuthTokenMailer.auth_token(email, [hashed_token, access_key], request_host).deliver_now
   end
 
   def email_domain_authorised

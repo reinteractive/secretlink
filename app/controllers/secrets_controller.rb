@@ -1,18 +1,32 @@
 class SecretsController < ApplicationController
 
   before_filter :check_auth_token, :retrieve_secret, only: :show
-  before_filter :check_session, only: [:new, :create]
+  before_filter :check_session, only: [:new, :create, :edit]
 
   def show
     @secret = Secret.find_by_uuid(params[:uuid])
+  end
+
+  def edit
+    @secret = Secret.with_email_and_access_key(session[:email], params[:id]).first
   end
 
   def new
     @secret = Secret.new(to_email: params[:recipient_email])
   end
 
+  def update
+    @secret = SecretService.encrypt_existing_secret(params[:id], secret_params, request.protocol + request.host_with_port)
+    if @secret.persisted?
+      flash[:message] = "The secret has been encrypted and an email sent to the recipient"
+      redirect_to root_url
+    else
+      render :edit
+    end
+  end
+
   def create
-    @secret = SecretService.encrypt_secret(secret_params, request.protocol + request.host_with_port)
+    @secret = SecretService.encrypt_new_secret(secret_params, request.protocol + request.host_with_port)
     if @secret.persisted?
       flash[:message] = "The secret has been encrypted and an email sent to the recipient"
       redirect_to new_secret_path

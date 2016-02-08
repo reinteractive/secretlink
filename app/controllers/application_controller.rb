@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def retrieve_secret
-    @secret = Secret.where(uuid: params[:uuid], from_email: session[:email]).first
+    @secret = Secret.where(uuid: params[:uuid], to_email: session[:email]).first
     case
     when @secret.blank?
       flash[:error] = "Secret not found"

@@ -7,8 +7,16 @@ class Secret < ActiveRecord::Base
   validate :expire_at_within_limit
   validate :email_domain_authorised
 
+  scope :with_email_and_access_key, ->(email, access_key){
+    where('from_email = ? and access_key = ?', email, access_key)
+  }
+
   def delete_encrypted_information
     update_attribute(:secret, nil)
+  end
+
+  def self.exist?(from_email, access_key)
+    with_email_and_access_key(from_email, access_key).any?
   end
 
   def mark_as_consumed

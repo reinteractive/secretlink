@@ -4,11 +4,19 @@ class AuthTokensController < ApplicationController
   end
 
   def show
-    auth_token = AuthToken.find_by_hashed_token(params[:id])
+    keys = params[:id].to_s.split('-')
+    hashed_token = keys[0]
+    access_key = keys[1]
+    auth_token = AuthToken.find_by_hashed_token(hashed_token)
     if auth_token
       session[:email] = auth_token.email
       auth_token.delete
-      redirect_to new_secret_path(recipient_email: auth_token.recipient_email)
+      if Secret.exist?(auth_token.email, access_key)
+        redirect_to edit_secret_path(access_key)
+      else
+        flash[:message] = "Secret not found"
+        render :new
+      end
     else
       flash[:message] = "Token not found"
       render :new
@@ -23,9 +31,8 @@ class AuthTokensController < ApplicationController
   end
 
   def create
-    auth_token = AuthToken.new(auth_token_params).generate
-    auth_token.notify(request.protocol + request.host_with_port)
-    flash.now[:message] = "A token has been generated and sent to #{auth_token.email}"
+    AuthTokenService.generate(auth_token_params, (request.protocol + request.host_with_port) )
+    flash.now[:message] = "A token has been generated and sent to #{auth_token_params['email']}"
     render :new
   end
 
