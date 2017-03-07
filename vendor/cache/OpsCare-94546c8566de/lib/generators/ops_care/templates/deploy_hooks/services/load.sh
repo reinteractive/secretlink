@@ -7,3 +7,4 @@
 . ${current_app_path}/config/deploy/hooks/services/sidekiq-service.sh
 . ${current_app_path}/config/deploy/hooks/services/resque-service.sh
 . ${current_app_path}/config/deploy/hooks/services/pushr-service.sh
+. ${current_app_path}/config/deploy/hooks/services/whenever-service.sh
