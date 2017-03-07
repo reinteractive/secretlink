@@ -227,6 +227,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    show_me_the_cookies (3.1.0)
+      capybara (~> 2.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -287,6 +289,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sass-rails (>= 3.2)
+  show_me_the_cookies (~> 3.1.0)
   simple_form
   uglifier
   unicorn

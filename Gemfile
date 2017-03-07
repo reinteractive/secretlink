@@ -34,6 +34,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'launchy'
+  gem 'show_me_the_cookies', '~> 3.1.0'
 end
 
 group :development, :test do
