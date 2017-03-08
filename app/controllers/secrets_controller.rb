@@ -46,7 +46,7 @@ class SecretsController < ApplicationController
     auth_token = AuthToken.find_by_hashed_token(params[:auth_token])
     if auth_token
       session[:email] = auth_token.email
-      auth_token.delete
+      session[:auth_token] = params[:auth_token]
     end
   end
 
