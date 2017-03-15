@@ -21,19 +21,11 @@ module OpsCare
       RUBY
       end
     end
-    def setup_logstasher
-      logstasher_config =<<-'RUBY'
-
-  # Enable the logstasher logs for the current environment
-  config.logstasher.enabled = true
-  config.logstasher.suppress_app_log = false
-      RUBY
-      ["staging", "production"].each do |env|
-        inject_into_file "config/environments/#{env}.rb", logstasher_config, after: "Application.configure do\n"
-      end
-    end
     def copy_deploy_hooks
       directory 'deploy_hooks', 'config/deploy/hooks'
+    end
+    def copy_rake_tasks
+      directory 'rake_tasks', 'lib/tasks'
     end
   end
 end

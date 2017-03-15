@@ -26,7 +26,7 @@ class AuthTokensController < ApplicationController
   def new
     if session[:email]
       flash.now[:message] = "You have already verified your email as #{session[:email]}.<br/>
-      If you want, you can just go ahead and <a href='secrets/new'>create another secret</a> with this address."
+      If you want, you can just go ahead and <a href=\"#{ new_secret_path }\">create another secret</a> with this address."
     end
   end
 

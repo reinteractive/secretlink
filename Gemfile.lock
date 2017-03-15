@@ -1,13 +1,12 @@
 GIT
   remote: git@github.com:reinteractive/OpsCare.git
-  revision: a45d97ae73b6c053da14a7b6a716a0f0baba96a7
+  revision: 94546c8566deca717d163fb02899833c5483a9d4
   branch: master
   specs:
-    ops_care (1.0.0)
-      bugsnag (~> 2.8.10)
-      logstasher (~> 0.6.5)
-      okcomputer (~> 1.4.0)
-      skylight (~> 0.6.1)
+    ops_care (1.0.4)
+      bugsnag
+      okcomputer
+      skylight
 
 GEM
   remote: https://rubygems.org/
@@ -64,8 +63,7 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bugsnag (2.8.13)
-      json (~> 1.7, >= 1.7.7)
+    bugsnag (5.2.0)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -140,7 +138,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    okcomputer (1.4.0)
+    okcomputer (1.14.1)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -229,10 +227,12 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    show_me_the_cookies (3.1.0)
+      capybara (~> 2.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    skylight (0.6.1)
+    skylight (1.0.1)
       activesupport (>= 3.0.0)
     slop (3.6.0)
     sprockets (3.5.2)
@@ -289,9 +289,13 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sass-rails (>= 3.2)
+  show_me_the_cookies (~> 3.1.0)
   simple_form
   uglifier
   unicorn
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.14.6

@@ -76,6 +76,15 @@ describe Secret do
         expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
       end
 
+      it 'can handle a virus checker visiting the first page' do
+        expect(page.html).to match('Click here to show the secret')
+        expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
+        expire_cookies
+        visit link_to_secret
+        expect(page.html).to match('Click here to show the secret')
+        expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
+      end
+
       it 'retrieves and decrypts the secret' do
         click_button 'Click here to show the secret'
         expect(page).to have_content('cdefg')
