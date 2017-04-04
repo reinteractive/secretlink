@@ -1,4 +1,4 @@
-<div class="introduction">
+<!-- <div class="introduction">
   <div class="row introduction-lead">
     <div class="col-xs-10 col-xs-offset-1">
       <p class="lead text-center">Share secrets such as passwords, API keys, and SSL certificates simply and securely.</p>
@@ -253,3 +253,136 @@
     </div>
   </div>
 </div>
+ -->
+
+
+<section class="homepage-hero">
+  <h2>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h2>
+  <%= link_to "Share a secret", "/auth/new", class: "button white" %>
+</section>
+
+<section class="homepage-features">
+  <ul class='nostyle'>
+    <li>
+      <%= image_tag "homepage-icons/your-secret.svg" %>
+      <h3>Your secret is yours to keep and share</h3>
+      <p>TopSekr.it uses state-of-the-art encryption to keep your data safe AND we don't store keys or unencrypted secrets in our database.</p>
+    </li>
+    <li>
+      <%= image_tag "homepage-icons/fast-and-forgetful.svg" %>
+      <h3>It works fast and is conveniently forgetful</h3>
+      <p>TopSekr.it doesn't store the encrypted data longer than absolutely necessary. As soon as your recipient reads the secret, even the encrypted data is permanently deleted from our servers.</p>
+    </li>
+    <li>
+      <%= image_tag "homepage-icons/simple-and-efficient.svg" %>
+      <h3>It's simple & efficient</h3>
+      <p>All you need is a valid email. No new passwords to remember, no accounts to worry about.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="homepage-steps" id="homepage-steps">
+
+  <div class="homepage-steps__step first">
+    <header>
+      <h3>01</h3>
+      <h4>You enter your email</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step01.svg" %>
+      <p>We'll never use this email for anything other than sending secrets requested by you</p>
+    </div>
+  </div>
+
+  <div class="homepage-steps__step second">
+    <header>
+      <h3>02</h3>
+      <h4>You receive link to create the secret</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step02.svg" %>
+      <p>This confirms your email is who you say you are so you can then send secrets to other people.</p>
+    </div>
+  </div>
+
+  <div class="homepage-steps__step third">
+    <header>
+      <h3>03</h3>
+      <h4>You add the secret sauce</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step03.svg" %>
+      <p>You add the secret, ensure the recipient is correct, any comments and also set when your secret should expire.</p>
+    </div>
+  </div>
+
+  <div class="homepage-steps__step fourth">
+    <header>
+      <h3>04</h3>
+      <h4>Your recipient receives a link</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step04.svg" %>
+      <p>Once they view the secret, all sensitive data is deleted from our servers. We keep a log of senders-recipients but not the secrets themselves.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="homepage-behind-the-scenes">
+  <h2>What goes on behind the scenes?</h2>
+  <p>Shh... it's a secret!</p>
+  <%= link_to "Find out more", "#", class: "button green" %>
+</section>
+
+<section class="homepage-faq" id="homepage-faq">
+  <article class="flex-wrapper">
+    <div class="homepage-faq__question">
+      <h3>Why is this useful?</h3>
+      <p>Instead of secrets being sent by email, in support systems, via instant messaging services or the like, a unique link is sent instead, which only works once.</p>
+      <p>This way, only an unusable link will remain protecting the secret from further prying eyes.</p>
+    </div>
+    <div class="homepage-faq__question">
+      <h3>Why should we trust you?</h3>
+      <p>We built this service to solve our own problem of sharing secrets with customers. We know trust is a thing, so we open sourced the whole project for any peer review.</p>
+      <p>If you find something, please let us know or send a pull request and we'll get it fixed.</p>
+    </div>
+    <div class="homepage-faq__question">
+      <h3>Are secrets stored?</h3>
+      <p>Yes, but encrypted with a one way cipher that we don't have the key for. The key is only sent to the receipient you specify.</p>
+      <p>Once the secret is read by the recipient, we even delete the encrypted version from the database, just leaving the meta data behind so in future versions you can have a dashboard to see what you sent to whom (coming soon).</p>
+    </div>
+    <div class="homepage-faq__question">
+      <h3>How much does this cost?</h3>
+      <p>It's free for you to use to send secrets to whomever you want - we just ask that you don't do anything that could be against the law or harrass anyone with this service.</p>
+      <p>We might introduce a paid version to allow other things (like history) or sending larger files and the like, but all of that is still being worked out, for now, enjoy :)</p>
+    </div>
+    <div class="homepage-faq__question">
+      <h3>Can we run our own copy?</h3>
+      <p>Of course, we just ask you don't compete with this service in doing so by only use it internally for your staff and clients.</p>
+      <p>We trust you to do the right thing :)</p>
+    </div>
+    <div class="homepage-faq__question">
+      <h3>Can you help us set this up?</h3>
+      <p>Sure, <%= link_to "contact us (ph)", "#" %>  to get more information about our Ruby on Rails <%= link_to "OpsCare (ph)", "#" %> and <%= link_to "CodeCare (ph)", "#" %> services.
+      <p>We are experts at keeping critical Rails applications online.</p>
+    </div>
+  </article>
+</section>
+
+<section class="homepage-about-us" id="homepage-about">
+  <article class="flex-wrapper">
+    <h3 class="full-width">
+      About TopSekr.it
+    </h3>
+    <div class="flex-column">
+      <p>TopSekr.it is available for anyone to use, it is a Ruby on Rails application created and built by <%= link_to "reinteractive (ph)", "#" %> and hosted thorugh reinteractive's <%= link_to "OpsCare (ph)", "#" %> service. It has been made open source to ensure transparency on the service and to encourage contribution to improve the security of the application.</p>
+      <p>If you do not want to (or can not) use our hosted version, you are welcome to run your own version for your own company or organisation, we only</p>
+    </div>
+    <div class="flex-column">
+      <p>stipulate that you may not run it as a service for third parties in competition to https://TopSekr.it/</p>
+      <p>If you would like assistance getting TopSekr.it (or any other Rails application) setup, hosted and maintained on AWS, please consider <%= link_to "contacting us (ph)", "#" %> to get more information about our Ruby on Rails <%= link_to "OpsCare (ph)", "#" %> and <%= link_to "CodeCare (ph)", "#" %> services.</p>
+      <p>It is free to use and is governed by our <%= link_to "Terms & Conditions (ph)", "#" %>.</p>
+    </div>
+  </article>
+</section>
