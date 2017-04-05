@@ -297,7 +297,7 @@
   <div class="homepage-steps__step second">
     <header>
       <h3>02</h3>
-      <h4>You receive link to create the secret</h4>
+      <h4>You receive a link to create the secret</h4>
     </header>
     <div class='body'>
       <%= image_tag "homepage-icons/step02.svg" %>
@@ -338,34 +338,46 @@
 <section class="homepage-faq" id="homepage-faq">
   <article class="flex-wrapper">
     <div class="homepage-faq__question">
-      <h3>Why is this useful?</h3>
-      <p>Instead of secrets being sent by email, in support systems, via instant messaging services or the like, a unique link is sent instead, which only works once.</p>
-      <p>This way, only an unusable link will remain protecting the secret from further prying eyes.</p>
+      <h3 data-slidetarget="whyUseful">Why is this useful?</h3>
+      <div data-slide="whyUseful">
+        <p>Instead of secrets being sent by email, in support systems, via instant messaging services or the like, a unique link is sent instead, which only works once.</p>
+        <p>This way, only an unusable link will remain protecting the secret from further prying eyes.</p>
+      </div>
     </div>
     <div class="homepage-faq__question">
-      <h3>Why should we trust you?</h3>
-      <p>We built this service to solve our own problem of sharing secrets with customers. We know trust is a thing, so we open sourced the whole project for any peer review.</p>
-      <p>If you find something, please let us know or send a pull request and we'll get it fixed.</p>
+      <h3 data-slidetarget="whyTrust">Why should we trust you?</h3>
+      <div data-slide="whyTrust">
+        <p>We built this service to solve our own problem of sharing secrets with customers. We know trust is a thing, so we open sourced the whole project for any peer review.</p>
+        <p>If you find something, please let us know or send a pull request and we'll get it fixed.</p>
+      </div>
     </div>
     <div class="homepage-faq__question">
-      <h3>Are secrets stored?</h3>
-      <p>Yes, but encrypted with a one way cipher that we don't have the key for. The key is only sent to the receipient you specify.</p>
-      <p>Once the secret is read by the recipient, we even delete the encrypted version from the database, just leaving the meta data behind so in future versions you can have a dashboard to see what you sent to whom (coming soon).</p>
+      <h3 data-slidetarget="secretsStored">Are secrets stored?</h3>
+      <div data-slide="secretsStored">
+        <p>Yes, but encrypted with a one way cipher that we don't have the key for. The key is only sent to the receipient you specify.</p>
+        <p>Once the secret is read by the recipient, we even delete the encrypted version from the database, just leaving the meta data behind so in future versions you can have a dashboard to see what you sent to whom (coming soon).</p>
+      </div>
     </div>
     <div class="homepage-faq__question">
-      <h3>How much does this cost?</h3>
-      <p>It's free for you to use to send secrets to whomever you want - we just ask that you don't do anything that could be against the law or harrass anyone with this service.</p>
-      <p>We might introduce a paid version to allow other things (like history) or sending larger files and the like, but all of that is still being worked out, for now, enjoy :)</p>
+      <h3 data-slidetarget="howMuch">How much does this cost?</h3>
+      <div data-slide="howMuch">
+        <p>It's free for you to use to send secrets to whomever you want - we just ask that you don't do anything that could be against the law or harrass anyone with this service.</p>
+        <p>We might introduce a paid version to allow other things (like history) or sending larger files and the like, but all of that is still being worked out, for now, enjoy :)</p>
+      </div>
     </div>
     <div class="homepage-faq__question">
-      <h3>Can we run our own copy?</h3>
-      <p>Of course, we just ask you don't compete with this service in doing so by only use it internally for your staff and clients.</p>
-      <p>We trust you to do the right thing :)</p>
+      <h3 data-slidetarget="ownCopy">Can we run our own copy?</h3>
+      <div data-slide="ownCopy">
+        <p>Of course, we just ask you don't compete with this service in doing so by only use it internally for your staff and clients.</p>
+        <p>We trust you to do the right thing :)</p>
+      </div>
     </div>
     <div class="homepage-faq__question">
-      <h3>Can you help us set this up?</h3>
-      <p>Sure, <%= link_to "contact us (ph)", "#" %>  to get more information about our Ruby on Rails <%= link_to "OpsCare (ph)", "#" %> and <%= link_to "CodeCare (ph)", "#" %> services.
-      <p>We are experts at keeping critical Rails applications online.</p>
+      <h3 data-slidetarget="setUp">Can you help us set this up?</h3>
+      <div data-slide="setUp">
+        <p>Sure, <%= link_to "contact us (ph)", "#" %>  to get more information about our Ruby on Rails <%= link_to "OpsCare (ph)", "#" %> and <%= link_to "CodeCare (ph)", "#" %> services.</p>
+        <p>We are experts at keeping critical Rails applications online.</p>
+      </div>
     </div>
   </article>
 </section>
