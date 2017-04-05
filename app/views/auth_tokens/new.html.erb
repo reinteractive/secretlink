@@ -258,7 +258,13 @@
 
 <section class="homepage-hero">
   <h2>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h2>
-  <%= link_to "Share a secret", "/auth/new", class: "button white" %>
+  <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: '' } do |f| %>
+    <h3>Share a secret now...</h3>
+    <%= f.input :email, label: false, placeholder: 'To send a secret, enter your email address…', input_html: { class: 'form-control center-block' } %>
+    <%= f.button :submit, 'Send Topsekr.it Token', class: 'button white' %>
+    <%= link_to "Send using Google", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
+  <% end %>
+          
 </section>
 
 <section class="homepage-features">

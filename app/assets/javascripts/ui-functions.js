@@ -4,5 +4,3 @@ if($(window).width() < 676) {
     $("[data-slide=" + target + "]").slideToggle("fast");
   });  
 };
-
-
