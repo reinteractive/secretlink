@@ -7,16 +7,17 @@ header.main-nav
   padding: 0 20px
   .navbar-brand
     padding: 15px 15px 15px 0
+    white-space: nowrap
 
 .main-nav__links
   margin: 0 0 0 auto
   padding: 0
   list-style: none
+  text-align: right
   li
     display: inline-block
     margin-left: 10px
   li:first-child
     margin-left: 0
-
-footer.footer
-  // display: none
+  +mobile-media-query
+    font-size: .9em
