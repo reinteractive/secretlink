@@ -7,6 +7,14 @@
 @import "header-and-footer"
 @import "home"
 
+// html
+//   min-height: 100%
+
+body
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+
 *
   font-family: "Open Sans", sans-serif
 
@@ -23,6 +31,8 @@ ul.nostyle
   max-width: 1200px
   width: 100%
   margin: 0 auto
+  padding: 0 20px 50px
+  flex: 1 0 0
 
 .button
   display: inline-block
