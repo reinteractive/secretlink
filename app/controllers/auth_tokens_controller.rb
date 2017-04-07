@@ -31,8 +31,12 @@ class AuthTokensController < ApplicationController
   end
 
   def create
-    AuthTokenService.generate(auth_token_params, (request.protocol + request.host_with_port) )
-    flash.now[:message] = "A token has been generated and sent to #{auth_token_params['email']}"
+    if auth_token_params[:email].present?
+      AuthTokenService.generate(auth_token_params, (request.protocol + request.host_with_port) )
+      flash.now[:message] = "A token has been generated and sent to #{auth_token_params['email']}"
+    else
+      flash.now[:message] = "Sorry, but we need your email address to send the auth token to"
+    end
     render :new
   end
 
