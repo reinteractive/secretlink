@@ -9,7 +9,7 @@ secret is viewed once, it is deleted.
 
 TopSekr.it is available for anyone to use at [https://TopSekr.it/](https://TopSekr.it/),
 it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.net/)
-and hosted thorugh reinteractive's [OpsCare service](https://reinteractive.net/service/ops-care).
+and hosted through reinteractive's [OpsCare service](https://reinteractive.net/service/ops-care).
 It has been made open source to ensure transparency on the service and to encourage contribution
 to improve the security of the application.
 
