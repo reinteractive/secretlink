@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Topsekrit</title>
+  <title>Topsekr.it</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
   <%= render partial: 'shared/header' %>
-  <div class="container-fluid">
-    <%= render partial: 'shared/flash_messages' %>
-    <%= yield %>
-  </div>
+  <%= render partial: 'shared/flash_messages' %>
+  <%= yield %>
+  
   <%= render partial: 'shared/footer' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <% unless controller.controller_name.include?('secret') %>

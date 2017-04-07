@@ -14,3 +14,4 @@
 //= require pickadate/picker.date
 //= require bootstrap-sprockets
 //= require topsekrit
+//= require ui-functions
