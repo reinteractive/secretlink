@@ -49,10 +49,10 @@ To setup the system locally, do the following:
 - Copy the `config/database.example.yml` file to `config/database.yml` and edit
   appropriately
 - Run `./bin/setup`
-- Start the Rails server with `rails s`
+- Start the Rails server with `foreman start -f Procfile.dev`
 
 Once done, specs should pass by running the `rake` command and you should get
-the TopSekr.it app in your browser at http://127.0.0.1:3000/
+the TopSekr.it app in your browser at http://localhost:3000/
 
 As one of the main interfaces to this application is emails, it is a good idea to run
 MailCatcher:

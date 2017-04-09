@@ -15,18 +15,21 @@ gem 'pg'
 gem 'pickadate-rails'
 gem 'sass-rails', '>= 3.2'
 gem 'simple_form'
-gem 'unicorn'
 gem 'logstasher', '~> 0.6.5'
 gem 'uglifier'
+gem 'unicorn'
+gem 'unicorn-rails'
 gem 'ops_care', :git => 'git@github.com:reinteractive/OpsCare.git', :branch => 'master'
 
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'rubocop'
+  gem 'foreman'
 end
 
 group :test do
+  gem 'byebug'
   gem 'capybara'
   gem 'poltergeist'
   gem 'rspec-rails'
