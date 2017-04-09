@@ -1,0 +1,1 @@
+Rails.configuration.topsekrit_authorisation_setting = :open
