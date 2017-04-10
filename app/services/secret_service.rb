@@ -3,6 +3,7 @@ class SecretService
   def self.encrypt_new_secret(params)
     secret = Secret.create(params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex))
     if secret.persisted?
+      # TODO: Mailers should be in the background
       SecretMailer.secret_notification(secret).deliver_now
     end
     secret
@@ -24,6 +25,7 @@ class SecretService
     s = secret.secret
     secret.delete_encrypted_information
     secret.mark_as_consumed
+    # TODO: Mailers should be in the background
     SecretMailer.consumnation_notification(secret).deliver_now
     s
   end

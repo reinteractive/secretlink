@@ -5,7 +5,7 @@ class OauthCallbacksController < ApplicationController
       request.env['omniauth.auth']['info']['email']
     if email
       flash[:message] = "Authenticated as \"#{email}\" via google"
-      session[:validated_email] = email
+      validate_email!(email)
       redirect_to new_secret_path
     else
       flash[:error] = 'Authentication via google failed'

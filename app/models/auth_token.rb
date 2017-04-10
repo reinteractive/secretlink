@@ -4,6 +4,8 @@ class AuthToken < ActiveRecord::Base
 
   before_validation :set_defaults
 
+  # TODO: Model shouldn't be sending the email.
+  # TODO: Emails should be in background worker.
   def notify
     AuthTokenMailer.auth_token(email, hashed_token).deliver_now
   end

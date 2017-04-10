@@ -42,7 +42,7 @@ describe "Sending a secret" do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq([to_email])
       expect(email.reply_to).to eq([from_email])
-      expect(email.subject).to eq("TopSekr.it: A secret has been shared with you - UUID #{Secret.last.uuid}")
+      expect(email.subject).to eq("TopSekr.it: A secret has been shared with you - Reference #{Secret.last.uuid}")
       expect(email.from).to eq(["info@TopSekr.it"])
       expect(email.to_s).to match("This link will show you the secret:")
       expect(email.to_s).to match(/\/secrets\/#{secret.uuid}\?key=\w+/)
