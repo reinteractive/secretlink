@@ -111,7 +111,7 @@ describe "Sending a secret" do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq([from_email])
       expect(email.reply_to).to eq([to_email])
-      expect(email.subject).to eq("Your secret was consumed on TopSekr.it - UUID #{Secret.last.uuid}")
+      expect(email.subject).to eq("Your secret was consumed on TopSekr.it - Reference #{Secret.last.uuid}")
       expect(email.from).to eq(["info@TopSekr.it"])
       expect(email.text_part.to_s).to match("from@example.com")
       expect(email.text_part.to_s).to match("The encrypted information has now been deleted from the database")
