@@ -96,28 +96,5 @@ describe Secret do
       end
 
     end
-
   end
-
-  describe '#exist?' do
-    let(:email) { 'email@email.com' }
-    let(:access_key) { '12345' }
-    let!(:secret) { Secret.new(from_email: email, access_key: access_key).save(validate: false) }
-
-    context 'when you have a matching access key' do
-
-      it 'should return as secret exist' do
-        expect(Secret.exist?(email, '12345')).to be_truthy
-      end
-    end
-
-    context "when you dont have a matching access key" do
-
-      it 'should return as secren doesnt exist' do
-        expect(Secret.exist?(email, 'abc')).to be_falsey
-      end
-    end
-
-  end
-
 end

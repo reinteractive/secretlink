@@ -27,10 +27,6 @@ class Secret < ActiveRecord::Base
     update_attribute(:secret, nil)
   end
 
-  def self.exist?(from_email, access_key)
-    with_email_and_access_key(from_email, access_key).any?
-  end
-
   def mark_as_consumed
     update_attribute(:consumed_at, Time.now)
   end
