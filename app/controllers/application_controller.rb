@@ -1,25 +1,29 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :validated_email
 
-  def development?
-    Rails.env.development?
+  def require_validated_email
+    redirect_to new_auth_token_path unless validated_email?
   end
 
-  def check_session
-    redirect_to new_auth_token_path if session[:email].blank?
+  def validated_email
+    session[:validated_email]
   end
 
-  def retrieve_secret
-    @secret = Secret.where(uuid: params[:uuid], to_email: session[:email]).first
-    case
-    when @secret.blank?
-      flash[:error] = "Secret not found"
-      redirect_to(new_auth_token_path)
-    when @secret.expired?
-      flash[:error] = "That secret has expired"
-      redirect_to(new_auth_token_path)
+  def validated_email?
+    session[:validated_email].present?
+  end
+
+  def validate_email!(email)
+    session[:validated_email] = email
+  end
+
+  def notify_exception(exception)
+    if Rails.env.production?
+      Bugsnag.notify(exception)
+    else
+      raise exception
     end
-    true
   end
 
 end

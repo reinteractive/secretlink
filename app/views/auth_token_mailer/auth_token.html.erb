@@ -6,7 +6,7 @@
   Here is the requested authentication token that will allow you to access <%= link_to("TopSekr.it", "https://TopSekr.it") %>:
 </p>
 <p>
-  <%= link_to "#{@request_host}/auth_tokens/#{@token}", "#{@request_host}/auth_tokens/#{@token}" %>
+  <%= link_to auth_token_url(@token), auth_token_url(@token) %>
 </p>
 
 <p>
@@ -17,5 +17,5 @@
 
 <br><br>
 <p>
-  If you didn't expect to receive this message, please contact <%= mail_to "info@topsekr.it" %>.
+  If you didn't expect to receive this message, please contact <%= mail_to "info@TopSekr.it" %>.
 </p>

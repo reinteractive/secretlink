@@ -1,19 +1,25 @@
 class AuthToken < ActiveRecord::Base
-  validates :email, email: true
-  validate :email_domain_authorised
+  validates :email, email: { message: 'does not look like a valid email' }
+  validate  :email_domain_authorised
 
-  def generate
-    update_attributes(hashed_token: SecureRandom.hex, expire_at: Time.now + 7.days)
-    self
+  before_validation :set_defaults
+
+  # TODO: Model shouldn't be sending the email.
+  # TODO: Emails should be in background worker.
+  def notify
+    AuthTokenMailer.auth_token(email, hashed_token).deliver_now
   end
 
-  def notify(request_host, access_key = nil)
-    AuthTokenMailer.auth_token(email, [hashed_token, access_key], request_host).deliver_now
+  private
+
+  def set_defaults
+    self.hashed_token = SecureRandom.hex
+    self.expire_at = Time.now + 7.days
   end
 
   def email_domain_authorised
-    if closed && email_domain_does_not_match?
-      errors.add(:email, "Only email from #{authorised_domain} are authorised to create secrets")
+    if limited? && email_domain_does_not_match?
+      errors.add(:base, "Only email addresses from #{authorised_domain} are authorised to create secrets")
     end
   end
 
@@ -21,8 +27,8 @@ class AuthToken < ActiveRecord::Base
     Rails.configuration.topsekrit_authorised_domain
   end
 
-  def closed
-    Rails.configuration.topsekrit_authorisation_setting == :closed
+  def limited?
+    [:closed, :limited].include?(Rails.configuration.topsekrit_authorisation_setting)
   end
 
   def email_domain_does_not_match?

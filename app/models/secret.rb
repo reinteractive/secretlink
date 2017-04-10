@@ -1,9 +1,21 @@
 class Secret < ActiveRecord::Base
   attr_accessor :secret_key
+
   attr_encrypted :secret, key: :secret_key, mode: :per_attribute_iv_and_salt
   mount_uploader :secret_file, SecretFileUploader
-  validates_presence_of :to_email, message: "Please enter the recipient's email address"
-  validates_presence_of :secret, message: "Please enter a secret to share with the recipient"
+
+  validates :from_email, presence: {
+                           message: "Please enter the senders's email address"
+                         }
+
+  validates :to_email, presence: {
+                         message: "Please enter the senders's email address"
+                       }
+
+  validates :secret, presence: {
+                        message: "Please enter a secret to share with the recipient",
+                     }
+
   validate :expire_at_within_limit
   validate :email_domain_authorised
 
@@ -13,10 +25,6 @@ class Secret < ActiveRecord::Base
 
   def delete_encrypted_information
     update_attribute(:secret, nil)
-  end
-
-  def self.exist?(from_email, access_key)
-    with_email_and_access_key(from_email, access_key).any?
   end
 
   def mark_as_consumed
@@ -38,26 +46,21 @@ class Secret < ActiveRecord::Base
   end
 
   def email_domain_authorised
-    authd_domain = Rails.configuration.topsekrit_authorised_domain
-    case Rails.configuration.topsekrit_authorisation_setting
-    when :open
-      return
-    when :closed
-      if email_does_not_match?(to_email)
-        errors.add(:to_email, "Secrets can only be shared with emails @" + authd_domain)
-      end
-      if email_does_not_match?(from_email)
-        errors.add(:from_email, "Secrets can only be shared by emails @" + authd_domain)
-      end
-    when :limited
-      if email_does_not_match?(to_email) && email_does_not_match?(from_email)
-        errors.add(:to_email, "Secrets can only be shared by or with emails @" + authd_domain)
-      end
+    if closed? && email_domain_does_not_match?
+      errors.add(:base, "This system has been locked to only allow secrets to be sent to #{authorised_domain} email addresses.")
     end
   end
 
-  def email_does_not_match?(email)
-    AuthorisedEmailService.email_domain_does_not_match?(email)
+  def authorised_domain
+    Rails.configuration.topsekrit_authorised_domain
+  end
+
+  def closed?
+    [:closed].include?(Rails.configuration.topsekrit_authorisation_setting)
+  end
+
+  def email_domain_does_not_match?
+    AuthorisedEmailService.email_domain_does_not_match?(to_email)
   end
 
   def self.expire_at_hint
