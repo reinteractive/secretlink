@@ -1,9 +1,8 @@
 class AuthTokenMailer < BaseMailer
 
-  def auth_token(email, tokens, request_host)
+  def auth_token(email, token)
     @email = email
-    @request_host = request_host
-    @token = tokens.compact.join('-')
+    @token = token
     mail(to: email, subject: 'Topsekrit authentication token')
   end
 

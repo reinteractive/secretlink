@@ -2,17 +2,19 @@ require 'rails_helper'
 
 describe AuthToken do
 
+  let(:from_email) { "from@example.com" }
+  let(:from_domain) { "example.com" }
+
   before do
     allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
   end
 
-  describe '#generate' do
+  describe '#set_defaults' do
 
-    let!(:auth_token) { AuthToken.new(email: 'a@a.com') }
+    let!(:auth_token) { AuthToken.new(email: from_email) }
 
-    before do
-      auth_token.generate
-      auth_token.reload
+    before(:each) do
+      auth_token.valid?
     end
 
     it 'adds a hashed token and an expiry time' do
@@ -24,61 +26,61 @@ describe AuthToken do
 
   describe '#notify' do
 
-    let!(:auth_token) { AuthToken.new(email: 'b@b.com') }
+    let!(:auth_token) { AuthToken.create!(email: from_email) }
 
     before do
-      auth_token.generate
-      auth_token.notify('https://example.com')
+      auth_token.notify
     end
 
     let(:email) { ActionMailer::Base.deliveries.last }
 
     it 'sends an email to the recipient with a link auth link' do
-      expect(email.to).to eq(['b@b.com'])
-      expect(email.text_part.to_s).to match(/https:\/\/example.com\/auth_tokens\/\S+/)
+      expect(email.to).to eq([from_email])
+      expect(email.to_s).to match(/http:\/\/localhost:3000\/auth_tokens\/\S+/)
     end
   end
 
   describe '#email_domain_authorised' do
 
-    let(:auth_token) { AuthToken.new(email: 'c@c.com') }
+    let(:auth_token) { AuthToken.new(email: from_email) }
 
     it 'is valid if the topsekrit_authorisation_setting is :open' do
-      allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :open }
+      allow(Rails.configuration).to \
+        receive(:topsekrit_authorisation_setting).and_return(:open)
       expect(auth_token).to be_valid
     end
 
-    it 'is valid if the topsekrit_authorisation_setting is :limited' do
-      allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :limited }
-      expect(auth_token).to be_valid
+    context 'if the topsekrit_authorisation_setting is :limited' do
+      before(:each) do
+            allow(Rails.configuration).to \
+        receive(:topsekrit_authorisation_setting).and_return(:limited)
+      end
+
+      context 'and the topsekrit_authorised_domains includes the email domain' do
+
+        before do
+          allow(Rails.configuration).to \
+            receive(:topsekrit_authorised_domain).and_return(from_domain)
+        end
+
+        it 'is valid' do
+          expect(auth_token).to be_valid
+        end
+
+      end
+
+      context 'and the topsekrit_authorised_domains does not include the email domain' do
+
+        before do
+          allow(Rails.configuration).to \
+            receive(:topsekrit_authorised_domain).and_return("#{from_domain}.au")
+        end
+
+        it 'is invalid' do
+          expect(auth_token).to_not be_valid
+        end
+
+      end
     end
-
-    context 'the topsekrit_authorised_domains includes the email domain' do
-
-      before do
-        allow(Rails.configuration).to receive(:topsekrit_authorised_domain) { 'c.com' }
-      end
-
-      it 'is valid if the topsekrit_authorisation_setting is :closed' do
-        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :closed }
-        expect(auth_token).to be_valid
-      end
-
-    end
-
-    context 'the topsekrit_authorised_domains does not include the email domain' do
-
-      before do
-        allow(Rails.configuration).to receive(:topsekrit_authorised_domain) { 'd.com' }
-      end
-
-      it 'is invalid if the topsekrit_authorisation_setting is :closed' do
-        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :closed }
-        expect(auth_token).to_not be_valid
-      end
-
-    end
-
   end
-
 end

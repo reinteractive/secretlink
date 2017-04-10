@@ -52,4 +52,6 @@ RSpec.configure do |config|
 
   # Add commands to the rspec DSL for manipulating cookies
   config.include ShowMeTheCookies, :type => :feature
+
 end
+

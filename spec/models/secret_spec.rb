@@ -5,7 +5,7 @@ describe Secret do
   describe "#expired?" do
 
     let!(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now - 7.days}, 'https://example.com')
+      secret: 'cdefg', expire_at: Time.now - 7.days})
     }
 
     it 'is true if the expiry date is in the past' do
@@ -27,7 +27,7 @@ describe Secret do
   describe '#expire_at_within_limit' do
 
     let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
+      secret: 'cdefg', expire_at: Time.now + 7.days})
     }
 
     before do
@@ -60,7 +60,7 @@ describe Secret do
   describe 'email_domain_authorised' do
 
     let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now + 7.days}, 'https://example.com')
+      secret: 'cdefg', expire_at: Time.now + 7.days})
     }
 
     before do
@@ -85,70 +85,16 @@ describe Secret do
         allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :closed }
       end
 
-      it 'is valid if the to_email and from_email domains are both a.com' do
-        secret.from_email = 'a@a.com'
+      it 'is valid if the to_email is from a.com' do
         secret.to_email = 'b@a.com'
         expect(secret).to be_valid
       end
 
-      it 'is invalid if the to_email domain is not a.com' do
-        secret.from_email = 'a@a.com'
-        secret.to_email = 'b@b.com'
-        expect(secret).to be_invalid
-      end
-
-      it 'is invalid if the from_email domain is not a.com' do
-        secret.from_email = 'b@b.com'
-        secret.to_email = 'b@a.com'
-        expect(secret).to be_invalid
-      end
-
-    end
-
-    context 'the topsekrit_authorisation_setting is :limited' do
-
-      before do
-        allow(Rails.configuration).to receive(:topsekrit_authorisation_setting) { :limited }
-      end
-
-      it 'is valid if the to_email or from_email domains are from a.com' do
-        secret.from_email = 'a@a.com'
-        secret.to_email = 'b@b.com'
-        expect(secret).to be_valid
-        secret.to_email = 'a@a.com'
-        secret.from_email = 'b@b.com'
-        expect(secret).to be_valid
-      end
-
-      it 'is invalid if both the to_email and from_email domains are not from a.com' do
-        secret.from_email = 'a@b.com'
+      it 'is invalid if both the to_email domain is not from a.com' do
         secret.to_email = 'b@b.com'
         expect(secret).to be_invalid
       end
 
     end
-
   end
-
-  describe '#exist?' do
-    let(:email) { 'email@email.com' }
-    let(:access_key) { '12345' }
-    let!(:secret) { Secret.new(from_email: email, access_key: access_key).save(validate: false) }
-
-    context 'when you have a matching access key' do
-
-      it 'should return as secret exist' do
-        expect(Secret.exist?(email, '12345')).to be_truthy
-      end
-    end
-
-    context "when you dont have a matching access key" do
-
-      it 'should return as secren doesnt exist' do
-        expect(Secret.exist?(email, 'abc')).to be_falsey
-      end
-    end
-
-  end
-
 end

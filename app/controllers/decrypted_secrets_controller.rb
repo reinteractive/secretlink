@@ -1,20 +1,14 @@
 class DecryptedSecretsController < ApplicationController
-
+  include RetrieveSecret
   before_filter :retrieve_secret
-  before_filter :check_session
+  before_filter :require_validated_email
 
   def create
-
-    auth_token = AuthToken.find_by_hashed_token(session[:auth_token])
-    if auth_token then
-      session.delete :auth_token
-      auth_token.delete
-    end
-
     begin
-      @unencrypted_secret = SecretService.decrypt_secret(@secret, params[:secret_key])
-    rescue StandardError => e
-      flash.now[:error] = "An error occurred while trying to decrypt the secret: #{e}"
+      @unencrypted_secret = SecretService.decrypt_secret!(@secret, params[:key])
+    rescue => e
+      notify_exception(e)
+      flash.now[:error] = "An error occurred while trying to decrypt the secret, please ask #{@secret.from_email} to send it again."
     end
     render 'secrets/show'
   end
