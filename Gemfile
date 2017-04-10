@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
-gem "rails", "~> 4.2.5"
+gem "rails", "~> 4.2.8"
 
 gem "attr_encrypted"
 gem "bootstrap-sass", "~> 3.3.4"
@@ -13,19 +13,23 @@ gem "jquery-rails"
 gem "omniauth-google-oauth2"
 gem "pg"
 gem "pickadate-rails"
-gem "sass-rails", ">= 3.2"
+gem "sass-rails", "~> 5.0"
+gem 'uglifier', '>= 1.3.0'
 gem "simple_form"
 gem "logstasher", "~> 0.6.5"
-gem "uglifier"
 gem "unicorn"
 gem "unicorn-rails"
 gem "ops_care", :git => "git@github.com:reinteractive/OpsCare.git", :branch => "master"
+
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "quiet_assets"
   gem "rubocop"
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do

@@ -51,7 +51,8 @@ describe SecretService do
 
     it "raises an error if the incorrect key is provided, and does not delete the encrypted secret" do
       expect{
-        SecretService.decrypt_secret!(retrieved_secret,"not-the-right-key")
+        key = "needs-to-be-at-least-32-bytes-long"
+        SecretService.decrypt_secret!(retrieved_secret, key)
       }.to raise_error(OpenSSL::Cipher::CipherError)
       expect(retrieved_secret.encrypted_secret).to_not be_nil
     end
