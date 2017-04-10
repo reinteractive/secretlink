@@ -3,6 +3,9 @@ TopSekr.it
 
 _An application that facilitates sharing secrets._
 
+[![Test Coverage](https://codeclimate.com/repos/5848e0abc73d236cfb0008a6/badges/3092c9a55640812a1290/coverage.svg)](https://codeclimate.com/repos/5848e0abc73d236cfb0008a6/coverage)
+[![Code Climate](https://codeclimate.com/repos/5848e0abc73d236cfb0008a6/badges/3092c9a55640812a1290/gpa.svg)](https://codeclimate.com/repos/5848e0abc73d236cfb0008a6/feed)
+
 Sharing of passwords, keys, and files can be difficult to perform securely. This
 application allows a secret to be shared and viewed via a unique url. After the
 secret is viewed once, it is deleted.

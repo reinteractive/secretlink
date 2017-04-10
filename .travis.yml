@@ -1,3 +1,28 @@
 language: ruby
 rvm:
  - 2.3.0
+cache: bundler
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - bin/rake dev:nuke
+services:
+  - redis-server
+script:
+  - bin/rake
+notifications:
+  flowdock: 4b6d5b07bb3bf66eb4fed63e0b85240a
+  email: false
+env:
+  global:
+    - TOPSEKRIT_AUTHORISATION_SETTING='open'
+    - TOPSEKRIT_AUTHORISED_DOMAIN='reinteractive.net'
+    - GOOGLE_OAUTH_CALLBACK_PATH='/auth/google_oauth2/callback'
+    - GOOGLE_CLIENT_ID='1234'
+    - GOOGLE_CLIENT_SECRET='1234'
+    - BASE_URL='http://localhost:3000'
+addons:
+  code_climate:
+    repo_token: 0c9d8e9e2db83bcc74dbdfe816f4f51ab8e14f63f6e2e7315457f48bb0f6f64c
