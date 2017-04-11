@@ -13,7 +13,7 @@ services:
 script:
   - bin/rake
 notifications:
-  flowdock: 4b6d5b07bb3bf66eb4fed63e0b85240a
+  flowdock: 70c3589190925ff6d817e318827ae484
   email: false
 env:
   global:
