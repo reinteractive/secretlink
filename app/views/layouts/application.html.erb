@@ -16,8 +16,5 @@
 
   <%= render partial: 'shared/footer' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <% unless controller.controller_name.include?('secret') %>
-    <%= render partial: 'shared/ga' %>
-  <% end %>
 </body>
 </html>
