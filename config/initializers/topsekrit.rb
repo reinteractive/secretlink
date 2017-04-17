@@ -2,8 +2,8 @@ Rails.application.config.before_initialize do
   # If you want to limit the amount of time a secret can be stored, set the time
   # limit here. e.g. if you set 7.days, any secrets older than 7 days cannot be
   # accessed and will be deleted.
-  # Set to nil or comment the line if you don't want to enforce this restriction
-  Rails.configuration.topsekrit_maximum_expiry_time = ENV['TOPSEKRIT_EXPIRY_DAYS'].days.to_i
+  # Remove the env var or set to 0 if you don't want to enforce this restriction
+  Rails.configuration.topsekrit_maximum_expiry_time = ENV['TOPSEKRIT_EXPIRY_DAYS'].to_i.days.to_i
 
   # These settings define who can use the website to send and receive secrets.
   # The options for topsekrit_authorisation_setting are:
