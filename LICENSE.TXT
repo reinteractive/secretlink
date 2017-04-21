@@ -6,5 +6,5 @@ for license text.
 
 reinteractive pty ltd also provides a commercial-friendly license
 allowing you to host your own version of TopSekr.it for internal
-user. Please contact us for further details.
+use. Please contact us for further details.
 <https://reinteractive.com/enquiries/new>
