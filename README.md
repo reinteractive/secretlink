@@ -11,8 +11,8 @@ application allows a secret to be shared and viewed via a unique url. After the
 secret is viewed once, it is deleted.
 
 TopSekr.it is available for anyone to use at [https://TopSekr.it/](https://TopSekr.it/),
-it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.net/)
-and hosted through reinteractive's [OpsCare service](https://reinteractive.net/service/ops-care).
+it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.com/)
+and hosted through reinteractive's [OpsCare service](https://reinteractive.com/service/ops-care).
 It has been made open source to ensure transparency on the service and to encourage contribution
 to improve the security of the application.
 
@@ -113,7 +113,7 @@ Staging Environment
 TopSekr.it staging is deployed from the develop branch.
 
 The environment is run with continuous development and continuous integration
-on the [reinteractive OpsCare](https://reinteractive.net/service/ops-care)
+on the [reinteractive OpsCare](https://reinteractive.com/service/ops-care)
 service on top of AWS cloud.
 
 Pushing to develop will automatically deploy to the CI servers and once green
