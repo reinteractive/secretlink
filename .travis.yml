@@ -18,7 +18,7 @@ notifications:
 env:
   global:
     - TOPSEKRIT_AUTHORISATION_SETTING='open'
-    - TOPSEKRIT_AUTHORISED_DOMAIN='reinteractive.net'
+    - TOPSEKRIT_AUTHORISED_DOMAIN='reinteractive.com'
     - GOOGLE_OAUTH_CALLBACK_PATH='/auth/google_oauth2/callback'
     - GOOGLE_CLIENT_ID='1234'
     - GOOGLE_CLIENT_SECRET='1234'
