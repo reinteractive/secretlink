@@ -9,7 +9,7 @@ describe AuthToken do
     expect(page).to have_content("Share a secret now...")
     fill_in "auth_token[email]", with: from_email
     expect {
-      click_button "Send TopSekr.it Token"
+      click_button "Send SecretLink.org Token"
     }.to change(AuthToken, :count).by(1)
   end
 
@@ -19,7 +19,7 @@ describe AuthToken do
     fill_in "auth_token[email]", with: from_email
     page.driver.scroll_to(0, 500)
     expect {
-      click_button "Send TopSekr.it Token"
+      click_button "Send SecretLink.org Token"
     }.to change(AuthToken, :count).by(1)
   end
 
