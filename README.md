@@ -1,4 +1,4 @@
-TopSekr.it
+secretlink.org
 ==============================================
 
 _An application that facilitates sharing secrets._
@@ -10,7 +10,7 @@ Sharing of passwords, keys, and files can be difficult to perform securely. This
 application allows a secret to be shared and viewed via a unique url. After the
 secret is viewed once, it is deleted.
 
-TopSekr.it is available for anyone to use at [https://TopSekr.it/](https://TopSekr.it/),
+secretlink.org is available for anyone to use at [https://secretlink.org/](https://secretlink.org/),
 it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.net/)
 and hosted through reinteractive's [OpsCare service](https://reinteractive.net/service/ops-care).
 It has been made open source to ensure transparency on the service and to encourage contribution
@@ -20,13 +20,13 @@ All pull requests welcome.
 
 If you do not want to (or can not) use our hosted version, you are welcome to run
 your own version for your own company or organisation, we only stipulate that you
-may not run it as a service for third parties in competition to https://TopSekr.it/
+may not run it as a service for third parties in competition to https://secretlink.org/
 
 
 The typlical workflow:
 ---------------------------
 
-- Someone visits [https://TopSekr.it/](https://TopSekr.it/) and enters their email
+- Someone visits [https://secretlink.org/](https://secretlink.org/) and enters their email
   address and the recipient's email address. The recipient's email address isn't strictly necessary at this point but it reduces confusion for non-technical users.
 - An email link with a one-time authentication token is sent to the email.
 - They follow the link to a form where they can enter the secret info that they want
@@ -55,7 +55,7 @@ To setup the system locally, do the following:
 - Start the Rails server with `foreman start -f Procfile.dev`
 
 Once done, specs should pass by running the `rake` command and you should get
-the TopSekr.it app in your browser at http://localhost:3000/
+the secretlink.org app in your browser at http://localhost:3000/
 
 As one of the main interfaces to this application is emails, it is a good idea to run
 MailCatcher:
@@ -110,7 +110,7 @@ master and develop should pass at all times.
 Staging Environment
 ----------------------------------------------
 
-TopSekr.it staging is deployed from the develop branch.
+secretlink.org staging is deployed from the develop branch.
 
 The environment is run with continuous development and continuous integration
 on the [reinteractive OpsCare](https://reinteractive.net/service/ops-care)
@@ -123,7 +123,7 @@ will deploy to staging.
 Production Environment
 ----------------------------------------------
 
-TopSekr.it production is deployed from the master branch.
+secretlink.org production is deployed from the master branch.
 
 Once a known good realease is ready for deploy, deployment is done from the
 command line with the standard OpsCare tools.

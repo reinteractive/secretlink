@@ -2,8 +2,8 @@
   <h2>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h2>
   <%= simple_form_for :auth_token, url: auth_tokens_url, html: { class: '' } do |f| %>
     <h3>Share a secret now...</h3>
-    <%= f.input :email, label: false, placeholder: 'To send a secret, enter your email address…', input_html: { class: 'form-control center-block' } %>
-    <%= f.button :submit, 'Send TopSekr.it Token', class: 'button white' %>
+    <%= f.input :email, label: false, placeholder: 'To send a secret, enter your email address...', input_html: { class: 'form-control center-block' } %>
+    <%= f.button :submit, 'Send SecretLink.org Token', class: 'button white' %>
     <%= link_to "Send using Google", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
   <% end %>
 
@@ -14,12 +14,12 @@
     <li>
       <%= image_tag "homepage-icons/your-secret.svg" %>
       <h3>Your secret is yours to keep and share</h3>
-      <p>TopSekr.it ecrypts your data and sends the only key to decrypt it to your receipient. Once they view the secret we delete the encrypted version from our database.</p>
+      <p>SecretLink.org ecrypts your data and sends the only key to decrypt it to your receipient. Once they view the secret we delete the encrypted version from our database.</p>
     </li>
     <li>
       <%= image_tag "homepage-icons/fast-and-forgetful.svg" %>
       <h3>It works fast and is conveniently forgetful</h3>
-      <p>Because TopSekr.it does not keep the decryption keys, we can't decrypt your data, also your data has an expiry, once expired, no one can decrypt and we delete it from the system.</p>
+      <p>Because SecretLink.org does not keep the decryption keys, we can't decrypt your data, also your data has an expiry, once expired, no one can decrypt and we delete it from the system.</p>
     </li>
     <li>
       <%= image_tag "homepage-icons/simple-and-efficient.svg" %>
@@ -60,7 +60,7 @@
     </header>
     <div class='body'>
       <%= image_tag "homepage-icons/step04.svg" %>
-      <p>Once they view the secret, the encrypted copy is deleted from the system, never to be seen again. No data is better than encrypted data!</p>
+      <p>Once they view the secret, the encrypted copy is deleted from the system, never to be seen again. No data is even better than encrypted data!</p>
     </div>
   </div>
 
@@ -111,7 +111,7 @@
     <div class="homepage-faq__question">
       <h3 data-slidetarget="setUp">Can you help us set this up?</h3>
       <div data-slide="setUp">
-        <p>Sure, <%= link_to "contact us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+TopSekr.it..." %>  to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
+        <p>Sure, <%= link_to "contact us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+SecretLink.org..." %>  to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
         <p>We are experts at keeping critical Rails applications online.</p>
       </div>
     </div>
@@ -121,15 +121,15 @@
 <section class="homepage-about-us" id="homepage-about">
   <article class="flex-wrapper">
     <h3 class="full-width">
-      About TopSekr.it
+      About SecretLink.org
     </h3>
     <div class="flex-column">
-      <p>TopSekr.it is available for anyone to use, it is a Ruby on Rails application created and built by <%= link_to "reinteractive", "https://reinteractive.net" %> and hosted through reinteractive's <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> service. It has been made open source to ensure transparency on the service and to encourage contribution to improve the security of the application.</p>
+      <p>SecretLink.org is available for anyone to use, it is a Ruby on Rails application created and built by <%= link_to "reinteractive", "https://reinteractive.net" %> and hosted through reinteractive's <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> service. It has been made open source to ensure transparency on the service and to encourage contribution to improve the security of the application.</p>
       <p>If you do not want to (or can not) use our hosted version, you are welcome to run your own version for your own company or organisation, we only</p>
     </div>
     <div class="flex-column">
-      <p>stipulate that you may not run it as a service for third parties in competition to https://TopSekr.it/</p>
-      <p>If you would like assistance getting TopSekr.it (or any other Rails application) setup, hosted and maintained on AWS, please consider <%= link_to "contacting us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+TopSekr.it..." %> to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
+      <p>stipulate that you may not run it as a service for third parties in competition to https://SecretLink.org/</p>
+      <p>If you would like assistance getting SecretLink.org (or any other Rails application) setup, hosted and maintained on AWS, please consider <%= link_to "contacting us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+SecretLink.org..." %> to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
       <p>It is free to use and is governed by our <%= link_to "Terms & Conditions", "/terms_and_conditions" %>.</p>
     </div>
   </article>

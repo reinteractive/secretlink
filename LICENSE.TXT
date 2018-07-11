@@ -1,10 +1,10 @@
 Copyright (c) 2014, 2015, 2016, 2017 reinteractive pty ltd
 
-TopSekr.it is an Open Source project licensed under the terms of
+SecretLink.org is an Open Source project licensed under the terms of
 the GPLv3 license.  Please see <https://www.gnu.org/licenses/gpl-3.0.html>
 for license text.
 
 reinteractive pty ltd also provides a commercial-friendly license
-allowing you to host your own version of TopSekr.it for internal
+allowing you to host your own version of SecretLink.org for internal
 use. Please contact us for further details.
 <https://reinteractive.com/enquiries/new>

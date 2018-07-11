@@ -1,6 +1,6 @@
 Hello <%= @secret.from_email %>
 
-This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via TopSekr.it.
+This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via SecretLink.org.
 
 <% if @secret.title.present? %>
 The title of the viewed secret was: <%= @secret.title %>
@@ -17,4 +17,4 @@ This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
 
 The encrypted information has now been deleted from the database.
 
-Thank you for using TopSekr.it - https://TopSekr.it
+Thank you for using SecretLink.org - https://SecretLink.org
