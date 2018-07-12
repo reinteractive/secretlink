@@ -1,4 +1,5 @@
 class AuthTokensController < ApplicationController
+  before_action :check_recaptcha, only: :create
 
   def show
     auth_token = AuthToken.find_by(hashed_token: params[:id])
@@ -37,4 +38,10 @@ class AuthTokensController < ApplicationController
     params.require(:auth_token).permit(:email)
   end
 
+  def check_recaptcha
+    unless verify_recaptcha
+      flash[:error] = flash[:recaptcha_error]
+      render :new
+    end
+  end
 end

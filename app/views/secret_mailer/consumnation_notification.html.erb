@@ -2,7 +2,7 @@
   Hello <%= @secret.from_email %>
 </p>
 <p>
-  This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("TopSekr.it", "https://TopSekr.it") %>.
+  This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("SecretLink.org", "https://SecretLink.org") %>.
 </p>
 <% if @secret.title.present? %>
 <p>
@@ -24,5 +24,5 @@
   The encrypted information has now been deleted from the database.
 </p>
 <p>
-  Thank you for using <%= link_to("TopSekr.it", "https://TopSekr.it") %>!
+  Thank you for using <%= link_to("SecretLink.org", "https://SecretLink.org") %>!
 </p>

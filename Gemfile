@@ -19,6 +19,7 @@ gem "simple_form"
 gem "logstasher", "~> 0.6.5"
 gem "unicorn"
 gem "unicorn-rails"
+gem "recaptcha"
 gem "ops_care", :git => "git@github.com:reinteractive/OpsCare.git", :branch => "master"
 
 gem 'sdoc', '~> 0.4.0', group: :doc

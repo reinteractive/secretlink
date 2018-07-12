@@ -11,7 +11,7 @@ Rails.application.config.before_initialize do
   # :open - anyone can use the website to send or receive secrets, ignores the
   #         topsekrit_authorised_domain setting, yolo.
   # :closed - only emails from the topsekrit_authorised_domain domain can send and receive secrets,
-  #           use this if you only want to use TopSekr.it internally
+  #           use this if you only want to use SecretLink.org internally
   # :limited - emails from the topsekrit_authorised_domain domain can send secrets to anyone and can
   #            receive secrets from anyone, but emails from other domains can't send/receive secrets
   #            to/from each other
@@ -30,7 +30,7 @@ Rails.application.config.before_initialize do
   # write up at https://github.com/zquestz/omniauth-google-oauth2#google-api-setup
   Rails.configuration.topsekrit_google_oauth_client_secret = ENV['GOOGLE_OAUTH_CLIENT_SECRET']
 
-  # Base URL for the running site. For the production site at https://TopSekr.it/ the
-  # Base URL would be: https://TopSekr.it/, for development this might be http://lvh.me:3000/
+  # Base URL for the running site. For the production site at https://SecretLink.org/ the
+  # Base URL would be: https://SecretLink.org/, for development this might be http://lvh.me:3000/
   Rails.configuration.topsekrit_base_url = ENV['BASE_URL']
 end

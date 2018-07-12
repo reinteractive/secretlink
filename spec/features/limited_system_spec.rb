@@ -25,7 +25,7 @@ describe "Generating auth tokens on a limited system" do
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: from_email
       expect {
-        click_button "Send TopSekr.it Token"
+        click_button "Send SecretLink.org Token"
       }.to change(AuthToken, :count).by(1)
     end
 
@@ -35,7 +35,7 @@ describe "Generating auth tokens on a limited system" do
       fill_in "auth_token[email]", with: from_email
       page.driver.scroll_to(0, 500)
       expect {
-        click_button "Send TopSekr.it Token"
+        click_button "Send SecretLink.org Token"
       }.to change(AuthToken, :count).by(1)
     end
   end
@@ -47,7 +47,7 @@ describe "Generating auth tokens on a limited system" do
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: disapproved_email
       expect {
-        click_button "Send TopSekr.it Token"
+        click_button "Send SecretLink.org Token"
       }.to_not change(AuthToken, :count)
       expect(page).to have_content("Only email addresses from #{authorised_domain} are authorised to create secrets")
     end
@@ -58,7 +58,7 @@ describe "Generating auth tokens on a limited system" do
       fill_in "auth_token[email]", with: disapproved_email
       page.driver.scroll_to(0, 500)
       expect {
-        click_button "Send TopSekr.it Token"
+        click_button "Send SecretLink.org Token"
       }.to_not change(AuthToken, :count)
       expect(page).to have_content("Only email addresses from #{authorised_domain} are authorised to create secrets")
     end
