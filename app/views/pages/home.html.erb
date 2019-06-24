@@ -1,0 +1,142 @@
+<section class="homepage-hero">
+  <h2>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h2>
+
+  <% unless user_signed_in? %>
+    <%= simple_form_for(@user, url: registration_path(@user)) do |f| %>
+      <h3>Share a secret now...</h3>
+      <%= f.input :email, required: true, label: false, placeholder: 'Enter your email address', input_html: { class: 'form-control center-block' } %>
+      <%= invisible_recaptcha_tags text: 'Register', class: 'button white' %>
+
+      <!-- TODO: Fix user registration via google -->
+      <%= link_to "Register with a Google Account", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
+    <% end %>
+  <% end %>
+</section>
+
+<section class="homepage-features">
+  <ul class='nostyle'>
+    <li>
+      <%= image_tag "homepage-icons/your-secret.svg" %>
+      <h3>Your secret is yours to keep and share</h3>
+      <p>SecretLink.org ecrypts your data and sends the only key to decrypt it to your receipient. Once they view the secret we delete the encrypted version from our database.</p>
+    </li>
+    <li>
+      <%= image_tag "homepage-icons/fast-and-forgetful.svg" %>
+      <h3>It works fast and is conveniently forgetful</h3>
+      <p>Because SecretLink.org does not keep the decryption keys, we can't decrypt your data, also your data has an expiry, once expired, no one can decrypt and we delete it from the system.</p>
+    </li>
+    <li>
+      <%= image_tag "homepage-icons/simple-and-efficient.svg" %>
+      <h3>It's simple & efficient</h3>
+      <p>All you need is a valid email or sign in via Google. No new passwords to remember, no accounts to worry about.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="homepage-steps" id="homepage-steps">
+
+  <div class="homepage-steps__step first">
+    <header>
+      <h3>01</h3>
+      <h4>Authenticate Yourself</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step02.svg" %>
+      <p>Either enter your email and click on the link we send you or use Google OAuth so we can get to know you, it's a trust thing :)</p>
+    </div>
+  </div>
+
+  <div class="homepage-steps__step second">
+    <header>
+      <h3>02</h3>
+      <h4>You add the secret sauce</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step03.svg" %>
+      <p>Then you enter your secret, ensure the recipient is correct, add comments and expiry and hit send to mail them the only copy of the decryption key.</p>
+    </div>
+  </div>
+
+  <div class="homepage-steps__step third">
+    <header>
+      <h3>03</h3>
+      <h4>Share the love</h4>
+    </header>
+    <div class='body'>
+      <%= image_tag "homepage-icons/step04.svg" %>
+      <p>Once they view the secret, the encrypted copy is deleted from the system, never to be seen again. No data is even better than encrypted data!</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="homepage-behind-the-scenes">
+  <h2>What goes on behind the scenes?</h2>
+  <p>Shh... it's a secret! But you look trustworthy... read on :)</p>
+</section>
+
+<section class="homepage-faq" id="homepage-faq">
+  <article class="flex-wrapper">
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="whyUseful">Why is this useful?</h3>
+      <div data-slide="whyUseful">
+        <p>Instead of secrets being sent by email, in support systems, via instant messaging services or the like, a unique link is sent instead, which only works once.</p>
+        <p>This way, only an unusable link will remain protecting the secret from further prying eyes.</p>
+      </div>
+    </div>
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="whyTrust">Why should we trust you?</h3>
+      <div data-slide="whyTrust">
+        <p>We built this service to solve our own problem of sharing secrets with customers. We know trust is a thing, so we <a href="https://github.com/reinteractive/topsekrit" target="_blank">open sourced the whole project</a> for any peer review.</p>
+        <p>If you find something, please let us know or send a pull request and we'll get it fixed.</p>
+      </div>
+    </div>
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="secretsStored">Are secrets stored?</h3>
+      <div data-slide="secretsStored">
+        <p>Yes, but only encrypted with a one way cipher that we don't store the key for. The only copy of the key is sent to the receipient you specify.</p>
+        <p>Once the secret is read by the recipient, we even delete the encrypted version from the database, just leaving the meta data behind so in future versions you can have a dashboard to see what you sent to whom (coming soon).</p>
+      </div>
+    </div>
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="howMuch">How much does this cost?</h3>
+      <div data-slide="howMuch">
+        <p>It's free for you to use to send secrets to whomever you want - we just ask that you don't do anything that could be against the law or harrass anyone with this service.</p>
+        <p>There is a paid version on the horizon that handles files as well, stay tuned :)</p>
+      </div>
+    </div>
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="ownCopy">Can we run our own copy?</h3>
+      <div data-slide="ownCopy">
+        <p>Of course, there is a GPL licensed version, we just ask you don't compete with this service in doing so by only use it internally for your staff and clients.</p>
+        <p>We trust you to do the right thing :)</p>
+      </div>
+    </div>
+    <div class="homepage-faq__question">
+      <h3 data-slidetarget="setUp">Can you help us set this up?</h3>
+      <div data-slide="setUp">
+        <p>Sure, <%= link_to "contact us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+SecretLink.org..." %>  to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
+        <p>We are experts at keeping critical Rails applications online.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="homepage-about-us" id="homepage-about">
+  <article class="flex-wrapper">
+    <h3 class="full-width">
+      About SecretLink.org
+    </h3>
+    <div class="flex-column">
+      <p>SecretLink.org is available for anyone to use, it is a Ruby on Rails application created and built by <%= link_to "reinteractive", "https://reinteractive.net" %> and hosted through reinteractive's <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> service. It has been made open source to ensure transparency on the service and to encourage contribution to improve the security of the application.</p>
+      <p>If you do not want to (or can not) use our hosted version, you are welcome to run your own version for your own company or organisation, we only</p>
+    </div>
+    <div class="flex-column">
+      <p>stipulate that you may not run it as a service for third parties in competition to https://SecretLink.org/</p>
+      <p>If you would like assistance getting SecretLink.org (or any other Rails application) setup, hosted and maintained on AWS, please consider <%= link_to "contacting us", "https://reinteractive.net/enquiries/new?message=I%27d+like+to+get+some+more+information+to+setup+SecretLink.org..." %> to get more information about our Ruby on Rails <%= link_to "OpsCare", "https://reinteractive.net/service/ops-care/" %> and <%= link_to "CodeCare", "https://reinteractive.net/service/code-care/" %> services.</p>
+      <p>It is free to use and is governed by our <%= link_to "Terms & Conditions", "/terms_and_conditions" %>.</p>
+    </div>
+  </article>
+</section>
+
+<%= render partial: 'shared/ga' %>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'oauth_callbacks#auth_failure'
 
   get '/auth/new', to: 'auth_tokens#new'
-  root 'auth_tokens#new'
+  root 'pages#home'
 
   get '/copyright',            to: 'pages#copyright'
   get '/privacy_policy',       to: 'pages#privacy_policy'
