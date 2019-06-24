@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
   }
   resources :auth_tokens, only: [:show, :new, :create]
   resources :secrets, only: [:show, :new, :create, :edit, :update]
