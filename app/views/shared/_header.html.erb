@@ -4,5 +4,10 @@
     <li><a href="/#homepage-steps">How it works</a></li>
     <li><a href="/#homepage-faq">FAQ</a></li>
     <li><a href="/#homepage-about">About</a></li>
+    <% if user_signed_in? %>
+      <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+    <% else %>
+      <li><%= link_to('Login', new_user_session_path) %></li>
+    <% end %>
   </ul>
 </header>
