@@ -5,7 +5,7 @@ describe AuthToken do
   let(:from_email) { "from@example.com" }
 
   it "allows sending a token without javascript support" do
-    visit root_path
+    visit new_auth_token_path
     expect(page).to have_content("Share a secret now...")
     fill_in "auth_token[email]", with: from_email
     expect {
@@ -14,7 +14,7 @@ describe AuthToken do
   end
 
   it "generates an auth token", js: true do
-    visit root_path
+    visit new_auth_token_path
     expect(page).to have_content("Share a secret now...")
     fill_in "auth_token[email]", with: from_email
     page.driver.scroll_to(0, 500)

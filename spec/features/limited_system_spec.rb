@@ -21,7 +21,7 @@ describe "Generating auth tokens on a limited system" do
   context "using an approved email domain" do
 
     it "generates an auth token without javascript" do
-      visit root_path
+      visit new_auth_token_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: from_email
       expect {
@@ -30,7 +30,7 @@ describe "Generating auth tokens on a limited system" do
     end
 
     it "generates an auth token with javascript", js: true do
-      visit root_path
+      visit new_auth_token_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: from_email
       page.driver.scroll_to(0, 500)
@@ -43,7 +43,7 @@ describe "Generating auth tokens on a limited system" do
   context "trying to use a disapproved email domain" do
 
     it "returns an error without javascript" do
-      visit root_path
+      visit new_auth_token_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: disapproved_email
       expect {
@@ -53,7 +53,7 @@ describe "Generating auth tokens on a limited system" do
     end
 
     it "returns an error with javascript", js: true do
-      visit root_path
+      visit new_auth_token_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: disapproved_email
       page.driver.scroll_to(0, 500)
