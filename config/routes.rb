@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
     passwords: 'users/passwords'
   }
+
   resources :auth_tokens, only: [:show, :new, :create]
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
