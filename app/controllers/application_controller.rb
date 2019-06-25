@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :validated_email
+  layout :layout_by_resource
 
   def validated_email
     session[:validated_email]
@@ -22,4 +23,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
 end
