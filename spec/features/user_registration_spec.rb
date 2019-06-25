@@ -8,7 +8,7 @@ describe 'User registration with email' do
       visit root_path
 
       fill_in "user[email]", with: email
-      expect { click_button "Register" }.to change { User.count }.by(1)
+      expect { click_on "Register" }.to change { User.count }.by(1)
 
       user = User.last
       expect(user.email).to eq email
@@ -20,7 +20,7 @@ describe 'User registration with email' do
       visit root_path
 
       fill_in "user[email]", with: email
-      click_button "Register"
+      click_on "Register"
       expect(page).to have_content I18n.t('devise.registrations.signed_up_but_unconfirmed')
     end
 
@@ -28,7 +28,7 @@ describe 'User registration with email' do
       visit root_path
 
       fill_in "user[email]", with: email
-      click_button "Register"
+      click_on "Register"
 
       mail = ActionMailer::Base.deliveries.last
 
@@ -46,7 +46,7 @@ describe 'User registration with email' do
       expect(page).to have_content("Register")
       fill_in "user[email]", with: invalid_email
 
-      expect { click_button "Register" }.to_not change { User.count }
+      expect { click_on "Register" }.to_not change { User.count }
     end
   end
 end
