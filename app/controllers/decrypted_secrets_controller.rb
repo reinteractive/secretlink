@@ -1,7 +1,6 @@
 class DecryptedSecretsController < ApplicationController
   include RetrieveSecret
   before_filter :retrieve_secret
-  before_filter :require_validated_email
 
   def create
     begin
