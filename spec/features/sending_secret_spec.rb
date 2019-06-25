@@ -2,24 +2,19 @@ require "rails_helper"
 
 describe "Sending a secret" do
 
+  let(:user) { create :user }
   let(:to_email)   { "to@example.com" }
-  let(:from_email) { "from@example.com" }
 
   before(:each) do
     allow_any_instance_of(AuthToken).to receive(:notify).and_return(true)
   end
 
   describe "creating a secret" do
-
-    let(:auth_token_params) { { email: from_email } }
-    let!(:auth_token) {
-      AuthTokenService.generate(auth_token_params)
-      AuthToken.where(email: from_email).first
-    }
     let(:secret) { Secret.last }
 
     before do
-      visit auth_token_path(auth_token.hashed_token)
+      login_as(user)
+      visit new_secret_path
       fill_in "Title", with: "Super Secret"
       fill_in "Recipient", with: to_email
       fill_in "Secret", with: "AbC123"
@@ -31,7 +26,7 @@ describe "Sending a secret" do
 
     it "allows a secret to be created" do
       expect(secret.title).to eq("Super Secret")
-      expect(secret.from_email).to eq(from_email)
+      expect(secret.from_email).to eq(user.email)
       expect(secret.to_email).to eq(to_email)
       expect(secret.comments).to eq("Some super secret info")
       expect(secret.expire_at).to eq((Date.current + 1).strftime("%Y-%m-%d"))
@@ -41,7 +36,7 @@ describe "Sending a secret" do
     it "sends an email to the recipient" do
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq([to_email])
-      expect(email.reply_to).to eq([from_email])
+      expect(email.reply_to).to eq([user.email])
       expect(email.subject).to eq("SecretLink.org: A secret has been shared with you - Reference #{Secret.last.uuid}")
       expect(email.from).to eq(["info@SecretLink.org"])
       expect(email.to_s).to match("This link will show you the secret:")
@@ -63,7 +58,7 @@ describe "Sending a secret" do
   describe "accessing a secret" do
 
     let!(:secret) {
-      SecretService.encrypt_new_secret({from_email: from_email,
+      SecretService.encrypt_new_secret({from_email: user.email,
                                         to_email: to_email,
                                         secret: "Super Secret Message",
                                         expire_at: Time.current + 7.days})
@@ -109,11 +104,11 @@ describe "Sending a secret" do
       click_button "Click here to show the secret"
       expect(page).to have_content("Super Secret Message")
       email = ActionMailer::Base.deliveries.last
-      expect(email.to).to eq([from_email])
+      expect(email.to).to eq([user.email])
       expect(email.reply_to).to eq([to_email])
       expect(email.subject).to eq("Your secret was consumed on SecretLink.org - Reference #{Secret.last.uuid}")
       expect(email.from).to eq(["info@SecretLink.org"])
-      expect(email.text_part.to_s).to match("from@example.com")
+      expect(email.text_part.to_s).to match(user.email)
       expect(email.text_part.to_s).to match("The encrypted information has now been deleted from the database")
     end
 
@@ -122,7 +117,7 @@ describe "Sending a secret" do
   describe "trying to access an expired secret" do
 
     let!(:secret) {
-      SecretService.encrypt_new_secret({from_email: from_email,
+      SecretService.encrypt_new_secret({from_email: user.email,
                                         to_email: to_email,
                                         secret: "Super Secret Message",
                                         expire_at: Time.now - 1})

@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def from_email_placeholder
-    validated_email
+    current_user.email
   end
 
   # A closed system only allows secrets to be sent to and from email

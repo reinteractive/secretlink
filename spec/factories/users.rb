@@ -3,6 +3,7 @@ FactoryBot.define do
     email                   { 'user@secretlink.org' }
     password                { 'password' }
     password_confirmation   { 'password' }
+    confirmed_at            { Time.now }
 
     trait :unconfirmed do
       password                { nil }
