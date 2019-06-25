@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
-  get '/', to: 'secrets#new', constraints: lambda { |request|
+  get '/', to: 'secrets#new', as: 'admin_root', constraints: lambda { |request|
     request.env['warden'].user.present?
   }
 
-  get '/', to: 'pages#home'
+  get '/', to: 'pages#home', as: 'root'
 
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create

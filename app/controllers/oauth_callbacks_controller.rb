@@ -5,6 +5,8 @@ class OauthCallbacksController < ApplicationController
       request.env['omniauth.auth']['info']['email']
     if email
       flash[:message] = "Authenticated as \"#{email}\" via google"
+
+      # TODDO: Fix this - login with devise
       validate_email!(email)
       redirect_to new_secret_path
     else
