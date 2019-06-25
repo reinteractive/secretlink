@@ -19,7 +19,7 @@ describe 'oauth via google' do
     end
 
     it 'signs me in' do
-      visit new_auth_token_path
+      visit root_path
       find('a#oauth-google').click
       expect(page).to have_content('Authenticated as "a@google.com" via google')
     end
@@ -36,7 +36,7 @@ describe 'oauth via google' do
     end
 
     it 'does not sign me in' do
-      visit new_auth_token_path
+      visit root_path
       find('a#oauth-google').click
       expect(page).to have_content('Authentication failed')
     end

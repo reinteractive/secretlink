@@ -9,13 +9,13 @@ class OauthCallbacksController < ApplicationController
       redirect_to new_secret_path
     else
       flash[:error] = 'Authentication via google failed'
-      redirect_to new_auth_token_path
+      redirect_to root_path
     end
   end
 
   def auth_failure
     flash[:error] = 'Authentication failed'
-    redirect_to new_auth_token_path
+    redirect_to root_path
   end
 
 end
