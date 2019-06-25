@@ -81,17 +81,20 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address:              ENV['SMTP_HOST'],
-    port:                 ENV['SMTP_PORT'],
-    user_name:            ENV['SMTP_USERNAME'],
-    password:             ENV['SMTP_PASSWORD'],
-    authentication:       ENV['SMTP_AUTHENTICATION'],
+    address:              ENV["SMTP_HOST"],
+    port:                 ENV["SMTP_PORT"],
+    user_name:            ENV["SMTP_USERNAME"],
+    password:             ENV["SMTP_PASSWORD"],
+    authentication:       ENV["SMTP_AUTHENTICATION"],
     enable_starttls_auto: true,
-    domain:               ENV['SMTP_DOMAIN']
+    domain:               ENV["SMTP_DOMAIN"]
   }
 
-  config.action_mailer.default_options = {from: 'SecretLink.org Sharing <info@SecretLink.org>'}
-  config.action_mailer.default_url_options = {host: 'SecretLink.org'}
+  config.action_mailer.default_options = {
+    from: "info@#{ENV['SMTP_DOMAIN']}",
+    reply_to: "SecretLink.org Sharing <info@#{ENV['DEFAULT_HOST']}>"
+  }
+  config.action_mailer.default_url_options = {host: ENV['DEFAULT_HOST']}
 
   # Enable the logstasher logs for the current environment
   config.logstasher.enabled = true
