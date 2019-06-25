@@ -5,10 +5,6 @@ describe "Sending a secret" do
   let(:user) { create :user }
   let(:to_email)   { "to@example.com" }
 
-  before(:each) do
-    allow_any_instance_of(AuthToken).to receive(:notify).and_return(true)
-  end
-
   describe "creating a secret" do
     let(:secret) { Secret.last }
 
