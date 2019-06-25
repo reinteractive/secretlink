@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'pages#home'
-
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords'
   }
+
+  get '/', to: 'secrets#new', constraints: lambda { |request|
+    request.env['warden'].user.present?
+  }
+
+  get '/', to: 'pages#home'
 
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
@@ -19,5 +23,5 @@ Rails.application.routes.draw do
   get '/privacy_policy',       to: 'pages#privacy_policy'
   get '/terms_and_conditions', to: 'pages#terms_and_conditions'
 
-  get 'dashboard' , to: 'dashboard#show'
+  get 'dashboard' , to: 'secrets#new'
 end

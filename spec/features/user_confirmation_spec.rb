@@ -22,7 +22,7 @@ describe 'User confirmation' do
       click_on 'Set my password'
 
       expect(page).to have_content I18n.t('devise.passwords.updated')
-      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Create a new secret to send'
 
       expect(user.reload.encrypted_password).to_not be_blank
     end
