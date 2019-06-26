@@ -11,26 +11,23 @@ class OauthCallbacksController < ApplicationController
       redirect_to user_confirmation_path(confirmation_token: user.confirmation_token)
     else
       handle_email_taken and return if user.errors.added?(:email, :taken)
-      handle_email_blank and return if user.errors.added?(:email, :blank)
+      # This may not be necessary because a failed oauth calls directly
+      # to auth_failure, but keeping this here as a safeguard
+      auth_failure and return if user.errors.added?(:email, :blank)
       handle_unknown_error(user)
     end
   end
 
   def auth_failure
-    flash[:error] = 'Authentication failed'
+    flash[:error] = t('oauth.failed')
     redirect_to root_path
   end
 
   private
 
   def handle_email_taken
-    flash[:notice] = 'You are already registered with this account. Please login instead.'
+    flash[:notice] = t('oauth.already_registered')
     redirect_to new_user_session_path
-  end
-
-  def handle_email_blank
-    flash[:error] = 'Authentication via google failed'
-    redirect_to root_path
   end
 
   def handle_unknown_error(user)
