@@ -4,6 +4,9 @@ class OauthCallbacksController < ApplicationController
     email = request.env['omniauth.auth'] && request.env['omniauth.auth']['info'] &&
       request.env['omniauth.auth']['info']['email']
 
+    # Handling for closed/limited systems
+    handle_not_allowed and return if not_allowed?(email)
+
     user = User.new(email: email)
     user.skip_confirmation_notification!
 
@@ -34,5 +37,14 @@ class OauthCallbacksController < ApplicationController
     # We're intentionally raising an error here
     # So tests will catch when creation of user with email only fails
     raise user.errors.full_messages.to_s
+  end
+
+  def not_allowed?(email)
+    !AuthorisedEmailService.authorised_to_register?(email)
+  end
+
+  def handle_not_allowed
+    flash[:notice] = t('registrations.unauthorised_email')
+    redirect_to root_path
   end
 end

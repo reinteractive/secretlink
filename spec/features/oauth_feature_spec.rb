@@ -62,5 +62,20 @@ describe 'oauth via google' do
       after { OmniAuth.config.logger = previous_logger }
     end
 
+    context 'system is closed and user is not authorised' do
+      before do
+        configure_authorisation(:closed, 'strict.com')
+        OmniAuth.config.add_mock(:google_oauth2, info: info)
+      end
+
+      it 'does not register the user' do
+        visit root_path
+        find('a#oauth-google').click
+
+        expect(User.count).to eq 0
+        expect(page).to have_content I18n.t('registrations.unauthorised_email')
+      end
+    end
+
   end
 end
