@@ -73,7 +73,7 @@ describe 'oauth via google' do
         find('a#oauth-google').click
 
         expect(User.count).to eq 0
-        expect(page).to have_content I18n.t('registrations.unauthorised_email')
+        expect(page).to have_content I18n.t('field_errors.unauthorised')
       end
     end
 

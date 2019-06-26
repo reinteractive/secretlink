@@ -65,7 +65,7 @@ describe 'User registration with email' do
     it 'does not allow emails with unauthorised domains' do
       fill_in "user[email]", with: unauthorised_email
       expect { click_on "Register" }.to_not change { User.count }
-      expect(page).to have_content I18n.t('registrations.unauthorised_email')
+      expect(page).to have_content I18n.t('field_errors.unauthorised')
     end
   end
 

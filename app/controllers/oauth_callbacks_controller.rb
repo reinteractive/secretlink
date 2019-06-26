@@ -4,9 +4,6 @@ class OauthCallbacksController < ApplicationController
     email = request.env['omniauth.auth'] && request.env['omniauth.auth']['info'] &&
       request.env['omniauth.auth']['info']['email']
 
-    # Handling for closed/limited systems
-    handle_not_allowed and return if not_allowed?(email)
-
     user = User.new(email: email)
     user.skip_confirmation_notification!
 
@@ -14,6 +11,7 @@ class OauthCallbacksController < ApplicationController
       redirect_to user_confirmation_path(confirmation_token: user.confirmation_token)
     else
       handle_email_taken and return if user.errors.added?(:email, :taken)
+      handle_unauthorised and return if user.errors.added?(:email, t('field_errors.unauthorised'))
       # This may not be necessary because a failed oauth calls directly
       # to auth_failure, but keeping this here as a safeguard
       auth_failure and return if user.errors.added?(:email, :blank)
@@ -43,8 +41,8 @@ class OauthCallbacksController < ApplicationController
     !AuthorisedEmailService.authorised_to_register?(email)
   end
 
-  def handle_not_allowed
-    flash[:error] = t('registrations.unauthorised_email')
+  def handle_unauthorised
+    flash[:error] = "Email #{t('field_errors.unauthorised')}"
     redirect_to root_path
   end
 end

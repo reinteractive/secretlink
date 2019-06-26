@@ -11,16 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    if AuthorisedEmailService.authorised_to_register?(sign_up_params[:email])
-      super
-    else
-      self.resource = resource_class.new sign_up_params
-      resource.validate # Look for any other validation errors
-      resource.errors.add(:email, t('registrations.unauthorised_email'))
-      respond_with resource
-    end
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit

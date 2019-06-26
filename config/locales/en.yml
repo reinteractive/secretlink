@@ -23,5 +23,5 @@ en:
   oauth:
     already_registered: 'You are already registered with this account. Please login instead.'
     failed: 'Authentication failed'
-  registrations:
-    unauthorised_email: 'You are not allowed to register with this email.'
+  field_errors:
+    unauthorised: 'is unauthorised'
