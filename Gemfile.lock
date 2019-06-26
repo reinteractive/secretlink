@@ -1,13 +1,3 @@
-GIT
-  remote: git@github.com:reinteractive/OpsCare.git
-  revision: 94546c8566deca717d163fb02899833c5483a9d4
-  branch: master
-  specs:
-    ops_care (1.0.4)
-      bugsnag
-      okcomputer
-      skylight
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -187,6 +177,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.8)
       actionpack (= 4.2.8)
       activesupport (= 4.2.8)
@@ -280,6 +275,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.4)
+  bugsnag
   byebug
   capybara
   carrierwave
@@ -292,13 +288,14 @@ DEPENDENCIES
   jquery-rails
   launchy
   logstasher (~> 0.6.5)
+  okcomputer
   omniauth-google-oauth2
-  ops_care!
   pg
   pickadate-rails
   poltergeist
   quiet_assets
   rails (~> 4.2.8)
+  rails_12factor
   recaptcha
   rspec-rails
   rubocop
@@ -306,13 +303,14 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   show_me_the_cookies (~> 3.1.0)
   simple_form
+  skylight
   uglifier (>= 1.3.0)
   unicorn
   unicorn-rails
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.3.8p459
 
 BUNDLED WITH
-   1.16.2
+   1.17.3

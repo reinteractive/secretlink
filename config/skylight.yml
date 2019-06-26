@@ -4,3 +4,6 @@ ignored_endpoints:
   - OkComputer::OkComputerController#index
   - OkComputer::OkComputerController#show
 alert_log_file: log/skylight.log
+
+production:                                           # Rails (especially Heroku) environment
+  env: <%= ENV["SKYLIGHT_ENV"] || ENV["RAILS_ENV"] %> # Skylight environment

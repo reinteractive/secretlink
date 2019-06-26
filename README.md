@@ -43,7 +43,7 @@ The typlical workflow:
 Required Environment / Minimum Setup
 ----------------------------------------------
 
-* Ruby version 2.2.2 (old versions of ruby supported)
+* Ruby version 2.3.8 (old versions of ruby supported)
 * Any ActiveRecord supported database (must support large multi megabyte text fields)
 
 To setup the system locally, do the following:
@@ -110,21 +110,39 @@ master and develop should pass at all times.
 Staging Environment
 ----------------------------------------------
 
-secretlink.org staging is deployed from the develop branch.
+The staging environment is hosted on Heroku.
 
-The environment is run with continuous development and continuous integration
-on the [reinteractive OpsCare](https://reinteractive.net/service/ops-care)
-service on top of AWS cloud.
+Access it at [staging.secretlink.org](https://satging.secretlink.org/)
 
-Pushing to develop will automatically deploy to the CI servers and once green
-will deploy to staging.
+To deploy to staging, push the master branch to heroku git repository:
 
+    First get invite to repo from Ops Staff
+    git remote add staging https://git.heroku.com/rei-secretlink-staging.git
+    git push staging develop:master
+
+To test sending emails, you must validate any recepient emails first,
+using the sandbox domain in the mailgun control panel on the Heroku Dasboard.
 
 Production Environment
 ----------------------------------------------
 
-secretlink.org production is deployed from the master branch.
+The production environment is hosted on Heroku.
 
-Once a known good realease is ready for deploy, deployment is done from the
-command line with the standard OpsCare tools.
+Access it at [secretlink.org](https://secretlink.org/)
+
+To deploy to production, push the master branch to heroku git repository:
+
+    First get invite to repo from Ops Staff
+    git remote add production https://git.heroku.com/rei-secretlink-production.git
+    git push production master:master
+
+These should automatic run, but if they didnt and are needed then:
+
+    heroku run rake assets:precompile -a rei-secretlink-production
+    heroku run rake db:migrate -a rei-secretlink-production
+
+Some helpful commands:
+
+    heroku restart -a rei-secretlink-production
+    heroku logs --tail -a rei-secretlink-production
 
