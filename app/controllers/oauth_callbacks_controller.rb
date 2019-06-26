@@ -5,9 +5,10 @@ class OauthCallbacksController < ApplicationController
       request.env['omniauth.auth']['info']['email']
 
     user = User.new(email: email)
+    user.skip_confirmation_notification!
+
     if user.save
-      flash[:notice] = t('devise.registrations.signed_up_but_unconfirmed')
-      redirect_to root_path
+      redirect_to user_confirmation_path(confirmation_token: user.confirmation_token)
     else
       handle_email_taken and return if user.errors.added?(:email, :taken)
       handle_email_blank and return if user.errors.added?(:email, :blank)
@@ -23,7 +24,7 @@ class OauthCallbacksController < ApplicationController
   private
 
   def handle_email_taken
-    flash[:notice] = "You are already registered with this account. Please login instead."
+    flash[:notice] = 'You are already registered with this account. Please login instead.'
     redirect_to new_user_session_path
   end
 
