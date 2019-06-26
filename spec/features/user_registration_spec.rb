@@ -6,10 +6,12 @@ describe 'User registration with email' do
   describe 'successful' do
     let(:email) { "user@secretlink.org" }
 
-    it 'creates an unconfirmed user' do
+    before do
       visit root_path
-
       fill_in "user[email]", with: email
+    end
+
+    it 'creates an unconfirmed user' do
       expect { click_on "Register" }.to change { User.count }.by(1)
 
       user = User.last
@@ -19,21 +21,14 @@ describe 'User registration with email' do
     end
 
     it 'shows a confirmation message' do
-      visit root_path
-
-      fill_in "user[email]", with: email
       click_on "Register"
       expect(page).to have_content I18n.t('devise.registrations.signed_up_but_unconfirmed')
     end
 
     it 'sends a confirmation email' do
-      visit root_path
-
-      fill_in "user[email]", with: email
       click_on "Register"
 
       mail = ActionMailer::Base.deliveries.last
-
       expect(mail.to).to match_array([email])
       expect(mail.subject).to eq  "Confirmation instructions"
     end
