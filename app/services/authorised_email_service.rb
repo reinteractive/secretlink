@@ -1,18 +1,15 @@
 module AuthorisedEmailService
-  AUTHORISATION = Rails.configuration.topsekrit_authorisation_setting
-  AUTHORISED_DOMAIN = Rails.configuration.topsekrit_authorised_domain
-
   class << self
     def closed_system?
-      AUTHORISATION == :closed
+      authorisation == :closed
     end
 
     def limited_system?
-      AUTHORISATION == :limited
+      authorisation == :limited
     end
 
     def open_system?
-      AUTHORISATION == :open
+      authorisation == :open
     end
 
     def closed_or_limited_system?
@@ -28,12 +25,20 @@ module AuthorisedEmailService
     end
 
     def email_domain_matches?(email)
-      regexp = Regexp.new(".+#{AUTHORISED_DOMAIN}\\z")
+      regexp = Regexp.new(".+#{authorised_domain}\\z")
       email.to_s.match(regexp)
     end
 
     def email_domain_does_not_match?(email)
       !email_domain_matches?(email)
+    end
+
+    def authorisation
+      Rails.configuration.topsekrit_authorisation_setting
+    end
+
+    def authorised_domain
+      Rails.configuration.topsekrit_authorised_domain
     end
   end
 
