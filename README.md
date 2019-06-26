@@ -120,6 +120,9 @@ To deploy to staging, push the master branch to heroku git repository:
     git remote add staging https://git.heroku.com/rei-secretlink-staging.git
     git push staging develop:master
 
+To test sending emails, you must validate any recepient emails first,
+using the sandbox domain in the mailgun control panel on the Heroku Dasboard.
+
 Production Environment
 ----------------------------------------------
 
