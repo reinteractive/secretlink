@@ -32,4 +32,7 @@ module ApplicationHelper
     request.path == '/auth_tokens/new'
   end
 
+  def flash_display_type(key)
+    HashWithIndifferentAccess.new(alert: 'danger', error: 'danger')[key] || 'success'
+  end
 end

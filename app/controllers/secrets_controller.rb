@@ -17,7 +17,7 @@ class SecretsController < AuthenticatedController
       flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
       redirect_to new_secret_path
     else
-      flash.now[:message] = @secret.errors.full_messages.join("<br/>".html_safe)
+      flash.now[:error] = @secret.errors.full_messages.join("<br/>".html_safe)
       render :new
     end
   end
