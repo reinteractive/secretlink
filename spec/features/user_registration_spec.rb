@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe 'User registration with email' do
+  before { configure_authorisation(:open) }
+
   describe 'successful' do
     let(:email) { "user@secretlink.org" }
 
@@ -49,4 +51,27 @@ describe 'User registration with email' do
       expect { click_on "Register" }.to_not change { User.count }
     end
   end
+
+  context 'system is limited/closed' do
+    let!(:authorised_email) { 'authorised@secretlink.org' }
+    let!(:unauthorised_email) { 'unauthorised@domain.com' }
+    let!(:domain) { "secretlink.org" }
+
+    before do
+      configure_authorisation(:closed, domain)
+      visit root_path
+    end
+
+    it 'allows emails with authorised domain' do
+      fill_in "user[email]", with: authorised_email
+      expect { click_on "Register" }.to change { User.count }.by(1)
+    end
+
+    it 'does not allow emails with unauthorised domains' do
+      fill_in "user[email]", with: unauthorised_email
+      expect { click_on "Register" }.to_not change { User.count }
+      expect(page).to have_content I18n.t('registrations.unauthorised_email')
+    end
+  end
+
 end
