@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       super
     else
       self.resource = resource_class.new sign_up_params
+      resource.validate # Look for any other validation errors
       resource.errors.add(:email, t('registrations.unauthorised_email'))
       respond_with resource
     end

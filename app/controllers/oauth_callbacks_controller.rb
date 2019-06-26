@@ -29,7 +29,7 @@ class OauthCallbacksController < ApplicationController
   private
 
   def handle_email_taken
-    flash[:notice] = t('oauth.already_registered')
+    flash[:error] = t('oauth.already_registered')
     redirect_to new_user_session_path
   end
 
@@ -44,7 +44,7 @@ class OauthCallbacksController < ApplicationController
   end
 
   def handle_not_allowed
-    flash[:notice] = t('registrations.unauthorised_email')
+    flash[:error] = t('registrations.unauthorised_email')
     redirect_to root_path
   end
 end
