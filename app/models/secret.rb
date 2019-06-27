@@ -23,6 +23,8 @@ class Secret < ActiveRecord::Base
     where('from_email = ? and access_key = ?', email, access_key)
   }
 
+  belongs_to :user, primary_key: 'email', foreign_key: 'from_email'
+
   def delete_encrypted_information
     update_attribute(:secret, nil)
   end

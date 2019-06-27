@@ -3,4 +3,8 @@
     <h1>All Secrets</h1>
     <%= link_to 'Create New', new_secret_path, class: 'btn' %>
   </div>
+
+  <% @secrets.each do |secret| %>
+    <%= secret.title %>
+  <% end %>
 </div>

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   validate :email_authorised?, on: :create
 
+  has_many :secrets, primary_key: 'email', foreign_key: 'from_email'
+
   protected
 
   def password_required?
