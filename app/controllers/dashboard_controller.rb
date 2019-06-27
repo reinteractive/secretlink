@@ -1,4 +1,4 @@
 class DashboardController < AuthenticatedController
-  def show
+  def index
   end
 end
