@@ -1,9 +1,9 @@
 <header class="main-nav">
   <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-lg glyphicon-camera" aria-hidden="true"></span>SecretLink.org</a>
   <ul class="main-nav__links">
-    <li><a href="/#homepage-steps">How it works</a></li>
-    <li><a href="/#homepage-faq">FAQ</a></li>
-    <li><a href="/#homepage-about">About</a></li>
+    <li><%= link_to "How it works", home_path(anchor: "homepage-steps") %></li>
+    <li><%= link_to "FAQ", home_path(anchor: "homepage-faq") %></li>
+    <li><%= link_to "About", home_path(anchor: "homepage-about") %></li>
     <% if user_signed_in? %>
       <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
     <% else %>

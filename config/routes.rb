@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get '/auth/failure', to: 'oauth_callbacks#auth_failure'
 
+  get '/home',                 to: 'pages#home'
   get '/copyright',            to: 'pages#copyright'
   get '/privacy_policy',       to: 'pages#privacy_policy'
   get '/terms_and_conditions', to: 'pages#terms_and_conditions'
