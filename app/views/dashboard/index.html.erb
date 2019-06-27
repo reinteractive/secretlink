@@ -5,6 +5,6 @@
   </div>
 
   <% @secrets.each do |secret| %>
-    <%= secret.title %>
+    <%= render 'secret_item', secret: secret %>
   <% end %>
 </div>
