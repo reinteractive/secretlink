@@ -17,7 +17,7 @@ describe "Sending a secret" do
       fill_in "Comments", with: "Some super secret info"
       fill_in "Expire at", with: (Time.current + 1.day).strftime("%d %B, %Y")
       click_button "Send your Secret"
-      expect(current_path).to eql(new_secret_path)
+      expect(current_path).to eql(dashboard_path)
     end
 
     it "allows a secret to be created" do

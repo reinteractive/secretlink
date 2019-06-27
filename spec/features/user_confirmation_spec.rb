@@ -11,7 +11,7 @@ describe 'User confirmation' do
       expect(user.reload.confirmed_at).to_not be_nil
     end
 
-    it 'asks the user to set the password and redirects to dashboard' do
+    it 'asks the user to set the password' do
       visit user_confirmation_path(confirmation_token: user.confirmation_token)
 
       expect(page).to have_content('Set your password')
@@ -21,7 +21,7 @@ describe 'User confirmation' do
       fill_in 'user[password_confirmation]', with: 'password'
       click_on 'Set my password'
 
-      expect(page).to have_content I18n.t('devise.passwords.updated')
+      expect(page).to have_content I18n.t('welcome')
       expect(page).to have_content 'Create a new secret to send'
 
       expect(user.reload.encrypted_password).to_not be_blank
