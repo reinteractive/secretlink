@@ -73,7 +73,7 @@ describe AuthorisedEmailService do
         expect(AuthorisedEmailService.authorised_to_register?(authorised_email)).to eq(true)
       end
 
-      it 'returns false if email does not belong authorised domain' do
+      it 'returns false if email does not belong to authorised domain' do
         expect(AuthorisedEmailService.authorised_to_register?(unauthorised_email)).to eq(false)
       end
     end
@@ -85,7 +85,7 @@ describe AuthorisedEmailService do
         expect(AuthorisedEmailService.authorised_to_register?(authorised_email)).to eq(true)
       end
 
-      it 'returns false if email does not belong authorised domain' do
+      it 'returns false if email does not belong to authorised domain' do
         expect(AuthorisedEmailService.authorised_to_register?(unauthorised_email)).to eq(false)
       end
     end
@@ -97,7 +97,7 @@ describe AuthorisedEmailService do
         expect(AuthorisedEmailService.authorised_to_register?(authorised_email)).to eq(true)
       end
 
-      it 'returns true if email does not belong authorised domain' do
+      it 'returns true if email does not belong to authorised domain' do
         expect(AuthorisedEmailService.authorised_to_register?(unauthorised_email)).to eq(true)
       end
     end
@@ -115,7 +115,7 @@ describe AuthorisedEmailService do
       expect(matches).to be_truthy
     end
 
-    it 'returns matched emails for authorised domain' do
+    it 'does not return matched emails for authorised domain' do
       matches = AuthorisedEmailService.email_domain_matches?(unauthorised_email)
       expect(matches).to be_falsey
     end

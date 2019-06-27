@@ -7,7 +7,6 @@
       <%= f.input :email, required: true, label: false, placeholder: 'Enter your email address', input_html: { class: 'form-control center-block' } %>
       <%= invisible_recaptcha_tags text: 'Register', class: 'button white' %>
 
-      <!-- TODO: Fix user registration via google -->
       <%= link_to "Register with a Google Account", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
     <% end %>
   <% end %>

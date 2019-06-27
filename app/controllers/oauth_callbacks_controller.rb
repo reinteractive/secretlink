@@ -37,10 +37,6 @@ class OauthCallbacksController < ApplicationController
     raise user.errors.full_messages.to_s
   end
 
-  def not_allowed?(email)
-    !AuthorisedEmailService.authorised_to_register?(email)
-  end
-
   def handle_unauthorised
     flash[:error] = "Email #{t('field_errors.unauthorised')}"
     redirect_to root_path
