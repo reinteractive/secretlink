@@ -113,6 +113,7 @@ GEM
     kgio (2.11.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    local_time (2.1.0)
     logstash-event (1.2.02)
     logstasher (0.6.5)
       logstash-event (~> 1.2.0)
@@ -305,6 +306,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  local_time
   logstasher (~> 0.6.5)
   okcomputer
   omniauth-google-oauth2
