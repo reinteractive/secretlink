@@ -5,8 +5,11 @@
 @import "bootstrap"
 @import "topsekrit"
 @import "header-and-footer"
+
+// Pages
 @import "home"
 @import "secrets"
+@import "dashboard"
 
 // Layouts
 @import "layouts/devise"
@@ -61,3 +64,7 @@ ul.nostyle
     &:hover
       background-color: $green3
       border-color: $green3
+
+footer
+  // Keeps footer at the bottom at all times (even if content is short)
+  margin-top: auto
