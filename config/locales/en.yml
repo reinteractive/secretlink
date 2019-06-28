@@ -26,3 +26,7 @@ en:
     failed: 'Authentication failed'
   field_errors:
     unauthorised: 'is unauthorised'
+  secret:
+    resend:
+      success: "Secret resent to: %{email}"
+      failed: "This secret is expired. Please create a new one."

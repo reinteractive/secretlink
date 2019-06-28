@@ -17,10 +17,10 @@ class SecretsController < AuthenticatedController
     unless secret.expired?
       SecretService.resend_notification(secret)
 
-      flash[:notice] = "The secret was resent to: #{secret.to_email}"
+      flash[:notice] = t('secret.resend.success', email: secret.to_email)
       redirect_to dashboard_path
     else
-      flash[:error] = "This secret is expired. Please create a new one."
+      flash[:error] = t('secret.resend.failed')
       redirect_to dashboard_path
     end
 

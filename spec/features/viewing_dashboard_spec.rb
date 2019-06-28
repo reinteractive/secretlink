@@ -21,12 +21,13 @@ describe 'Viewing Dashboard' do
   end
 
   context 'user has already sent his first secret' do
-    let!(:secret) { create :secret }
+    let!(:secret) { create :secret, user: user }
     let!(:consumed_secret) {
       create :secret, :consumed,
       to_email: 'activeuser@random.com',
       title: 'Consumed Secret',
-      comments: 'This is a consumed secret'
+      comments: 'This is a consumed secret',
+      user: user
     }
 
     before do

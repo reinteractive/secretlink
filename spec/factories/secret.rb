@@ -3,7 +3,7 @@ FactoryBot.define do
     uuid                    { SecureRandom.uuid }
     secret_key              { SecureRandom.hex(16) }
     title                   { 'Sample Secret' }
-    from_email              { 'user@secretlink.org' }
+    from_email              { 'someone@secretlink.org' }
     to_email                { 'user@random.com' }
     secret                  { 'abc' }
     comments                { 'This is a sample secret' }
@@ -11,6 +11,10 @@ FactoryBot.define do
 
     trait :consumed do
       consumed_at           { Time.current }
+    end
+
+    trait :expired do
+      expire_at             { Time.current - 10.days }
     end
   end
 end
