@@ -11,6 +11,21 @@ class SecretsController < AuthenticatedController
     @secret = Secret.new(from_email: current_user.email)
   end
 
+  def resend
+    secret = current_user.secrets.find(params[:id])
+
+    unless secret.expired?
+      SecretService.resend_notification(secret)
+
+      flash[:notice] = "The secret was resent to: #{secret.to_email}"
+      redirect_to dashboard_path
+    else
+      flash[:error] = "This secret is expired. Please create a new one."
+      redirect_to dashboard_path
+    end
+
+  end
+
   def create
     @secret = SecretService.encrypt_new_secret(secret_params)
     if @secret.persisted?

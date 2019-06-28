@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   get '/', to: 'pages#home', as: 'root'
 
-  resources :secrets, only: [:show, :new, :create, :edit, :update]
+  resources :secrets, only: [:show, :new, :create, :edit, :update] do
+    member { get 'resend' }
+  end
+
   resources :decrypted_secrets, only: :create
 
   post '/decrypt_secret', to: 'decrypted_secrets#create'

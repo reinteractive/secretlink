@@ -25,6 +25,13 @@ class Secret < ActiveRecord::Base
 
   belongs_to :user, primary_key: 'email', foreign_key: 'from_email'
 
+  def sent_at
+    # We're using creted_at as the send date for the meantime
+    # We may need to add a sent_at field if we will be updating
+    # the sent date whenever we resend
+    created_at
+  end
+
   def delete_encrypted_information
     update_attribute(:secret, nil)
   end
