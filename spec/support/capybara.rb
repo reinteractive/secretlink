@@ -3,6 +3,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 
 Capybara.default_max_wait_time = 15
+Capybara.ignore_hidden_elements = true
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, debug: false)
