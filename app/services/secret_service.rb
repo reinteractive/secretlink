@@ -9,12 +9,6 @@ class SecretService
     secret
   end
 
-  def self.resend_notification(secret)
-    # TODO: Mailers should be in the background
-    # Refactor this together with all the other deliver_now calls
-    SecretMailer.secret_notification(secret).deliver_now
-  end
-
   def self.correct_key?(secret, password)
     begin
       secret.secret_key = password
