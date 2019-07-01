@@ -29,6 +29,54 @@ describe 'oauth via google' do
     end
   end
 
+  describe 'user is already in the system but unconfirmed' do
+    let!(:user) { create :user, :unconfirmed, email: info[:email] }
+
+    before do
+      OmniAuth.config.add_mock(:google_oauth2, info: info)
+      visit root_path
+      find('a#oauth-google').click
+    end
+
+    it 'confirms the user' do
+      expect(user.reload.confirmed_at).to_not be_nil
+    end
+
+    it 'redirects user to enter password' do
+      expect(page).to have_content('Set your password')
+
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
+      click_on 'Set my password'
+
+      expect(page).to have_content I18n.t('welcome')
+      expect(page).to have_content 'Create a new secret to send'
+      expect(user.reload.encrypted_password).to_not be_blank
+    end
+  end
+
+  describe 'user is already in the system but failed to set password' do
+    let!(:user) { create :user, :confirmed_without_password, email: info[:email] }
+
+    before do
+      OmniAuth.config.add_mock(:google_oauth2, info: info)
+      visit root_path
+      find('a#oauth-google').click
+    end
+
+    it 'redirects user to enter password' do
+      expect(page).to have_content('Set your password')
+
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
+      click_on 'Set my password'
+
+      expect(page).to have_content I18n.t('welcome')
+      expect(page).to have_content 'Create a new secret to send'
+      expect(user.reload.encrypted_password).to_not be_blank
+    end
+  end
+
   describe 'unsuccessful auth' do
     let!(:previous_logger) { OmniAuth.config.logger }
 
