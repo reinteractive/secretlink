@@ -24,9 +24,14 @@ class SecretsController < AuthenticatedController
 
   def extend_expiry
     @secret = current_user.secrets.find(params[:id])
-    @secret.extend_expiry
 
-    redirect_to dashboard_path, notice: t('secrets.extended_expiry', title: @secret.title)
+    if @secret.expired?
+      @secret.extend_expiry
+      redirect_to dashboard_path, notice: t('secrets.extended_expiry', title: @secret.title)
+    else
+      # This case should not happen base on UI
+      redirect_to dashboard_path
+    end
   end
 
   def create
