@@ -116,7 +116,7 @@ describe "Sending a secret" do
       SecretService.encrypt_new_secret({from_email: user.email,
                                         to_email: to_email,
                                         secret: "Super Secret Message",
-                                        expire_at: Time.now - 1})
+                                        expire_at: Time.current - 1})
     }
     let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/)}
 

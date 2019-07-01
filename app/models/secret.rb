@@ -35,11 +35,11 @@ class Secret < ActiveRecord::Base
   end
 
   def mark_as_consumed
-    update_attribute(:consumed_at, Time.now)
+    update_attribute(:consumed_at, Time.current)
   end
 
   def expired?
-    expire_at.present? && expire_at < Time.now
+    expire_at.present? && expire_at < Time.current
   end
 
   def extend_expiry
@@ -48,10 +48,10 @@ class Secret < ActiveRecord::Base
 
   def expire_at_within_limit
     if Rails.application.config.topsekrit_maximum_expiry_time
-      max_expiry_in_config = (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).to_i
+      max_expiry_in_config = (Time.current + Rails.application.config.topsekrit_maximum_expiry_time).to_i
       if expire_at.blank? || (expire_at && expire_at.to_i > max_expiry_in_config)
         errors.add(:expire_at, "Maximum expiry allowed is " +
-        (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y'))
+        (Time.current + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y'))
       end
     end
   end
@@ -77,7 +77,7 @@ class Secret < ActiveRecord::Base
   def self.expire_at_hint
     if Rails.application.config.topsekrit_maximum_expiry_time
       (Date.today + 1).strftime('%d %B %Y') + ' - ' +
-      (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y')
+      (Time.current + Rails.application.config.topsekrit_maximum_expiry_time).strftime('%d %B %Y')
     end
   end
 end
