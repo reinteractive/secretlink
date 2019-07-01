@@ -28,4 +28,4 @@ en:
     unauthorised: 'is unauthorised'
   secrets:
     extended_expiry: 'Extended %{title} expiry for 1 week'
-    expired_error: 'Sorry, that secret has expired, please ask the person who sent it to you to extend the expiry.'
+    expired_error: 'Sorry, this secret has expired, please contact %{from_email} to extend it for you.'

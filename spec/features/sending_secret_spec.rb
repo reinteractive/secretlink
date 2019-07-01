@@ -123,7 +123,7 @@ describe "Sending a secret" do
     # Even if the expired secret worker isn't working the secret shouldn't be accessible
     it "informs the secret is expired and ensures the encrypted secret is removed" do
       visit link_to_secret
-      expect(page).to have_content I18n.t('secrets.expired_error')
+      expect(page).to have_content I18n.t('secrets.expired_error', from_email: secret.from_email)
       expect(page).to_not have_content("Super Secret Message")
     end
 

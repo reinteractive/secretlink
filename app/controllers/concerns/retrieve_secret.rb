@@ -6,7 +6,7 @@ module RetrieveSecret
       @secret = Secret.find_by(uuid: params[:id])
       case
       when @secret.expired?
-        flash[:error] = t('secrets.expired_error')
+        flash[:error] = t('secrets.expired_error', from_email: @secret.from_email)
         redirect_to(root_path)
       when @secret.present? && SecretService.correct_key?(@secret, params[:key])
         @secret
