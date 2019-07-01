@@ -44,6 +44,10 @@ class Secret < ActiveRecord::Base
     expire_at.present? && expire_at < Time.now
   end
 
+  def extend_expiry
+    update_attribute(:expire_at, Time.current + 1.week)
+  end
+
   def expire_at_within_limit
     if Rails.application.config.topsekrit_maximum_expiry_time
       max_expiry_in_config = (Time.now + Rails.application.config.topsekrit_maximum_expiry_time).to_i

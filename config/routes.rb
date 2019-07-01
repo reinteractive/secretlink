@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :secrets, only: [:show, :new, :create, :edit, :update] do
     member do
-      post 'extend'
+      get 'extend_expiry'
     end
   end
 
