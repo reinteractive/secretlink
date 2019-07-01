@@ -11,9 +11,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    user = User.find_by(email: params[:user][:email])
+
+    if user.present? && !user.confirmed?
+      user.send_confirmation_instructions
+      redirect_to root_path, notice: t('devise.registrations.signed_up_but_unconfirmed')
+    elsif user.present? && user.confirmed? && user.encrypted_password.blank?
+      user.send_reset_password_instructions
+      redirect_to root_path, notice: t('devise.registrations.signed_up_confirmed_without_password')
+    else
+      super
+    end
+  end
 
   # GET /resource/edit
   # def edit

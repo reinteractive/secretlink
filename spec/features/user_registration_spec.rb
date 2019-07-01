@@ -34,6 +34,44 @@ describe 'User registration with email' do
     end
   end
 
+  describe 'user is already in the system but unconfirmed' do
+    let!(:email) { 'user@secretlink.org' }
+    let!(:user) { create :user, :unconfirmed, email: email }
+
+    before do
+      visit root_path
+      fill_in 'user[email]', with: email
+    end
+
+    it 'resends a confirmation email' do
+      expect { click_on 'Register' }.to_not change { User.count }
+      expect(page).to have_content I18n.t('devise.registrations.signed_up_but_unconfirmed')
+
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to).to match_array([email])
+      expect(mail.subject).to eq  'Confirmation instructions'
+    end
+  end
+
+  describe 'user is already in the system but failed to set password' do
+    let!(:email) { 'user@secretlink.org' }
+    let!(:user) { create :user, :confirmed_without_password, email: email }
+
+    before do
+      visit root_path
+      fill_in 'user[email]', with: email
+    end
+
+    it 'resends a password reset email' do
+      expect { click_on 'Register' }.to_not change { User.count }
+      expect(page).to have_content I18n.t('devise.registrations.signed_up_confirmed_without_password')
+
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to).to match_array([email])
+      expect(mail.subject).to eq  'Reset password instructions'
+    end
+  end
+
   describe 'unsuccessful' do
     let (:invalid_email) { "invalidemail" }
 
