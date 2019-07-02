@@ -1,0 +1,9 @@
+<h1>Enable Two Factor</h1>
+
+<%= simple_form_for(@tfa_service.user, url: update_two_factor_user_path) do |f| %>
+  <% render partial: 'shared/two_factor_fields', locals: {
+    f: f,
+    resource: @tfa_service.user,
+    otp_provisioning_uri: @otp_provisioning_uri
+  } %>
+<% end %>

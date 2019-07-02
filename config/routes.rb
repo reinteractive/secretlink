@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   get '/', to: 'pages#home', as: 'root'
 
+  resource :user, only: [] do
+    get 'two_factor'
+    patch 'update_two_factor'
+  end
+
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
 
