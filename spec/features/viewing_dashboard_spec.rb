@@ -35,7 +35,7 @@ describe 'Viewing Dashboard' do
     end
 
     it 'displays the unconsumed secret' do
-      within(:css, '.secret-item.not-viewed') do
+      within(:css, "##{secret.id}.secret-item") do
         expect(page).to have_content('Sample Secret')
         expect(page).to have_content(user.email)
         expect(page).to have_content('user@random.com')
@@ -49,7 +49,7 @@ describe 'Viewing Dashboard' do
     end
 
     it 'displays the consumed secret' do
-      within(:css, '.secret-item.viewed') do
+      within(:css, "##{consumed_secret.id}.secret-item") do
         expect(page).to have_content('Consumed Secret')
         expect(page).to have_content(user.email)
         expect(page).to have_content('activeuser@random.com')

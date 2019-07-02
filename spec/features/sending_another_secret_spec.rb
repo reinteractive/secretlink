@@ -6,9 +6,6 @@ describe 'Sending another secret' do
 
   before do
     login_as(user)
-  end
-
-  before do
     visit dashboard_path
     click_on 'Send Another'
   end
