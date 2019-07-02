@@ -47,6 +47,17 @@ if Rails.env.development?
       secret: 'abc',
       comments:'This is an expired secret',
       expire_at: Time.current - 10.days
+    },
+    {
+      title: 'Expired and Extended Secret',
+      uuid: '101112',
+      secret_key: secret_key,
+      from_email: user.email,
+      to_email: 'recipient@secretlink.org',
+      secret: 'abc',
+      comments:'This is an expired secret',
+      expire_at: Time.current - 10.days,
+      extended_at: Time.current - 10.days
     }
   ]
 
@@ -61,6 +72,7 @@ if Rails.env.development?
       s.comments = secret[:comments]
       s.expire_at = secret[:expire_at]
       s.consumed_at = secret[:consumed_at]
+      s.extended_at = secret[:extended_at]
       s.save!
     end
   end

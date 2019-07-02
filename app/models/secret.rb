@@ -43,7 +43,15 @@ class Secret < ActiveRecord::Base
   end
 
   def extend_expiry
-    update_attribute(:expire_at, Time.current + 1.week)
+    # We need to use update_columns to bypass reencryption
+    update_columns(
+      expire_at: Time.current + 1.week,
+      extended_at: Time.current
+    )
+  end
+
+  def extended?
+    extended_at.present?
   end
 
   def expire_at_within_limit

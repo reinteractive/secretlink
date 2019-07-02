@@ -16,5 +16,9 @@ FactoryBot.define do
     trait :expired do
       expire_at             { Time.current - 10.days }
     end
+
+    trait :extended do
+      extended_at           { Time.current }
+    end
   end
 end
