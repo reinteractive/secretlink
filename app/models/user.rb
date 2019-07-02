@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :two_factor_authenticatable,
+         otp_secret_encryption_key: Rails.configuration.topsekrit_2fa_key
 
   validate :email_authorised?, on: :create
 
