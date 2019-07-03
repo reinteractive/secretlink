@@ -18,15 +18,15 @@ class TwoFactorService
 
   # Update model with params only if otp_attempt and current_password are correct
   def enable_otp(otp_secret, otp_attempt, current_password)
-    user.otp_required_for_login = true
-    otp_valid = user.validate_and_consume_otp!(otp_attempt, otp_secret: otp_secret)
+    user.assign_attributes(otp_secret: otp_secret, otp_required_for_login: true)
+
     password_valid = user.valid_password?(current_password)
+    otp_valid = user.validate_and_consume_otp!(otp_attempt, otp_secret: otp_secret)
 
     result =
       if otp_valid && password_valid
-        user.update_attributes(otp_secret: otp_secret, otp_required_for_login: true)
+        user.save! # Intentionally raising error here. This should not happen
       else
-        user.assign_attributes(otp_secret: otp_secret)
         user.valid?
         user.errors.add(:otp_attempt, otp_attempt.blank? ? :blank : :invalid) if !otp_valid
         user.errors.add(:current_password, current_password.blank? ? :blank : :invalid) if !password_valid
@@ -35,6 +35,10 @@ class TwoFactorService
 
     user.clean_up_passwords
     result
+  end
+
+  def otp_attempt_error?
+    user.errors[:otp_attempt].any?
   end
 
   def disable_otp(current_password)

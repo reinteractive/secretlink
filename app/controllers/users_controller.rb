@@ -21,8 +21,14 @@ class UsersController < AuthenticatedController
 
     if valid
       verb = @tfa_service.user.otp_required_for_login ? 'enabled' : 'disabled'
-      redirect_to root_path, notice: "Two-factor authentication #{ verb }"
+      redirect_to root_path, notice: t('two_factor.enable_success', verb: verb)
     else
+      if @tfa_service.otp_attempt_error?
+        flash[:error] = t('two_factor.enable_failed')
+      else
+        flash[:error] = t('two_factor.enable_failed_with_otp_consumed')
+      end
+
       @otp_provisioning_uri = @tfa_service.generate_otp_provisioning_uri
       render :two_factor
     end
