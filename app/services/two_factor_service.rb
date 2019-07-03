@@ -22,15 +22,16 @@ class TwoFactorService
     otp_valid = user.validate_and_consume_otp!(otp_attempt, otp_secret: otp_secret)
     password_valid = user.valid_password?(current_password)
 
-    result = if otp_valid && password_valid
-      user.update_attributes(otp_secret: otp_secret, otp_required_for_login: true)
-    else
-      user.assign_attributes(otp_secret: otp_secret)
-      user.valid?
-      user.errors.add(:otp_attempt, otp_attempt.blank? ? :blank : :invalid) if !otp_valid
-      user.errors.add(:current_password, current_password.blank? ? :blank : :invalid) if !password_valid
-      false
-    end
+    result =
+      if otp_valid && password_valid
+        user.update_attributes(otp_secret: otp_secret, otp_required_for_login: true)
+      else
+        user.assign_attributes(otp_secret: otp_secret)
+        user.valid?
+        user.errors.add(:otp_attempt, otp_attempt.blank? ? :blank : :invalid) if !otp_valid
+        user.errors.add(:current_password, current_password.blank? ? :blank : :invalid) if !password_valid
+        false
+      end
 
     user.clean_up_passwords
     result
