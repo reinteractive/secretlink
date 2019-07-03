@@ -30,6 +30,5 @@ en:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"
   two_factor:
-    enable_success: 'Two-factor authentication %{verb}'
-    enable_failed: 'Failed to enable two-factor authentication. Please see errors below.'
-    enable_failed_with_otp_consumed: 'Failed to enable two-factor authentication. Please retry with a new code.'
+    enable_success: 'Two-factor authentication %{verb}.'
+    update_failed: 'Failed to update two-factor authentication. Please see errors below.'
