@@ -145,4 +145,3 @@ Some helpful commands:
 
     heroku restart -a rei-secretlink-production
     heroku logs --tail -a rei-secretlink-production
-

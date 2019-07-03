@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
   function SecretItem(rootDom) {
     this.$root = $(rootDom);
     this.$notes = this.$root.find('.notes');
