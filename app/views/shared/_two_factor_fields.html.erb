@@ -1,20 +1,17 @@
 <div class="two-factor-fields">
-  <h3>Two-Factor Authentication</h3>
-  <%= f.hidden_field(:otp_secret) %>
-  <%= f.input :otp_required_for_login, label: 'Enable two factor authentication', input_html: { class: 'otp-required-for-login' } %>
+  <div class="form-group">
+    <%= f.hidden_field(:otp_secret) %>
+    <%= f.input :otp_required_for_login, label: 'Enable two factor authentication', input_html: { class: 'otp-required-for-login' } %>
+  </div>
 
   <div class="enable-otp-fields">
-    <% if resource.otp_required_for_login %>
-      <%# User is already enrolled for 2fa. %>
-      <p>
-        Use the form below to connect a new device (this will disconnect your previous device).
-      </p>
-    <% else %>
-      <%# User is not enrolled for 2fa; show them how to get set up %>
-      <div class="form-group">
-        <label class="control-label">
-          Install a two-factor app, such as Google Authenticator, on your smartphone.
-        </label>
+    <div class="instructions">
+      <% if resource.otp_required_for_login %>
+        <%# User is already enrolled for 2fa. %>
+        <p>Use the form below to connect a new device (this will disconnect your previous device).</p>
+      <% else %>
+        <%# User is not enrolled for 2fa; show them how to get set up %>
+        <p>Install a two-factor app, such as Google Authenticator, on your smartphone.</p>
         <div>
           <a target="_blank" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">
             <%= image_tag "apple-app-store.png", class: "app-store-icon" %>
@@ -23,28 +20,30 @@
             <%= image_tag "google-play-store.png", class: "app-store-icon" %>
           </a>
         </div>
-      </div>
-    <% end %>
-
-    <div class="form-group">
-      <label class="control-label">
-        Open your two-factor app and scan the barcode below.
-      </label>
-      <div>
-        <img
-          class="qrcode"
-          src="data:image/png;base64,<%= Base64.encode64(RQRCode.render_qrcode(otp_provisioning_uri, :png, {})).html_safe %>"
-        />
-      </div>
+      <% end %>
     </div>
 
-    <%= f.input :otp_attempt, label: 'Enter the 6 digit code from two-factor app', value: '', autocomplete: 'off' %>
+    <div class="form-group otp-step">
+      <label class="control-label">STEP 1: Open your two-factor app and scan the barcode below.</label>
+      <img
+        class="qrcode"
+        src="data:image/png;base64,<%= Base64.encode64(RQRCode.render_qrcode(otp_provisioning_uri, :png, {})).html_safe %>"
+      />
+    </div>
+
+    <div class="form-group otp-step">
+      <label class="control-label">STEP 2: Enter the 6 digit code from two-factor app</label>
+      <%= f.input :otp_attempt, label: false, value: '', autocomplete: 'off' %>
+    </div>
   </div>
 
+  <div class="form-group otp-step">
+    <label class="control-label">Confirm your identity (Enter your current password)</label>
+    <%= f.input :current_password, label: false, autocomplete: "off" %>
+  </div>
 
-  <h3>Confirm Identity</h3>
-  <%= f.input :current_password, autocomplete: "off" %>
-
-  <%= f.button :submit, name: :two_factor, value: resource.otp_required_for_login ? 'Update' : 'Enable', class: 'btn-enable-2fa' %>
-  <%= f.button :submit, name: :two_factor, value: 'Disable', class: 'btn-disable-2fa' %>
+  <div class="form-group">
+    <%= f.button :submit, name: :two_factor, value: resource.otp_required_for_login ? 'Update' : 'Enable', class: 'btn-enable-2fa' %>
+    <%= f.button :submit, name: :two_factor, value: 'Disable', class: 'btn-disable-2fa' %>
+  </div>
 </div>
