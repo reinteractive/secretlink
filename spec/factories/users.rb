@@ -32,6 +32,7 @@ FactoryBot.define do
 
     trait :otp_enabled do
       otp_required_for_login  { true }
+      otp_secret              { User.generate_otp_secret }
     end
   end
 end

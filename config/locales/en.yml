@@ -26,9 +26,9 @@ en:
     failed: 'Authentication failed'
   field_errors:
     unauthorised: 'is unauthorised'
-  date:
-    formats:
-      dashboard_time: "%m/%d/%y, %l.%M%P"
   two_factor:
     update_success: 'Two-factor authentication %{verb}.'
     update_failed: 'Failed to update two-factor authentication. Please see errors below.'
+  date:
+    formats:
+      dashboard_time: "%m/%d/%y, %l.%M%P"

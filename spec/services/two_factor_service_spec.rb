@@ -53,7 +53,7 @@ describe TwoFactorService do
       it 'does not update the user' do
         user.reload
         expect(user.otp_secret).to be nil
-        expect(user.otp_required_for_login).to be nil
+        expect(user.otp_required_for_login).to be false
         expect(tfa.user.changed?).to be true
       end
     end
@@ -72,7 +72,7 @@ describe TwoFactorService do
       it 'does not update the user' do
         user.reload
         expect(user.otp_secret).to be nil
-        expect(user.otp_required_for_login).to be nil
+        expect(user.otp_required_for_login).to be false
         expect(tfa.user.changed?).to be true
       end
     end
