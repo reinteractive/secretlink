@@ -26,6 +26,7 @@ gem "okcomputer"
 gem "skylight"
 gem 'rails_12factor', group: :production
 gem "devise"
+gem "local_time"
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -47,6 +48,7 @@ group :test do
   gem "faker"
   gem "launchy"
   gem "show_me_the_cookies", "~> 3.1.0"
+  gem "timecop"
 end
 
 group :development, :test do

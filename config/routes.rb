@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
 
-  get '/', to: 'secrets#new', as: 'admin_root', constraints: lambda { |request|
+  get '/', to: 'dashboard#index', as: 'admin_root', constraints: lambda { |request|
     request.env['warden'].user.present?
   }
 
@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   get '/privacy_policy',       to: 'pages#privacy_policy'
   get '/terms_and_conditions', to: 'pages#terms_and_conditions'
 
-  get 'dashboard' , to: 'secrets#new'
+  get 'dashboard' , to: 'dashboard#index'
 end

@@ -5,19 +5,27 @@
 @import "bootstrap"
 @import "topsekrit"
 @import "header-and-footer"
+
+// Pages
 @import "home"
 @import "secrets"
+@import "dashboard"
 
 // Layouts
 @import "layouts/devise"
 
 // Components
 @import "components/devise-form"
+@import "components/secret-item"
 
 body
   min-height: 100vh
   display: flex
   flex-direction: column
+
+  // We still need to do other adjustments
+  // To change the background color
+  // background-color: #F2F2F2
 
 *
   font-family: "Open Sans", sans-serif
@@ -60,3 +68,7 @@ ul.nostyle
     &:hover
       background-color: $green3
       border-color: $green3
+
+footer
+  // Keeps footer at the bottom at all times (even if content is short)
+  margin-top: auto

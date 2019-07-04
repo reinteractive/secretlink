@@ -15,3 +15,7 @@
 //= require bootstrap-sprockets
 //= require topsekrit
 //= require ui-functions
+//= require local-time
+
+// Components
+//= require components/secret-item

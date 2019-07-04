@@ -20,8 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  welcome: "Welcome! Start sending your first secret."
   oauth:
     already_registered: 'You are already registered with this account. Please login instead.'
     failed: 'Authentication failed'
   field_errors:
     unauthorised: 'is unauthorised'
+  date:
+    formats:
+      dashboard_time: "%m/%d/%y, %l.%M%P"

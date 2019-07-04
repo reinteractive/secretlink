@@ -1,0 +1,11 @@
+<div class="container dashboard">
+  <div class="row header">
+    <h2>All Secrets</h2>
+    <%= link_to 'Create New', new_secret_path, class: 'button green' %>
+  </div>
+  <div class="secrets-list row">
+    <% @secrets.each do |secret| %>
+      <%= render 'secret_item', secret: secret %>
+    <% end %>
+  </div>
+</div>
