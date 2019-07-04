@@ -1,11 +1,11 @@
-class UsersController < AuthenticatedController
-  def two_factor
+class TwoFactorAuthController < AuthenticatedController
+  def edit
     @tfa_service = TwoFactorService.new(current_user)
     @tfa_service.issue_otp_secret
     @otp_provisioning_uri = @tfa_service.generate_otp_provisioning_uri
   end
 
-  def update_two_factor
+  def update
     @tfa_service = TwoFactorService.new(current_user)
 
     valid =
@@ -26,7 +26,7 @@ class UsersController < AuthenticatedController
       flash[:error] = t('two_factor.update_failed')
 
       @otp_provisioning_uri = @tfa_service.generate_otp_provisioning_uri
-      render :two_factor
+      render :edit
     end
   end
 

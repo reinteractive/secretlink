@@ -6,7 +6,7 @@ describe 'Two Factor Auth Setup', js: true do
 
     before do
       login_as(user)
-      visit two_factor_user_path
+      visit edit_two_factor_auth_path
     end
 
     context 'successful' do
@@ -45,7 +45,7 @@ describe 'Two Factor Auth Setup', js: true do
 
     before do
       login_as(user)
-      visit two_factor_user_path
+      visit edit_two_factor_auth_path
     end
 
     context 'successful' do
