@@ -30,5 +30,5 @@ en:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"
   two_factor:
-    enable_success: 'Two-factor authentication %{verb}.'
+    update_success: 'Two-factor authentication %{verb}.'
     update_failed: 'Failed to update two-factor authentication. Please see errors below.'

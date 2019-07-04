@@ -21,7 +21,7 @@ class UsersController < AuthenticatedController
 
     if valid
       verb = @tfa_service.user.otp_required_for_login ? 'enabled' : 'disabled'
-      redirect_to root_path, notice: t('two_factor.enable_success', verb: verb)
+      redirect_to root_path, notice: t('two_factor.update_success', verb: verb)
     else
       flash[:error] = t('two_factor.update_failed')
 
