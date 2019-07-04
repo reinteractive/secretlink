@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Generating auth tokens on a closed system" do
 
-  let(:from_email) { "from@example.com" }
+  let(:user) { create :user, email: "user@example.com" }
   let(:authorised_domain) { "example.com" }
 
   before(:each) do
@@ -11,8 +11,8 @@ describe "Generating auth tokens on a closed system" do
     allow(Rails.configuration).to \
       receive(:topsekrit_authorised_domain).and_return(authorised_domain)
 
-    auth_token = AuthToken.create!(email: from_email)
-    visit auth_token_path(auth_token.hashed_token)
+    login_as(user)
+    visit new_secret_path
 
     fill_in "Title", with: "Super Secret"
     fill_in "Recipient", with: to_email

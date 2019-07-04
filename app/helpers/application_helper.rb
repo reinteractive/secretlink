@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def from_email_placeholder
-    validated_email
+    current_user.email
   end
 
   # A closed system only allows secrets to be sent to and from email
@@ -32,4 +32,7 @@ module ApplicationHelper
     request.path == '/auth_tokens/new'
   end
 
+  def flash_display_type(key)
+    HashWithIndifferentAccess.new(alert: 'danger', error: 'danger')[key] || 'success'
+  end
 end

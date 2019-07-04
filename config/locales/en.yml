@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  oauth:
+    already_registered: 'You are already registered with this account. Please login instead.'
+    failed: 'Authentication failed'
+  field_errors:
+    unauthorised: 'is unauthorised'

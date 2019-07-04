@@ -24,22 +24,6 @@ describe AuthToken do
 
   end
 
-  describe '#notify' do
-
-    let!(:auth_token) { AuthToken.create!(email: from_email) }
-
-    before do
-      auth_token.notify
-    end
-
-    let(:email) { ActionMailer::Base.deliveries.last }
-
-    it 'sends an email to the recipient with a link auth link' do
-      expect(email.to).to eq([from_email])
-      expect(email.to_s).to match(/http:\/\/localhost:3000\/auth_tokens\/\S+/)
-    end
-  end
-
   describe '#email_domain_authorised' do
 
     let(:auth_token) { AuthToken.new(email: from_email) }

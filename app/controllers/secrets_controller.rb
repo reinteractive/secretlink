@@ -1,17 +1,14 @@
-class SecretsController < ApplicationController
+class SecretsController < AuthenticatedController
   include RetrieveSecret
   before_filter :retrieve_secret, only: :show
-  before_filter :require_validated_email, only: [:new, :create]
+  before_action :authenticate_user!, except: [:show]
 
   def show
-    # As the receipient has now clicked a link, we know their email address is also
-    # valid, so we will validate them so they can painlessly send a new secret if
-    # they like as well.
-    validate_email!(@secret.to_email)
+    # TODO: Should we add a button to encourage the user to register?
   end
 
   def new
-    @secret = Secret.new(from_email: validated_email)
+    @secret = Secret.new(from_email: current_user.email)
   end
 
   def create
@@ -20,7 +17,7 @@ class SecretsController < ApplicationController
       flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
       redirect_to new_secret_path
     else
-      flash.now[:message] = @secret.errors.full_messages.join("<br/>".html_safe)
+      flash.now[:error] = @secret.errors.full_messages.join("<br/>".html_safe)
       render :new
     end
   end
@@ -30,7 +27,7 @@ class SecretsController < ApplicationController
   def secret_params
     params.require(:secret).permit(:title, :to_email, :secret, :comments,
                                    :expire_at, :secret_file).tap do |p|
-      p[:from_email] = validated_email
+      p[:from_email] = current_user.email
     end
   end
 

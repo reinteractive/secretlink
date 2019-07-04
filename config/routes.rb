@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :auth_tokens, only: [:show, :new, :create]
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
+  }
+
+  get '/', to: 'secrets#new', as: 'admin_root', constraints: lambda { |request|
+    request.env['warden'].user.present?
+  }
+
+  get '/', to: 'pages#home', as: 'root'
+
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
 
@@ -9,10 +20,10 @@ Rails.application.routes.draw do
 
   get '/auth/failure', to: 'oauth_callbacks#auth_failure'
 
-  get '/auth/new', to: 'auth_tokens#new'
-  root 'auth_tokens#new'
-
+  get '/home',                 to: 'pages#home'
   get '/copyright',            to: 'pages#copyright'
   get '/privacy_policy',       to: 'pages#privacy_policy'
   get '/terms_and_conditions', to: 'pages#terms_and_conditions'
+
+  get 'dashboard' , to: 'secrets#new'
 end

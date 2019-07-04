@@ -25,6 +25,7 @@ gem "bugsnag"
 gem "okcomputer"
 gem "skylight"
 gem 'rails_12factor', group: :production
+gem "devise"
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -41,7 +42,7 @@ group :test do
   gem "capybara"
   gem "poltergeist"
   gem "rspec-rails"
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "database_cleaner"
   gem "faker"
   gem "launchy"
@@ -51,4 +52,5 @@ end
 group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
+  gem 'pry'
 end
