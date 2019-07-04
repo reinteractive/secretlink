@@ -11,13 +11,9 @@ Rails.application.routes.draw do
 
   get '/', to: 'pages#home', as: 'root'
 
-  resources :secrets, only: [:show, :new, :create, :edit, :update] do
-    member do
-      get 'extend_expiry'
-    end
-  end
-
+  resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
+  resources :extended_secrets, only: :update
 
   post '/decrypt_secret', to: 'decrypted_secrets#create'
 
