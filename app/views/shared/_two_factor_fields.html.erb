@@ -38,8 +38,10 @@
   </div>
 
   <div class="form-group otp-step">
-    <label class="control-label">Confirm your identity (Enter your current password)</label>
-    <%= f.input :current_password, label: false, input_html: { autocomplete: "off" } %>
+    <% if resource.password_set? %>
+      <label class="control-label">Confirm your identity (Enter your current password)</label>
+      <%= f.input :current_password, label: false, input_html: { autocomplete: "off" } %>
+    <% end %>
   </div>
 
   <div class="form-group">
