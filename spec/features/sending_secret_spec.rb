@@ -79,6 +79,13 @@ describe "Sending a secret" do
       expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
     end
 
+    it "shows the user a link to registration" do
+      expect(page).to have_content("Start sending your secret. Register Here")
+
+      click_on "Register Here"
+      expect(page).to have_current_path(new_user_registration_path)
+    end
+
     it "retrieves and decrypts the secret" do
       click_button "Click here to show the secret"
       expect(page).to have_content("Super Secret Message")

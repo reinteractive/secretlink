@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Viewing Dashboard' do
   let!(:user) { create :user }
-  let!(:dashboard_time_format) { "%m/%d/%y, %l.%M%P" }
+  let!(:dashboard_time_format) { I18n.t('date.formats.dashboard_time') }
 
   before do
     login_as(user)
