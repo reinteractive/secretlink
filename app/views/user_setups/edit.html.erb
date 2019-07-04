@@ -1,0 +1,21 @@
+<div class="devise-form">
+  <h2 class="heading">Set your password</h2>
+
+  <div class="body">
+    <%= simple_form_for(current_user, url: password_path(current_user), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
+
+      <div class="form-inputs">
+        <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Set my password" %>
+      </div>
+    <% end %>
+  </div>
+</div>
