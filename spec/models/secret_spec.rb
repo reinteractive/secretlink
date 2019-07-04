@@ -97,4 +97,26 @@ describe Secret do
 
     end
   end
+
+  describe '#extend_expiry!' do
+    let!(:secret) {
+      SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+        secret: 'cdefg', expire_at: Time.current - 7.days})
+    }
+
+    before do
+      Timecop.freeze
+      secret.extend_expiry!
+    end
+
+    after { Timecop.return }
+
+    it 'extends the expire_at for 1 week' do
+      expect(secret.reload.expire_at).to eq Time.current + 1.week
+    end
+
+    it 'sets the extended_at to today' do
+      expect(secret.reload.extended_at).to eq Time.current
+    end
+  end
 end
