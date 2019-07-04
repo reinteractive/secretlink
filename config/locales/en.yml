@@ -26,3 +26,6 @@ en:
     failed: 'Authentication failed'
   field_errors:
     unauthorised: 'is unauthorised'
+  date:
+    formats:
+      dashboard_time: "%m/%d/%y, %l.%M%P"
