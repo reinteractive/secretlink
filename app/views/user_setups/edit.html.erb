@@ -2,7 +2,7 @@
   <h2 class="heading">Set your password</h2>
 
   <div class="body">
-    <%= simple_form_for(current_user, url: password_path(current_user), html: { method: :put }) do |f| %>
+    <%= simple_form_for(@tfa_service.user, url: password_path(@tfa_service.user), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
       <%= f.input :reset_password_token, as: :hidden %>
@@ -12,6 +12,12 @@
         <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
       </div>
+
+      <%= render partial: 'shared/two_factor_fields', locals: {
+        f: f,
+        resource: @tfa_service.user,
+        otp_provisioning_uri: @otp_provisioning_uri
+      } %>
 
       <div class="form-actions">
         <%= f.button :submit, "Set my password" %>
