@@ -5,6 +5,8 @@ end
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2,
            Rails.configuration.topsekrit_google_oauth_client_id,
-           Rails.configuration.topsekrit_google_oauth_client_secret
+           Rails.configuration.topsekrit_google_oauth_client_secret,
+           {
+            redirect_uri: Rails.configuration.topsekrit_google_oauth_callback_path
+           }
 end
-
