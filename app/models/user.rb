@@ -26,4 +26,9 @@ class User < ActiveRecord::Base
       errors.add(:email, I18n.t('field_errors.unauthorised'))
     end
   end
+
+  def self.with_reset_password_token(token)
+    reset_password_token = Devise.token_generator.digest(self, :reset_password_token, token)
+    to_adapter.find_first(reset_password_token: reset_password_token)
+  end
 end
