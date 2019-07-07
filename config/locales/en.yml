@@ -26,6 +26,9 @@ en:
     failed: 'Authentication failed'
   field_errors:
     unauthorised: 'is unauthorised'
+  secrets:
+    extended_expiry: 'Extended %{title} expiry for 1 week'
+    expired_error: 'Sorry, this secret has expired, please contact %{from_email} to extend it for you.'
   date:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"

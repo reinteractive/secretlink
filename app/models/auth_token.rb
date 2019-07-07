@@ -8,7 +8,7 @@ class AuthToken < ActiveRecord::Base
 
   def set_defaults
     self.hashed_token = SecureRandom.hex
-    self.expire_at = Time.now + 7.days
+    self.expire_at = Time.current + 7.days
   end
 
   def email_domain_authorised

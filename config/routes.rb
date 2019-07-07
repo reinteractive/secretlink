@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
+  resources :extended_secrets, only: :update
 
   post '/decrypt_secret', to: 'decrypted_secrets#create'
 
