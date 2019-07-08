@@ -26,11 +26,9 @@ class UserSetupsController < ApplicationController
 
       redirect_to dashboard_path
     else
-      @user = @setup_service.user
-      @user.otp_required_for_login = two_factor_params[:otp_required_for_login]
-
       @tfa_service = @setup_service.tfa_service
-      @tfa_service.issue_otp_secret
+      @tfa_service.user.otp_required_for_login = two_factor_params[:otp_required_for_login]
+      @tfa_service.user.otp_secret = two_factor_params[:otp_secret]
       @otp_provisioning_uri = @tfa_service.generate_otp_provisioning_uri
 
       render :edit
