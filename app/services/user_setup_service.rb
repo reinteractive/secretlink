@@ -2,7 +2,7 @@ class UserSetupService
   attr_reader :user, :tfa_service
 
   def initialize(token, tfa_service_klass)
-    reset_password_token = Devise.token_generator.digest(self, :reset_password_token, token)
+    reset_password_token = Devise.token_generator.digest(User, :reset_password_token, token)
 
     @user = User.find_or_initialize_with_error_by(:reset_password_token, reset_password_token)
     @tfa_service = tfa_service_klass.new(@user)

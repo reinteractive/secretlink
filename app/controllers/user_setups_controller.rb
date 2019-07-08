@@ -44,7 +44,7 @@ class UserSetupsController < ApplicationController
   end
 
   def two_factor_params
-    params.require(:user).permit(:otp_required_for_login, :otp_secret, :otp_attempt, :password)
+    params.require(:user).permit(:otp_required_for_login, :otp_secret, :otp_attempt)
   end
 
   def set_original_token
