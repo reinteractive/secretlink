@@ -26,7 +26,12 @@ class SecretsController < AuthenticatedController
     @secret = SecretService.encrypt_new_secret(secret_params)
     if @secret.persisted?
       flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
-      redirect_to dashboard_path
+
+      if @secret.no_email
+        render :copy
+      else
+        redirect_to dashboard_path
+      end
     else
       flash.now[:error] = @secret.errors.full_messages.join("<br/>".html_safe)
       render :new
@@ -37,7 +42,7 @@ class SecretsController < AuthenticatedController
 
   def secret_params
     params.require(:secret).permit(:title, :to_email, :secret, :comments,
-                                   :expire_at, :secret_file).tap do |p|
+                                   :expire_at, :secret_file, :no_email).tap do |p|
       p[:from_email] = current_user.email
     end
   end

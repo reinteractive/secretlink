@@ -1,5 +1,5 @@
 class Secret < ActiveRecord::Base
-  attr_accessor :secret_key
+  attr_accessor :secret_key, :no_email
 
   attr_encrypted :secret, key: :secret_key, mode: :per_attribute_iv_and_salt
   mount_uploader :secret_file, SecretFileUploader
@@ -9,8 +9,8 @@ class Secret < ActiveRecord::Base
                          }
 
   validates :to_email, presence: {
-                         message: "Please enter the senders's email address"
-                       }
+    message: "Please enter the senders's email address"
+  }, unless: :no_email
 
   validates :secret, presence: {
                         message: "Please enter a secret to share with the recipient",
