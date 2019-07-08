@@ -1,28 +1,33 @@
-<div class="devise-form">
-  <h2 class="heading">Update your credentials</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Update your credentials</h2>
+    </div>
+  </div>
+  <div class= "row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="body">
-    <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+        <%= f.input :reset_password_token, as: :hidden, input_html: { value: @original_token }%>
 
-      <%= f.input :reset_password_token, as: :hidden, input_html: { value: @original_token }%>
+        <%= f.full_error :reset_password_token %>
 
-      <%= f.full_error :reset_password_token %>
+        <div class="form-inputs">
+          <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+        </div>
 
-      <div class="form-inputs">
-        <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
-      </div>
+        <%= render partial: 'shared/two_factor_fields', locals: {
+          f: f,
+          resource: @tfa_service.user,
+          otp_provisioning_uri: @otp_provisioning_uri
+        } %>
 
-      <%= render partial: 'shared/two_factor_fields', locals: {
-        f: f,
-        resource: @tfa_service.user,
-        otp_provisioning_uri: @otp_provisioning_uri
-      } %>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
-      </div>
-    <% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
