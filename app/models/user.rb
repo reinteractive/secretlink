@@ -11,10 +11,6 @@ class User < ActiveRecord::Base
 
   has_many :secrets, primary_key: 'email', foreign_key: 'from_email'
 
-  def password_set?
-    encrypted_password.present?
-  end
-
   protected
 
   def password_required?

@@ -14,7 +14,7 @@ class UserSetupService
 
     if token_valid? && user_valid?(password, confirmation)
       return enable_otp(otp_secret, otp_attempt) if otp_required == '1'
-      user.save! #This case should not happen
+      user.save! # This should never raise an errror
     else
       false
     end
