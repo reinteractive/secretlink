@@ -1,7 +1,7 @@
 <div class="container">
   <div class= "row">
     <div class="col-md-6 col-md-offset-3">
-      <h2>Update your credentials</h2>
+      <h2>Setup login credentials</h2>
 
       <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
@@ -19,7 +19,7 @@
         } %>
 
         <div class="form-group">
-          <%= f.button :submit, "Update" %>
+          <%= f.button :submit, "Save" %>
         </div>
       <% end %>
     </div>
