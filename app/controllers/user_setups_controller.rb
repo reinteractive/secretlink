@@ -1,6 +1,8 @@
 class UserSetupsController < ApplicationController
+  before_action :set_original_token
+
   def edit
-    @user = User.with_reset_password_token(original_token)
+    @user = User.with_reset_password_token(@original_token)
 
     if @user
       @tfa_service = TwoFactorService.new(@user)
@@ -25,7 +27,10 @@ class UserSetupsController < ApplicationController
       redirect_to dashboard_path
     else
       @user = @setup_service.user
+      @user.otp_required_for_login = two_factor_params[:otp_required_for_login]
+
       @tfa_service = @setup_service.tfa_service
+      @tfa_service.issue_otp_secret
       @otp_provisioning_uri = @tfa_service.generate_otp_provisioning_uri
 
       render :edit
@@ -42,7 +47,7 @@ class UserSetupsController < ApplicationController
     params.require(:user).permit(:otp_required_for_login, :otp_secret, :otp_attempt, :password)
   end
 
-  def original_token
+  def set_original_token
     @original_token ||= params[:reset_password_token]
   end
 end

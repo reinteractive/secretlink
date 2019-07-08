@@ -36,16 +36,4 @@
       <%= f.input :otp_attempt, label: false, value: '', autocomplete: 'off' %>
     </div>
   </div>
-
-  <div class="form-group otp-step">
-    <% if resource.password_set? %>
-      <label class="control-label">Confirm your identity (Enter your current password)</label>
-      <%= f.input :current_password, label: false, input_html: { autocomplete: "off" } %>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.button :submit, name: :two_factor, value: resource.otp_required_for_login ? 'Update' : 'Enable', class: 'btn-enable-2fa' %>
-    <%= f.button :submit, name: :two_factor, value: 'Disable', class: 'btn-disable-2fa' %>
-  </div>
 </div>

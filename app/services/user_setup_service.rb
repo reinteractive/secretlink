@@ -13,7 +13,7 @@ class UserSetupService
     otp_required, otp_secret, otp_attempt = tfa_params.values_at :otp_required_for_login, :otp_secret, :otp_attempt
 
     if token_valid? && user_valid?(password, confirmation)
-      return enable_otp(otp_secret, otp_attempt) if otp_required != "0"
+      return enable_otp(otp_secret, otp_attempt) if otp_required == '1'
       user.save! #This case should not happen
     else
       false
