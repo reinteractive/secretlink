@@ -8,7 +8,18 @@ class SecretsController < AuthenticatedController
   end
 
   def new
-    @secret = Secret.new(from_email: current_user.email)
+    base_secret = current_user.secrets.find_by(uuid: params[:base_id])
+
+    if base_secret.present?
+      @secret = Secret.new(
+        title: base_secret.title,
+        from_email: base_secret.from_email,
+        to_email: base_secret.to_email,
+        comments: base_secret.comments
+      )
+    else
+      @secret = Secret.new(from_email: current_user.email)
+    end
   end
 
   def create

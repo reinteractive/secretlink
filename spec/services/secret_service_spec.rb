@@ -38,7 +38,7 @@ describe SecretService do
       SecretService.encrypt_new_secret( { secret: secret_info,
                                           to_email: to_email,
                                           from_email: from_email,
-                                          expire_at: Time.now + 7.days})
+                                          expire_at: Time.current + 7.days})
     }
     let!(:retrieved_secret) { Secret.find(secret.id) }
     let(:secret_key) { ActionMailer::Base.deliveries.last.to_s.match(/\?key=(\w+)/)[1] }

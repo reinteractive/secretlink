@@ -5,7 +5,7 @@ describe Secret do
   describe "#expired?" do
 
     let!(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now - 7.days})
+      secret: 'cdefg', expire_at: Time.current - 7.days})
     }
 
     it 'is true if the expiry date is in the past' do
@@ -13,7 +13,7 @@ describe Secret do
     end
 
     it 'is false if the expiry is in the future' do
-      secret.update_attributes(expire_at: Time.now + 2.days)
+      secret.update_attributes(expire_at: Time.current + 2.days)
       expect(secret.expired?).to be(false)
     end
 
@@ -27,7 +27,7 @@ describe Secret do
   describe '#expire_at_within_limit' do
 
     let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now + 7.days})
+      secret: 'cdefg', expire_at: Time.current + 7.days})
     }
 
     before do
@@ -38,7 +38,7 @@ describe Secret do
     it 'does not allow secrets with a longer expiry than specified in the config' do
       expect(secret).to_not be_valid
       expect(secret.errors[:expire_at]).to eq([
-        "Maximum expiry allowed is #{(Time.now + 6.days).strftime('%d %B %Y')}"
+        "Maximum expiry allowed is #{(Time.current + 6.days).strftime('%d %B %Y')}"
       ])
     end
 
@@ -51,7 +51,7 @@ describe Secret do
       secret.expire_at = nil
       expect(secret).to_not be_valid
       expect(secret.errors[:expire_at]).to eq([
-        "Maximum expiry allowed is #{(Time.now + 6.days).strftime('%d %B %Y')}"
+        "Maximum expiry allowed is #{(Time.current + 6.days).strftime('%d %B %Y')}"
       ])
     end
 
@@ -60,7 +60,7 @@ describe Secret do
   describe 'email_domain_authorised' do
 
     let(:secret) { SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
-      secret: 'cdefg', expire_at: Time.now + 7.days})
+      secret: 'cdefg', expire_at: Time.current + 7.days})
     }
 
     before do
@@ -95,6 +95,28 @@ describe Secret do
         expect(secret).to be_invalid
       end
 
+    end
+  end
+
+  describe '#extend_expiry!' do
+    let!(:secret) {
+      SecretService.encrypt_new_secret({from_email: 'a@a.com', to_email: 'b@b.com',
+        secret: 'cdefg', expire_at: Time.current - 7.days})
+    }
+
+    before do
+      Timecop.freeze
+      secret.extend_expiry!
+    end
+
+    after { Timecop.return }
+
+    it 'extends the expire_at for 1 week' do
+      expect(secret.reload.expire_at).to eq Time.current + 1.week
+    end
+
+    it 'sets the extended_at to today' do
+      expect(secret.reload.extended_at).to eq Time.current
     end
   end
 end
