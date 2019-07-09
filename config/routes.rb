@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   resource :two_factor_auth, only: [:edit, :update],  controller: 'two_factor_auth'
   resource :user_setup, only: [:edit, :update]
-  resources :secrets, only: [:show, :new, :create, :edit, :update]
+  resources :secrets, only: [:show, :new, :create, :edit, :update] do
+    collection { get :copy }
+  end
   resources :decrypted_secrets, only: :create
   resources :extended_secrets, only: :update
 
