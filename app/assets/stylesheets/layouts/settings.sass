@@ -1,0 +1,19 @@
+body.settings-layout
+  min-height: 100vh
+  display: flex
+
+  .sidebar
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    border-right: $default-border
+    margin-top: 50px
+    li
+      list-style-type: none
+      padding: 10px 5px
+      a
+        color: $text-default-color
+
+  .footer
+    //This makes the footer stay at bottom
+    margin-top: auto

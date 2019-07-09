@@ -1,4 +1,6 @@
 class TwoFactorAuthController < AuthenticatedController
+  layout 'settings'
+
   def edit
     @tfa_service = TwoFactorService.new(current_user)
     @tfa_service.issue_otp_secret
