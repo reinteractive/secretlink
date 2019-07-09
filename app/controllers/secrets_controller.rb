@@ -28,7 +28,8 @@ class SecretsController < AuthenticatedController
       flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
 
       if @secret.no_email
-        render :copy
+        CopyService.new(session).prepare(@secret)
+        redirect_to copy_secrets_path
       else
         redirect_to dashboard_path
       end
@@ -38,13 +39,18 @@ class SecretsController < AuthenticatedController
     end
   end
 
+  def copy
+    @data = CopyService.new(session).copy!
+    redirect_to root_path unless @data
+  end
+
   private
 
   def secret_params
     params.require(:secret).permit(:title, :to_email, :secret, :comments,
                                    :expire_at, :secret_file, :no_email).tap do |p|
       p[:from_email] = current_user.email
+      p[:no_email] = ActiveRecord::Type::Boolean.new.type_cast_from_database(p[:no_email])
     end
   end
-
 end
