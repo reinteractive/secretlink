@@ -26,7 +26,7 @@ class SecretsController < AuthenticatedController
     @secret = SecretService.encrypt_new_secret(secret_params)
     if @secret.persisted?
       if @secret.no_email?
-        CopyService.new(session).prepare(@secret)
+        CopySecretService.new(session).prepare!(@secret)
 
         flash[:message] = t('secrets.create.success.without_email')
         redirect_to copy_secrets_path
@@ -41,7 +41,7 @@ class SecretsController < AuthenticatedController
   end
 
   def copy
-    @data = CopyService.new(session).copy!
+    @data = CopySecretService.new(session).copy!
     redirect_to root_path unless @data
   end
 

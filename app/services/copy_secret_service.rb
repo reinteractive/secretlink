@@ -1,4 +1,4 @@
-class CopyService
+class CopySecretService
   attr_reader :session
 
   KEY = :copy_secret_key
@@ -8,7 +8,7 @@ class CopyService
     @session = session
   end
 
-  def prepare(secret)
+  def prepare!(secret)
     session[KEY] = secret.secret_key
     session[UUID] = secret.uuid
   end
