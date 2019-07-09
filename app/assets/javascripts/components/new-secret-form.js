@@ -25,7 +25,7 @@ $(function() {
   }
 
   //Intialization code
-  const $newSecretForm = $(this).find(".secret__form");
+  const $newSecretForm = $(this).find(".js-new-secret-form");
   $newSecretForm.each(function () {
     new NewSecretForm(this)
   })

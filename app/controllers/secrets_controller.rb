@@ -41,7 +41,7 @@ class SecretsController < AuthenticatedController
   end
 
   def copy
-    @data = CopySecretService.new(session).copy!
+    @data = CopySecretService.new(session).perform!
     redirect_to root_path unless @data
   end
 

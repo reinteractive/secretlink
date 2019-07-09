@@ -13,7 +13,7 @@ class CopySecretService
     session[UUID] = secret.uuid
   end
 
-  def copy!
+  def perform!
     if session[KEY] && session[UUID]
       data = {key: session[KEY], uuid: session[UUID]}
 

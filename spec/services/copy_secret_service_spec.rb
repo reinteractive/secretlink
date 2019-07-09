@@ -14,7 +14,7 @@ describe CopySecretService do
     end
   end
 
-  describe '#copy!' do
+  describe '#perform!' do
     context 'key and uuid are set' do
       before do
         session[:copy_secret_key] = 'secret_key'
@@ -22,14 +22,14 @@ describe CopySecretService do
       end
 
       it 'returns key and uuid data' do
-        data = service.copy!
+        data = service.perform!
 
         expect(data[:key]).to eq 'secret_key'
         expect(data[:uuid]).to eq 'secret_uuid'
       end
 
       it 'deletes key and uuid from session' do
-        service.copy!
+        service.perform!
 
         expect(session[:copy_secret_key]).to be nil
         expect(session[:copy_secret_uuid]).to be nil
@@ -43,7 +43,7 @@ describe CopySecretService do
       end
 
       it 'returns false' do
-        result = service.copy!
+        result = service.perform!
         expect(result).to be false
       end
     end
