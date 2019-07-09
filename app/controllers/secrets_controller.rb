@@ -25,12 +25,13 @@ class SecretsController < AuthenticatedController
   def create
     @secret = SecretService.encrypt_new_secret(secret_params)
     if @secret.persisted?
-      flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
-
-      if @secret.no_email
+      if @secret.no_email?
         CopyService.new(session).prepare(@secret)
+
+        flash[:message] = t('secrets.create.success.without_email')
         redirect_to copy_secrets_path
       else
+        flash[:message] = t('secrets.create.success.with_email')
         redirect_to dashboard_path
       end
     else
@@ -50,7 +51,6 @@ class SecretsController < AuthenticatedController
     params.require(:secret).permit(:title, :to_email, :secret, :comments,
                                    :expire_at, :secret_file, :no_email).tap do |p|
       p[:from_email] = current_user.email
-      p[:no_email] = ActiveRecord::Type::Boolean.new.type_cast_from_database(p[:no_email])
     end
   end
 end

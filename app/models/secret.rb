@@ -1,5 +1,5 @@
 class Secret < ActiveRecord::Base
-  attr_accessor :secret_key, :no_email
+  attr_accessor :secret_key
 
   attr_encrypted :secret, key: :secret_key, mode: :per_attribute_iv_and_salt
   mount_uploader :secret_file, SecretFileUploader
