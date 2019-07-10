@@ -4,7 +4,7 @@ class EmailTemplateController < AuthenticatedController
   def edit
     @settings = current_user.settings
 
-    unless @settings.send_secret_email_template
+    unless @settings.send_secret_email_template.present?
       @settings.send_secret_email_template = build_default_email
     end
   end

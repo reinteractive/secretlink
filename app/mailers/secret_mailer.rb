@@ -2,7 +2,9 @@ class SecretMailer < BaseMailer
 
   def secret_notification(secret, custom_message = nil)
     @secret = secret
-    @editable_content = custom_message || load_default_content
+
+    #We're also checking for blank string
+    @editable_content = custom_message.present? ? custom_message : load_default_content
 
     mail(to: @secret.to_email,
          reply_to: @secret.from_email,
