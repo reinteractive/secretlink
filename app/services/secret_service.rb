@@ -1,12 +1,8 @@
 class SecretService
 
   def self.encrypt_new_secret(params)
-    secret = Secret.create(params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex(16)))
-    if secret.persisted?
-      # TODO: Mailers should be in the background
-      SecretMailer.secret_notification(secret).deliver_now
-    end
-    secret
+    params = params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex(16))
+    Secret.create(params)
   end
 
   def self.correct_key?(secret, password)
