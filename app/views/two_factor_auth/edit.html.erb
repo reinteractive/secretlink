@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h1>Two Factor Auth (2FA)</h1>
+    <h2>Two Factor Auth (2FA)</h2>
 
     <%= simple_form_for(@tfa_service.user, url: two_factor_auth_path) do |f| %>
       <%= render partial: 'shared/two_factor_fields', locals: {
