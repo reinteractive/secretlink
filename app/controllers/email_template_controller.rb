@@ -5,16 +5,19 @@ class EmailTemplateController < AuthenticatedController
     @settings = current_user.settings
 
     unless @settings.send_secret_email_template
-      override = ERB.new(load_template).result(view_context.__binding__)
-      @settings.send_secret_email_template = override
+      @settings.send_secret_email_template = build_default_email
     end
   end
 
   def update
   end
 
-  def load_template
-    path = Rails.root.join('app/views/secret_mailer/secret_notification_editable.html.erb')
-    File.read(path)
+  def build_default_email
+    @secret = Secret.new(from_email: current_user.email)
+
+    ViewBuilder.new(
+      UserSetting::DEFAULT_SEND_SECRET_EMAIL_TEMPLATE_PATH,
+      view_context.__binding__
+    ).run
   end
 end
