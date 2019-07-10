@@ -10,6 +10,8 @@ class EmailTemplateController < AuthenticatedController
   end
 
   def update
+    current_user.settings.update!(settings_params) # This step should never fail
+    redirect_to edit_email_template_path, notice: 'Successfully updated email template.'
   end
 
   def build_default_email
@@ -19,5 +21,9 @@ class EmailTemplateController < AuthenticatedController
       UserSetting::DEFAULT_SEND_SECRET_EMAIL_TEMPLATE_PATH,
       view_context.__binding__
     ).run
+  end
+
+  def settings_params
+    params.require(:user_setting).permit(:send_secret_email_template)
   end
 end

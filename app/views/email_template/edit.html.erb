@@ -2,7 +2,7 @@
   <div class="col-md-10 col-md-offset-1">
     <h2>Email Template</h2>
 
-    <%= simple_form_for(@settings, url: '') do |f| %>
+    <%= simple_form_for(@settings, url: email_template_path) do |f| %>
       <div class="form-group">
         <%= f.input :send_secret_email_template, label: false, as: :trix_editor %>
       </div>
