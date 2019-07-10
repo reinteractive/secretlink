@@ -7,7 +7,6 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="icon" type="image/png" href="/favicon.png">
-
 </head>
 <body class="settings-layout">
   <%= render partial: 'shared/header' %>
@@ -17,11 +16,9 @@
       <div class="col-md-3 sidebar">
       <h2>Account Settings</h2>
       <ul>
-        <!-- <li>Passwords</li> -->
         <li>
           <%= link_to 'Two Factor Auth (2FA)', edit_two_factor_auth_path %>
         </li>
-        <!-- <li>Email Template</li> -->
       </ul>
       </div>
       <div class="col-md-9 content">
