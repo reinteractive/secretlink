@@ -1,4 +1,6 @@
 class ViewBuilder
+  DEFAULT_DIR = 'app/views'
+
   attr_accessor :view_path, :view_binding
 
   def initialize(view_path, view_binding)
@@ -17,7 +19,7 @@ class ViewBuilder
   end
 
   def load_template
-    path = Rails.root.join('app/views', view_path)
+    path = Rails.root.join(DEFAULT_DIR, view_path)
     File.read(path)
   end
 end
