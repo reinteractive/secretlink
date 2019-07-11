@@ -23,14 +23,10 @@ class SecretsController < AuthenticatedController
   end
 
   def create
-    @secret = SecretService.encrypt_new_secret(secret_params)
-    if @secret.persisted?
-      # TODO: Mailers should be in the background
-      SecretMailer.secret_notification(
-        @secret,
-        current_user.settings.send_secret_email_template
-      ).deliver_now
+    @secret = SecretService.encrypt_new_secret(secret_params,
+      current_user.settings.send_secret_email_template)
 
+    if @secret.persisted?
       flash[:message] = "The secret has been encrypted and an email sent to the recipient, feel free to send another secret!"
       redirect_to dashboard_path
     else
