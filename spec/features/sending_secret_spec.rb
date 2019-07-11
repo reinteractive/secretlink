@@ -47,8 +47,15 @@ describe "Sending a secret" do
       expect(secret.secret_key).to be_nil
     end
 
-    it "allows oauth to authenticate when creating a secret"
+    it "logs the activity" do
+      log = ActivityLog.last
 
+      expect(log.owner).to eq user
+      expect(log.key).to eq 'created'
+      expect(log.trackable).to eq secret
+    end
+
+    it "allows oauth to authenticate when creating a secret"
   end
 
   describe "accessing a secret" do
@@ -113,6 +120,21 @@ describe "Sending a secret" do
       expect(email.from).to eq(["info@SecretLink.org"])
       expect(email.text_part.to_s).to match(user.email)
       expect(email.text_part.to_s).to match("The encrypted information has now been deleted from the database")
+    end
+
+    it "logs the activity" do
+      click_button "Click here to show the secret"
+      expect(page).to have_content("Super Secret Message")
+
+      first, second = ActivityLog.last(2)
+
+      expect(first.owner).to eq user
+      expect(first.key).to eq 'consumed'
+      expect(first.trackable).to eq secret
+
+      expect(second.owner).to eq user
+      expect(second.key).to eq 'deleted'
+      expect(second.trackable).to eq secret
     end
 
   end

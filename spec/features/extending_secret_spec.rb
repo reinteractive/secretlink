@@ -69,5 +69,13 @@ describe 'Extending secret' do
     it 'sets the extended_at column' do
       expect(expired_secret.reload.extended_at).to eq Time.current
     end
+
+    it 'logs the activity' do
+      log = ActivityLog.last
+
+      expect(log.owner).to eq user
+      expect(log.key).to eq 'extended'
+      expect(log.trackable).to eq expired_secret
+    end
   end
 end

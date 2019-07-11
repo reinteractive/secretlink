@@ -4,6 +4,7 @@ class ExtendedSecretsController < AuthenticatedController
 
     if @secret.expired? && !@secret.extended?
       @secret.extend_expiry!
+      ActivityLogger.new(current_user).perform('extended', @secret)
       redirect_to dashboard_path, notice: t('secrets.extended_expiry', title: @secret.title)
     else
       # This case should not happen base on UI

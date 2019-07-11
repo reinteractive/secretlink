@@ -23,7 +23,7 @@ class SecretsController < AuthenticatedController
   end
 
   def create
-    @secret = SecretService.encrypt_new_secret(secret_params)
+    @secret = SecretService.encrypt_new_secret(secret_params, activity_logger)
     if @secret.persisted?
       if @secret.no_email?
         CopySecretService.new(session).prepare!(@secret)
@@ -52,5 +52,9 @@ class SecretsController < AuthenticatedController
                                    :expire_at, :secret_file, :no_email).tap do |p|
       p[:from_email] = current_user.email
     end
+  end
+
+  def activity_logger
+    @activity_logger ||= ActivityLogger.new(current_user)
   end
 end

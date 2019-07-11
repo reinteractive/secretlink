@@ -1,8 +1,8 @@
 class ActivityLogger
-  attr_reader :actor
+  attr_reader :owner
 
-  def initialize(actor)
-    @actor = actor
+  def initialize(owner)
+    @owner = owner
   end
 
   def perform(key, trackable, recipient = nil)
@@ -15,7 +15,7 @@ class ActivityLogger
     # This step should not fail in production
     ActivityLog.create!(
       key: key,
-      owner: actor,
+      owner: owner,
       trackable: trackable,
       recipient: recipient)
   end
