@@ -35,6 +35,8 @@ en:
   email_template:
     update:
       success: 'Successfully updated email template.'
+  buttons:
+    update: 'Update'
   date:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"
