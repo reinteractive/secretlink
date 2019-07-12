@@ -71,6 +71,8 @@ GEM
     cliver (0.3.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    css_parser (1.7.0)
+      addressable
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.4.0)
@@ -107,6 +109,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.5.5)
+    htmlentities (4.3.4)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -170,6 +173,13 @@ GEM
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.10.2)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -331,6 +341,7 @@ DEPENDENCIES
   pg
   pickadate-rails
   poltergeist
+  premailer-rails
   pry
   quiet_assets
   rails (~> 4.2.8)
