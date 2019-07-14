@@ -135,4 +135,31 @@ describe "Sending a secret" do
     end
 
   end
+
+  describe 'creating secret without sending an email', js: true do
+    let(:secret) { Secret.last }
+
+    before do
+      login_as(user)
+      visit new_secret_path
+      fill_in "Title", with: "Super Secret"
+      check("Copy the link (don't send email)")
+      fill_in "Secret", with: "AbC123"
+      fill_in "Comments", with: "Some super secret info"
+    end
+
+    it 'redirects to copy page' do
+      click_button "Send your Secret"
+
+      expect(page).to have_current_path(copy_secrets_path)
+      expect(page).to have_content I18n.t('secrets.create.success.without_email')
+      expect(page).to have_content('Copy Link')
+      expect(page).to have_content(/\/secrets\/#{secret.uuid}\?key=\w+/)
+    end
+
+    it 'does not send an email' do
+      expect { click_button "Send your Secret" }
+        .to_not change { ActionMailer::Base.deliveries.count }
+    end
+  end
 end

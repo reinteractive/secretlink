@@ -30,6 +30,10 @@ en:
     update_success: 'Two-factor authentication %{verb}.'
     update_failed: 'Failed to update two-factor authentication. Please see errors below.'
   secrets:
+    create:
+      success:
+        with_email: 'The secret has been encrypted and an email sent to the recipient, feel free to send another secret!'
+        without_email: 'The secret has been encrypted. Send the link below safely.'
     extended_expiry: 'Extended %{title} expiry for 1 week'
     expired_error: 'Sorry, this secret has expired, please contact %{from_email} to extend it for you.'
   date:
