@@ -34,6 +34,10 @@ class TwoFactorService
     result
   end
 
+  def enable_otp_without_password(otp_secret, otp_attempt)
+    validate_and_consume_otp(otp_attempt, otp_secret)
+  end
+
   def disable_otp(current_password)
     user.update_with_password(current_password: current_password, otp_required_for_login: false)
   end
@@ -42,6 +46,7 @@ class TwoFactorService
 
   def validate_and_consume_otp(otp_attempt, otp_secret)
     if user.validate_and_consume_otp!(otp_attempt, otp_secret: otp_secret)
+      user.update_attributes(otp_secret: otp_secret, otp_required_for_login: true)
       true
     else
       user.errors.add(:otp_attempt, otp_attempt.blank? ? :blank : :invalid)

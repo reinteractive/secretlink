@@ -25,7 +25,7 @@ describe 'oauth via google' do
 
     it 'redirects to password update page' do
       expect(page).to have_content I18n.t('devise.confirmations.confirmed')
-      expect(page).to have_content 'Set your password'
+      expect(page).to have_content 'Setup login credentials'
     end
   end
 
@@ -43,11 +43,11 @@ describe 'oauth via google' do
     end
 
     it 'redirects user to enter password' do
-      expect(page).to have_content('Set your password')
+      expect(page).to have_content('Setup login credentials')
 
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
-      click_on 'Set my password'
+      click_on 'Save'
 
       expect(page).to have_content I18n.t('welcome')
       expect(page).to have_content 'Create a new secret to send'
@@ -65,11 +65,11 @@ describe 'oauth via google' do
     end
 
     it 'redirects user to enter password' do
-      expect(page).to have_content('Set your password')
+      expect(page).to have_content('Setup login credentials')
 
       fill_in 'user[password]', with: 'password'
       fill_in 'user[password_confirmation]', with: 'password'
-      click_on 'Set my password'
+      click_on 'Save'
 
       expect(page).to have_content I18n.t('welcome')
       expect(page).to have_content 'Create a new secret to send'

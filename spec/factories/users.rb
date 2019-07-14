@@ -11,6 +11,7 @@ FactoryBot.define do
       password_confirmation   { nil }
       confirmation_token      { 'token' }
       confirmed_at            { nil }
+      otp_required_for_login  { false }
     end
 
     trait :confirmed_without_password do

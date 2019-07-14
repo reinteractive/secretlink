@@ -17,7 +17,7 @@ describe 'Two Factor Auth Setup', js: true do
         expect(page).to have_content('Install a two-factor')
         fill_in 'user[otp_attempt]', with: user.current_otp
         fill_in 'user[current_password]', with: 'password'
-        click_on 'Enable'
+        click_on 'Save Settings'
 
         expect(page).to have_content I18n.t('two_factor.update_success', verb: 'enabled')
         expect(user.reload.otp_required_for_login).to be true
@@ -32,7 +32,7 @@ describe 'Two Factor Auth Setup', js: true do
         expect(page).to have_content('Install a two-factor')
         fill_in 'user[otp_attempt]', with: user.current_otp
         fill_in 'user[current_password]', with: 'wrong password'
-        click_on 'Enable'
+        click_on 'Save Settings'
 
         expect(page).to have_content I18n.t('two_factor.update_failed')
         expect(user.reload.otp_required_for_login).to be false
@@ -55,7 +55,7 @@ describe 'Two Factor Auth Setup', js: true do
         uncheck('Enable two factor authentication')
         expect(page).to_not have_content('Use the form below to connect a new device')
         fill_in 'user[current_password]', with: 'password'
-        click_on 'Disable'
+        click_on 'Save Settings'
 
         expect(page).to have_content I18n.t('two_factor.update_success', verb: 'disabled')
         expect(user.reload.otp_required_for_login).to be false
@@ -69,7 +69,7 @@ describe 'Two Factor Auth Setup', js: true do
         uncheck('Enable two factor authentication')
         expect(page).to_not have_content('Use the form below to connect a new device')
         fill_in 'user[current_password]', with: 'wrong password'
-        click_on 'Disable'
+        click_on 'Save Settings'
 
         expect(page).to have_content I18n.t('two_factor.update_failed')
         expect(user.reload.otp_required_for_login).to be true

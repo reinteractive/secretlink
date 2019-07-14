@@ -24,7 +24,7 @@ class OauthCallbacksController < ApplicationController
       redirect_to user_confirmation_path(confirmation_token: user.confirmation_token)
     elsif user.confirmed? && user.encrypted_password.blank?
       token = update_password_token(user)
-      redirect_to edit_password_url(user, reset_password_token: token)
+      redirect_to edit_user_setup_url(reset_password_token: token)
     else
       flash[:error] = t('oauth.already_registered')
       redirect_to new_user_session_path

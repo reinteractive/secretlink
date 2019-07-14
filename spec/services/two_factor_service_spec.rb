@@ -78,6 +78,26 @@ describe TwoFactorService do
     end
   end
 
+  describe '#enable_otp_without_password' do
+    let!(:otp_secret) { tfa.issue_otp_secret }
+
+    context 'successful' do
+      it 'returns true' do
+        result = tfa.enable_otp_without_password(otp_secret, tfa.user.current_otp)
+        expect(result).to be true
+      end
+
+      it 'sets otp_secret and otp_required_for_login' do
+        tfa.enable_otp_without_password(otp_secret, tfa.user.current_otp)
+
+        user.reload
+        expect(user.otp_secret).to eq otp_secret
+        expect(user.otp_required_for_login).to be true
+        expect(user.changed?).to be false
+      end
+    end
+  end
+
   describe '#disable_otp' do
     let!(:otp_secret) { tfa.issue_otp_secret }
 

@@ -4,11 +4,20 @@
       <h1>Two Factor Auth (2FA)</h1>
 
       <%= simple_form_for(@tfa_service.user, url: two_factor_auth_path) do |f| %>
-        <% render partial: 'shared/two_factor_fields', locals: {
+        <%= render partial: 'shared/two_factor_fields', locals: {
           f: f,
           resource: @tfa_service.user,
           otp_provisioning_uri: @otp_provisioning_uri
         } %>
+
+        <div class="form-group otp-step">
+          <label class="control-label">Confirm your identity (Enter your current password)</label>
+          <%= f.input :current_password, label: false, input_html: { autocomplete: "off" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.button :submit, name: :two_factor, value: 'Save Settings', class: 'btn-enable-2fa' %>
+        </div>
       <% end %>
     </div>
   </div>

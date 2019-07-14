@@ -1,0 +1,27 @@
+<div class="container">
+  <div class= "row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2>Setup login credentials</h2>
+
+      <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :reset_password_token, as: :hidden, input_html: { value: @original_token }%>
+        <%= f.full_error :reset_password_token %>
+
+        <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+
+        <%= render partial: 'shared/two_factor_fields', locals: {
+          f: f,
+          resource: @tfa_service.user,
+          otp_provisioning_uri: @otp_provisioning_uri
+        } %>
+
+        <div class="form-group">
+          <%= f.button :submit, "Save" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
