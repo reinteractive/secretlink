@@ -33,4 +33,8 @@ Rails.application.config.before_initialize do
   # Base URL for the running site. For the production site at https://SecretLink.org/ the
   # Base URL would be: https://SecretLink.org/, for development this might be http://lvh.me:3000/
   Rails.configuration.topsekrit_base_url = ENV['BASE_URL']
+
+  # 2FA Encryption key used by devise-two-factor gem
+  # https://github.com/tinfoil/devise-two-factor
+  Rails.configuration.topsekrit_2fa_key = ENV['2FA_KEY']
 end

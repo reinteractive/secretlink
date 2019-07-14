@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Two Factor Auth (2FA)</h1>
+
+      <%= simple_form_for(@tfa_service.user, url: two_factor_auth_path) do |f| %>
+        <% render partial: 'shared/two_factor_fields', locals: {
+          f: f,
+          resource: @tfa_service.user,
+          otp_provisioning_uri: @otp_provisioning_uri
+        } %>
+      <% end %>
+    </div>
+  </div>
+</div>

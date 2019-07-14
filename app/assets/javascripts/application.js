@@ -20,3 +20,4 @@
 
 // Components
 //= require components/secret-item
+//= require components/two-factor-fields

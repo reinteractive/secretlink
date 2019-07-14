@@ -26,6 +26,9 @@ gem "okcomputer"
 gem "skylight"
 gem 'rails_12factor', group: :production
 gem "devise"
+gem "devise-two-factor"
+gem "rqrcode-rails3"
+gem "mini_magick"
 gem "local_time"
 
 gem 'sdoc', '~> 0.4.0', group: :doc

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'pages#home', as: 'root'
 
+  resource :two_factor_auth, only: [:edit, :update],  controller: 'two_factor_auth'
   resources :secrets, only: [:show, :new, :create, :edit, :update]
   resources :decrypted_secrets, only: :create
   resources :extended_secrets, only: :update
