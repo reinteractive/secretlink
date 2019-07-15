@@ -11,7 +11,7 @@ class EmailTemplateController < AuthenticatedController
 
   def update
     current_user.settings.update!(settings_params) # This step should never fail
-    redirect_to edit_email_template_path, notice: t('email_template.update.success')
+    redirect_to edit_email_template_path, notice: t('.success')
   end
 
   def build_default_email
