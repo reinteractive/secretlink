@@ -1,5 +1,6 @@
 class Secret < ActiveRecord::Base
-  ACTIVITY_LOG_KEYS = %w(created consumed extended deleted).freeze
+  ACTIVITY_LOG_KEYS = { created: 'created', consumed: 'consumed',
+                        extended: 'extended', deleted: 'deleted' }.freeze
 
   attr_accessor :secret_key
 

@@ -10,7 +10,7 @@ class ActivityLog < ActiveRecord::Base
 
   def valid_key
     if key.present? && trackable.present?
-      trackable_keys = trackable.class::ACTIVITY_LOG_KEYS
+      trackable_keys = trackable.class::ACTIVITY_LOG_KEYS.values
       errors.add(:key, :invalid) unless trackable_keys.include?(key)
     end
   end

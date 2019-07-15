@@ -6,7 +6,7 @@ class SecretService
     secret = Secret.create(params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex(16)))
     if secret.persisted? && !secret.no_email?
 
-      logger.perform('created', secret) if logger
+      logger.perform(Secret::ACTIVITY_LOG_KEYS[:created], secret) if logger
 
       # TODO: Mailers should be in the background
       SecretMailer.secret_notification(secret).deliver_now
@@ -36,8 +36,8 @@ class SecretService
       # In this case, this happens at almost the same time
       # Later we will have a script that deletes expired
       # but unconsumed secrets
-      logger.perform('consumed', secret)
-      logger.perform('deleted', secret)
+      logger.perform(Secret::ACTIVITY_LOG_KEYS[:consumed], secret)
+      logger.perform(Secret::ACTIVITY_LOG_KEYS[:deleted], secret)
     end
 
 
