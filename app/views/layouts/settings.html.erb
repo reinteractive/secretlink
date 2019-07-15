@@ -4,6 +4,7 @@
   <title>SecretLink.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -21,6 +22,9 @@
         </li>
         <li>
           <%= link_to 'Email Template', edit_email_template_path %>
+        </li>
+        <li>
+          <%= link_to 'Subscription', new_subscription_path %>
         </li>
       </ul>
       </div>

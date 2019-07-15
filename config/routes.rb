@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   resources :decrypted_secrets, only: :create
   resources :extended_secrets, only: :update
+  resources :subscriptions, only: [:new, :create]
 
   post '/decrypt_secret', to: 'decrypted_secrets#create'
 

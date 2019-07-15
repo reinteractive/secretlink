@@ -1,3 +1,5 @@
 require "stripe"
 
-Stripe.api_key = Rails.configuration.topsekrit_secret_key
+Rails.application.config.after_initialize do
+  Stripe.api_key = Rails.configuration.topsekrit_stripe_secret_key
+end
