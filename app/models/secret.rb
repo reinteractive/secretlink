@@ -9,8 +9,8 @@ class Secret < ActiveRecord::Base
                          }
 
   validates :to_email, presence: {
-                         message: "Please enter the senders's email address"
-                       }
+    message: "Please enter the senders's email address"
+  }, unless: :no_email
 
   validates :secret, presence: {
                         message: "Please enter a secret to share with the recipient",
