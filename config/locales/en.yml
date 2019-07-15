@@ -44,3 +44,5 @@ en:
   date:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"
+  buttons:
+    purchase: 'Purchase'

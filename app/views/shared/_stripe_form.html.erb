@@ -1,0 +1,25 @@
+<%
+  charge_path
+  key = local_assigns.fetch :key, Rails.configuration.topsekrit_stripe_publishable_key
+%>
+
+<%= simple_form_for(:subscription, url: charge_path,
+  html: { class: "js-stripe-form", id: "payment-form", data: {key: key} }) do |form| %>
+
+  <div class="stripe-form__row">
+    <label for="card-element" class="stripe-form__label">
+      Credit or debit card
+    </label>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display Element errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <div class="form__actions">
+    <input type="submit" class="form__button form__button--primary" value=<%= t("buttons.purchase") %> />
+  </div>
+
+<% end %>
