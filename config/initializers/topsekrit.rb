@@ -37,4 +37,8 @@ Rails.application.config.before_initialize do
   # 2FA Encryption key used by devise-two-factor gem
   # https://github.com/tinfoil/devise-two-factor
   Rails.configuration.topsekrit_2fa_key = ENV['2FA_KEY']
+
+  # Stripe keys
+  Rails.configuration.topsekrit_publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
+  Rails.configuration.topsekrit_secret_key = ENV['STRIPE_SECRET_KEY']
 end
