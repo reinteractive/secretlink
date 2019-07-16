@@ -31,6 +31,7 @@ gem "rqrcode-rails3"
 gem "mini_magick"
 gem "local_time"
 gem "trix"
+gem "premailer-rails"
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 

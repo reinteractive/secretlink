@@ -1,28 +1,39 @@
-<p>
+<p class='heading'>
   Hello <%= @secret.from_email %>
 </p>
-<p>
-  This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("SecretLink.org", "https://SecretLink.org") %>.
-</p>
-<% if @secret.title.present? %>
-<p>
-  The title of the viewed secret was: <%= @secret.title %>
-</p>
-<% end %>
-<% if @secret.comments.present? %>
-<p>
-  The comments on the viewed secret were:
-</p>
-<pre>
-<%= @secret.title %>
-</pre>
-<% end %>
-<p>
-  This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
-</p>
-<p>
-  The encrypted information has now been deleted from the database.
-</p>
-<p>
-  Thank you for using <%= link_to("SecretLink.org", "https://SecretLink.org") %>!
-</p>
+
+<div class='content'>
+  <% if @secret.to_email.present? %>
+    <p>
+      This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("SecretLink.org", "https://SecretLink.org") %>.
+    </p>
+  <% else %>
+    <p>
+      This email is to notify you that your secret was viewed via <%= link_to("SecretLink.org", "https://SecretLink.org") %>.
+    </p>
+  <% end %>
+
+  <div class='secret-info'>
+    <div class='secret-info__heading'>Viewed Secret Details</div>
+    <% if @secret.title.present? %>
+      <div class='secret-info__detail'>
+        <b>title:</b> <%= @secret.title %>
+      </div>
+    <% end %>
+    <% if @secret.comments.present? %>
+      <div class='secret-info__detail'>
+        <b>comments:</b> <%= @secret.comments %>
+      </div>
+    <% end %>
+    <div class='secret-info__detail secret-info__detail--important'>
+      This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
+    </div>
+  </div>
+
+  <p>
+    The encrypted information has now been deleted from the database.
+  </p>
+  <p>
+    Thank you for using <%= link_to("SecretLink.org", "https://SecretLink.org") %>!
+  </p>
+</content>

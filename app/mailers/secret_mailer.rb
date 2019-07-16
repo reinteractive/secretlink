@@ -1,4 +1,5 @@
 class SecretMailer < BaseMailer
+  layout 'email'
 
   def secret_notification(secret, custom_message = nil)
     @secret = secret

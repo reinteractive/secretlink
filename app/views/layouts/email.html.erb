@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <title>SecretLink.org</title>
+    <%= stylesheet_link_tag 'email', media: 'all' %>
+    <link rel="icon" type="image/png" href="/favicon.png">
+  </head>
+
+  <body>
+    <header>
+      <%= image_tag 'logo-icon.png' %>
+      <h1>SecretLink.org</h1>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      <div class="links">
+        <%= link_to 'secretlink.org', root_url, target: "_blank" %>
+        <span> | </span>
+        <%= link_to 'how it works', home_url(anchor: "homepage-steps"), target: "_blank" %>
+      </div>
+      <div>Built, hosted and maintained by reinteractive.</div>
+    </footer>
+  </body>
+</html>
