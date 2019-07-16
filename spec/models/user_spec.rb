@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe User do
+  describe 'hooks' do
+    it 'creates user settings after creation' do
+      user = User.create(email: 'user@test.com')
+      expect(user.settings).to_not be nil
+    end
+  end
+
   describe 'validations' do
     let!(:domain) { 'reinteractive.net' }
     let!(:authorised_user) { build :user, email: 'authorised@reinteractive.net' }

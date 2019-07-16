@@ -1,7 +1,11 @@
 class SecretMailer < BaseMailer
 
-  def secret_notification(secret)
+  def secret_notification(secret, custom_message = nil)
     @secret = secret
+
+    #We're also checking for blank string
+    @editable_content = custom_message.present? ? custom_message : load_default_content
+
     mail(to: @secret.to_email,
          reply_to: @secret.from_email,
          subject: "SecretLink.org: A secret has been shared with you - Reference #{@secret.uuid}")
@@ -14,4 +18,12 @@ class SecretMailer < BaseMailer
          subject: "Your secret was consumed on SecretLink.org - Reference #{@secret.uuid}")
   end
 
+  private
+
+  def load_default_content
+    ViewBuilder.new(
+      UserSetting::DEFAULT_SEND_SECRET_EMAIL_TEMPLATE_PATH,
+      view_context.__binding__
+    ).run
+  end
 end

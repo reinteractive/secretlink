@@ -30,6 +30,7 @@ gem "devise-two-factor"
 gem "rqrcode-rails3"
 gem "mini_magick"
 gem "local_time"
+gem "trix"
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 

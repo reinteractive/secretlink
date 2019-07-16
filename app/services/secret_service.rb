@@ -1,10 +1,13 @@
 class SecretService
 
-  def self.encrypt_new_secret(params)
+  def self.encrypt_new_secret(params, email_template = nil)
     secret = Secret.create(params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex(16)))
     if secret.persisted? && !secret.no_email?
       # TODO: Mailers should be in the background
-      SecretMailer.secret_notification(secret).deliver_now
+      SecretMailer.secret_notification(
+        secret,
+        email_template
+      ).deliver_now
     end
     secret
   end

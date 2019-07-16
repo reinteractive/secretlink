@@ -17,6 +17,7 @@
 //= require topsekrit
 //= require ui-functions
 //= require local-time
+//= require trix
 
 // Components
 //= require components/secret-item

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Email Template</h2>
+
+    <div class="email-preview">
+      <h3 class="email-preview__heading">Preview:</h3>
+      <div class="email-preview__greeting">Hello recipient@secret_link.org</div>
+
+      <div class="email-preview__body">
+        <%= sanitize @settings.send_secret_email_template %>
+      </div>
+
+      <div class="email-preview__additional-content">(Secret contents will go below ...)</div>
+    </div>
+
+    <%= simple_form_for(@settings, url: email_template_path, html: { class:"top-buffer" }) do |f| %>
+      <div class="form-group">
+        <%= f.input :send_secret_email_template, label: false, as: :trix_editor %>
+      </div>
+
+      <div class="form-group">
+        <%= f.button :submit, value: t('buttons.update') %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -36,6 +36,11 @@ en:
         without_email: 'The secret has been encrypted. Send the link below safely.'
     extended_expiry: 'Extended %{title} expiry for 1 week'
     expired_error: 'Sorry, this secret has expired, please contact %{from_email} to extend it for you.'
+  email_template:
+    update:
+      success: 'Successfully updated email template.'
+  buttons:
+    update: 'Update'
   date:
     formats:
       dashboard_time: "%m/%d/%y, %l.%M%P"
