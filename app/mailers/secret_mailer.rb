@@ -23,7 +23,7 @@ class SecretMailer < BaseMailer
   def load_default_content
     ViewBuilder.new(
       UserSetting::DEFAULT_SEND_SECRET_EMAIL_TEMPLATE_PATH,
-      view_context.__binding__
+      view_context.instance_eval { binding }
     ).run
   end
 end
