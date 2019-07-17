@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Topsekrit
   class Application < Rails::Application
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.skylight.environments += ['staging']
     config.skylight.alert_log_file = true
 

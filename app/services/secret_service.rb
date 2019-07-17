@@ -2,15 +2,17 @@ class SecretService
 
   # TODO: Instantiate the service instead and assign the logger
   # as instance property
-  def self.encrypt_new_secret(params, logger = nil)
+  def self.encrypt_new_secret(params, email_template = nil, logger = nil)
     secret = Secret.create(params.merge(uuid: SecureRandom.uuid, secret_key: SecureRandom.hex(16)))
     if secret.persisted? && !secret.no_email?
 
       logger.perform(Secret::ACTIVITY_LOG_KEYS[:created], secret) if logger
 
       # TODO: Mailers should be in the background
-      SecretMailer.secret_notification(secret).deliver_now
-
+      SecretMailer.secret_notification(
+        secret,
+        email_template
+      ).deliver_now
     end
     secret
   end

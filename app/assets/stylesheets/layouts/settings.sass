@@ -1,0 +1,34 @@
+@media screen and (max-width: 576px)
+  body.settings-layout
+    .sidebar
+      margin: 0 0 10px 0 !important
+
+body.settings-layout
+  min-height: 100vh
+  display: flex
+
+  h2
+    margin-bottom: 1.2rem
+
+  .sidebar
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    margin-top: 50px
+    h2
+      font-size: 1.9rem
+      margin: 15px
+    ul
+      display: flex
+      flex-direction: column
+      align-items: flex-end
+      border-right: $default-border
+      li
+        list-style-type: none
+        padding: 10px 15px
+        a
+          color: $text-default-color
+
+  .footer
+    //This makes the footer stay at bottom
+    margin-top: auto

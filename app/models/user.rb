@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
+  after_create :create_settings
+
   devise :registerable, :confirmable,
           :recoverable, :rememberable, :trackable, :validatable
 
@@ -9,6 +11,7 @@ class User < ActiveRecord::Base
 
   validate :email_authorised?, on: :create
 
+  has_one :settings, class_name: 'UserSetting'
   has_many :secrets, primary_key: 'email', foreign_key: 'from_email'
   has_many :activities, as: :owner, class_name: 'ActivityLog'
 
@@ -27,5 +30,10 @@ class User < ActiveRecord::Base
   def self.with_reset_password_token(token)
     reset_password_token = Devise.token_generator.digest(self, :reset_password_token, token)
     to_adapter.find_first(reset_password_token: reset_password_token)
+  end
+
+  # hooks
+  def create_settings
+    UserSetting.create(user: self)
   end
 end

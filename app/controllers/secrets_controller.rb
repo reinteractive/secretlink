@@ -23,7 +23,12 @@ class SecretsController < AuthenticatedController
   end
 
   def create
-    @secret = SecretService.encrypt_new_secret(secret_params, activity_logger)
+    @secret = SecretService.encrypt_new_secret(
+      secret_params,
+      current_user.settings.send_secret_email_template,
+      activity_logger
+    )
+
     if @secret.persisted?
       if @secret.no_email?
         CopySecretService.new(session).prepare!(@secret)
