@@ -1,0 +1,8 @@
+//Sizing
+$mobile-switch: 768px;
+
+@mixin mobile-media-query {
+  @media(max-width: $mobile-switch) {
+    @content
+  }
+}
