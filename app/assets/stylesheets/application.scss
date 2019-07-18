@@ -16,20 +16,22 @@
 
 // Pages
 @import "home";
-@import "secrets";
-@import "dashboard";
 
 // Layouts
+@import "layouts/dashboard";
 @import "layouts/devise";
+@import "layouts/secrets";
 @import "layouts/settings";
 
 // Components
-@import "components/header";
 @import "components/footer";
-@import "components/devise-form";
+@import "components/header";
+@import "components/navbar";
+
+@import "components/devise_form";
 @import "components/secret-item";
 @import "components/two-factor-fields";
 @import "components/email-preview";
 
 // Helpers
-@import "helpers";
+@import "base/helpers";

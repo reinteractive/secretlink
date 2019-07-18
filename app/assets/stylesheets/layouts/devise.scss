@@ -1,0 +1,14 @@
+body.devise-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .container {
+    margin-top: 20px;
+  }
+
+  .footer {
+    //This makes the footer stay at bottom
+    margin-top: auto;
+  }
+}

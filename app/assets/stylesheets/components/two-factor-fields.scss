@@ -1,0 +1,23 @@
+.two-factor-fields {
+  margin: 20px 0;
+  .otp-step {
+    margin: 20px 0;
+  }
+  .qrcode {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border: 20px solid white;
+  }
+  .enable-otp-fields {
+    display: none;
+  }
+  .instructions {
+    padding: 20px;
+    background-color: #F2F2F2;
+  }
+  .store-icon {
+    width: 30%;
+    margin-right: 10px;
+  }
+}
