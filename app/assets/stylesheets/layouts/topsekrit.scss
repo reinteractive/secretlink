@@ -153,38 +153,6 @@ form.send-secret-form {
   text-decoration: underline;
 }
 
-/***** FOOTER *****/
-
-.footer .container-fluid {
-  padding: 0;
-  font-size: 90%;
-  background-color: #062B2F;
-}
-.footer-content {
-  padding: 0 3.5em 2.5em 0;
-}
-.footer-logo {
-  background-color: #fff;
-  border-radius: 6px;
-  padding: 1em;
-}
-.footer-links {
-  padding: 1em 1em 1.5em 1em;
-  li {
-    display: inline-block;
-    padding: 0.5em 1em;
-    line-height: 1.5;
-  }
-}
-
-.attribution {
-  margin: 1em 0 0 0;
-  color: #ddd;
-  a {
-    color: #fff;
-  }
-}
-
 /***** SECRET *****/
 
 div.secret_secret textarea, div.secret_comments textarea {
