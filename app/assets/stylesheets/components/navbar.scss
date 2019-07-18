@@ -1,0 +1,43 @@
+.navbar {
+  background-color: #fff;
+  margin-bottom: 0;
+  padding: 0.75em 0;
+  font-size: 20px;
+  border: none;
+}
+
+.navbar .navbar-brand,
+.glyphicon-lg {
+  font-size: 24px;
+  font-weight: 500;
+  vertical-align: top;
+}
+.glyphicon-lg {
+  padding-right: 0.5em;
+  line-height: 0.75;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+  color: $primary-color;
+}
+.navbar-toggle {
+  border: none;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #fff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $primary-color;
+}
+
+.navbar {
+  a.github {
+    line-height: 1.5;
+    display: none;
+  }
+  img {
+    height: 32px;
+    width: 32px;
+  }
+}

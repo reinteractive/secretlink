@@ -9,19 +9,18 @@
 @import "base/typography";
 
 
+@import "objects/alerts";
 @import "objects/buttons";
 
-@import "topsekrit";
 @import "trix";
-
-// Pages
-@import "home";
 
 // Layouts
 @import "layouts/dashboard";
 @import "layouts/devise";
+@import "layouts/home";
 @import "layouts/secrets";
 @import "layouts/settings";
+@import "layouts/topsekrit";
 
 // Components
 @import "components/footer";

@@ -1,26 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Oxygen:400,700,300);
-
-$primary-color: #1C7279;
-
-body {
-  font-family: 'Oxygen', sans-serif;
-}
-.container-fluid {
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 90px;
-}
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
-h2 {
-  margin-bottom: 1.5em;
-}
-a:hover {
-  text-decoration: none;
-}
-
 form.send-secret-form {
   abbr {
     display: none;
@@ -30,58 +7,6 @@ form.send-secret-form {
   // }
 }
 
-.flash {
-  margin-bottom: 5px;
-}
-
-.field_with_errors .error {
-  color: red;
-}
-
-/***** NAVBAR *****/
-
-.navbar {
-  background-color: #fff;
-  margin-bottom: 0;
-  padding: 0.75em 0;
-  font-size: 20px;
-  border: none;
-}
-.navbar .navbar-brand,
-.glyphicon-lg {
-  font-size: 24px;
-  font-weight: 500;
-  vertical-align: top;
-}
-.glyphicon-lg {
-  padding-right: 0.5em;
-  line-height: 0.75;
-}
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a {
-  color: $primary-color;
-}
-.navbar-toggle {
-  border: none;
-}
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:focus {
-  background-color: #fff;
-}
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: $primary-color;
-}
-
-.navbar {
-  a.github {
-    line-height: 1.5;
-    display: none;
-  }
-  img {
-    height: 32px;
-    width: 32px;
-  }
-}
 
 /***** INTRODUCTION *****/
 
@@ -127,21 +52,7 @@ form.send-secret-form {
   line-height: 3;
 }
 
-.btn-lead-outline {
-  margin: 1.5em 0;
-}
-.btn-lead {
-  background-color: $primary-color;
-  border-radius: 6px;
-  padding: 0.5em 2em;
-  color: #fff;
-  cursor: pointer;
-}
-.btn-lead:hover {
-  background-color: #fff;
-  color: $primary-color;
-  font-weight: 400;
-}
+
 .auth-form {
   background-color: #fff;
   margin: 3em 0;
@@ -272,11 +183,6 @@ form.send-secret-form {
   a {
     color: #fff;
   }
-}
-
-.footer-links a {
-  color: #fff;
-  text-transform: uppercase;
 }
 
 /***** SECRET *****/

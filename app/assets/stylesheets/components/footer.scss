@@ -2,3 +2,8 @@ footer {
   // Keeps footer at the bottom at all times (even if content is short)
   margin-top: auto;
 }
+
+.footer-links a {
+  color: #fff;
+  text-transform: uppercase;
+}

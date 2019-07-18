@@ -1,0 +1,326 @@
+.homepage-hero {
+  background: black image-url("homepage-hero.jpg") no-repeat 50% 50%;
+  background-size: cover;
+  display: flex;
+  min-height: 400px;
+  padding: 50px 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    color: white;
+    font-weight: bold;
+    margin: 0 0 1em;
+    line-height: 1.2em;
+    max-width: 700px;
+    text-align: center;
+  }
+  h3 {
+    color: white;
+    font-weight: 500;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 500px;
+
+    input[type="email"] {
+      border: 3px solid black;
+      height: auto;
+      padding: 10px 20px;
+    }
+    .button.white {
+      margin-bottom: 1em;
+    }
+    .form-group {
+      width: 100%;
+    }
+    .google-link {
+      color: white;
+      padding-left: 20px;
+      background: transparent image-url("homepage-icons/google-g.svg") no-repeat 0 50%;
+      background-size: 15px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.homepage-features ul.nostyle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 20px;
+  li {
+    max-width: 350px;
+    text-align: center;
+    padding: 20px;
+  }
+  img {
+    max-height: 50px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 1em;
+    color: $green2;
+    font-weight: 700;
+  }
+  p {
+    color: $text-grey;
+  }
+  @include mobile-media-query {
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.homepage-steps {
+  display: flex;
+  width: 100%;
+  padding: 50px 20px;
+  justify-content: center;
+  background: black image-url("homepage-features-bg.jpg");
+  @include mobile-media-query {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.homepage-steps__step {
+  width: 225px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px 5px 0 0;
+  @include mobile-media-query {
+    width: 100%;
+    position: relative;
+    border-radius: 0;
+  }
+  header {
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    height: 160px;
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    @include mobile-media-query {
+      position: static;
+      border-radius: 0;
+      height: auto;
+      display: flex;
+      align-items: center;
+      padding-bottom: 0;
+    }
+
+    &:after {
+      left: 100%;
+      top: 50%;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border: solid transparent;
+      border-color: rgba(136, 183, 213, 0);
+      border-width: 30px;
+      margin-top: -55px;
+      z-index: 50;
+      @include mobile-media-query {
+        top: 100%;
+        left: 50%;
+        margin-left: -30px;
+        margin-top: 0;
+        border: transparent solid;
+        border-width: 30px;
+        border-left-color: transparent !important;
+        border-top-color: $green1;
+      }
+    }
+
+    h3 {
+      font-size: 3.5em;
+      font-weight: 600;
+      margin: 0 0 10px;
+      line-height: 1em;
+      @include mobile-media-query {
+        margin: 0 10px 0 0;
+      }
+    }
+    h4 {
+      font-size: 1em;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+  &.first header {
+    background-color: $green1;
+    @include mobile-media-query {
+      border-radius: 5px 5px 0 0;
+    }
+    &:after {
+      border-left-color: $green1;
+      @include mobile-media-query {
+        border-top-color: $green1;
+      }
+    }
+  }
+  &.second header {
+    background-color: $green2;
+    &:after {
+      border-left-color: $green2;
+      @include mobile-media-query {
+        border-top-color: $green2;
+      }
+    }
+  }
+  &.third header {
+    background-color: $green3;
+    &:after {
+      display: none;
+      @include mobile-media-query {
+        border-top-color: $green3;
+      }
+    }
+  }
+
+  .body {
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    flex: 1 0 0;
+    img {
+      height: 65px;
+      max-width: 70px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+  }
+  &.first {
+    border-radius: 5px 5px 0 5px;
+    @include mobile-media-query {
+      border-radius: 5px 5px 0 0;
+      background-color: $green1;
+    }
+  }
+  &.second {
+    @include mobile-media-query {
+      background-color: $green2;
+    }
+  }
+  &.third {
+    @include mobile-media-query {
+      background-color: $green3;
+    }
+  }
+  &.fourth {
+    border-radius: 5px 5px 5px 0;
+    @include mobile-media-query {
+      border-radius: 0 0 5px 5px;
+      background-color: $green4;
+    }
+    .body {
+      border-right: none;
+      @include mobile-media-query {
+        border: none;
+        color: white;
+      }
+      img {
+        @include mobile-media-query {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+.homepage-behind-the-scenes {
+  text-align: center;
+  padding: 60px 20px;
+  color: $text-grey;
+  h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.homepage-faq {
+  background-color: $green2;
+  padding: 50px 20px;
+  color: white;
+  .flex-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+    &:hover, &:focus {
+      color: $green1;
+    }
+  }
+}
+
+.homepage-faq__question {
+  width: 50%;
+  min-width: 310px;
+  padding: 20px;
+  h3 {
+    font-weight: 600;
+  }
+  @include mobile-media-query {
+    width: 100%;
+    padding: 0 20px;
+
+    h3[data-slideTarget] {
+      font-size: 1.3em;
+      padding-left: 25px;
+      background: transparent image-url("icons/plus-white.svg") no-repeat 0 50%;
+      background-size: 15px;
+      cursor: pointer;
+    }
+    div[data-slide] {
+      display: none;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.homepage-about-us {
+  padding: 50px 20px;
+  .flex-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  h3.full-width {
+    width: 100%;
+    font-weight: 600;
+    padding: 0 20px;
+  }
+  .flex-column {
+    width: 50%;
+    min-width: 310px;
+    padding: 20px;
+    @include mobile-media-query {
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
+}

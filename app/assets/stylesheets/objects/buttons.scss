@@ -25,3 +25,21 @@
     }
   }
 }
+
+.btn-lead {
+  background-color: $primary-color;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5em 2em;
+
+  font-weight: 400;
+  cursor: pointer;
+  &:hover, &:focus {
+    background-color: #fff;
+    color: $primary-color;
+  }
+
+  &-outline {
+    margin: 1.5em 0;
+  }
+}
