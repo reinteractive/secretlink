@@ -20,6 +20,7 @@
 //= require trix
 
 // Components
+//= require components/header
 //= require components/secret-item
 //= require components/two-factor-fields
 //= require components/new-secret-form
