@@ -4,13 +4,27 @@
       Built, hosted and maintained by <%= link_to("reinteractive", "https://reinteractive.net/") %>.
     </p>
     <ul class="footer-links list-unstyled text-center">
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><a href="">SecretLink.org</a></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><%= link_to "How it works", home_path(anchor: "homepage-steps") %></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><%= link_to "FAQ", home_path(anchor: "homepage-faq") %></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><%= link_to "About", home_path(anchor: "homepage-about") %></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><a href="/copyright">Copyright</a></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><a href="/privacy_policy">Privacy Policy</a></li>
-      <li class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><a href="/terms_and_conditions">Terms & Conditions</a></li>
+      <li>
+        <a href="/">SecretLink.org</a>
+      </li>
+      <li>
+        <%= link_to "How it works", root_path(anchor: "homepage-steps") %>
+      </li>
+      <li>
+        <%= link_to "FAQ", root_path(anchor: "homepage-faq") %>
+      </li>
+      <li>
+        <%= link_to "About", root_path(anchor: "homepage-about") %>
+      </li>
+      <li>
+        <a href="/copyright">Copyright</a>
+      </li>
+      <li>
+        <a href="/privacy_policy">Privacy Policy</a>
+      </li>
+      <li>
+        <a href="/terms_and_conditions">Terms & Conditions</a>
+      </li>
     </ul>
   </div>
 </footer>

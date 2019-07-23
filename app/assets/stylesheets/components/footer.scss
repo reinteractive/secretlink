@@ -23,8 +23,11 @@
       padding: 0.5em 1em;
       line-height: 1.5;
       a {
-       text-transform: uppercase;
-     }
+        text-transform: uppercase;
+      }
+      @include mobile-media-query {
+        display: block;
+      }
     }
   }
   .attribution {

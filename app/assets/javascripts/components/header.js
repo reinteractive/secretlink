@@ -1,6 +1,6 @@
 $(function() {
   // Add smooth scrolling to all header links
-  $('.main-nav__links a[href^="/#"]').on('click', function(event) {
+  $('.main-nav__links a[href^="/#"], .footer-links a[href^="/#"]').on('click', function(event) {
     smoothScrolling(event);
   });
 });
