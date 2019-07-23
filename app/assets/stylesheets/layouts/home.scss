@@ -1,5 +1,5 @@
 .homepage-hero {
-  background: black image-url("homepage-hero.jpg") no-repeat 50% 50%;
+  background: black $banner-background no-repeat 50% 50%;
   background-size: cover;
   display: flex;
   min-height: 400px;
@@ -57,6 +57,11 @@
   justify-content: center;
   width: 100%;
   padding: 50px 20px;
+  @include mobile-media-query {
+    flex-direction: column;
+    align-items: center;
+  }
+
   li {
     max-width: 350px;
     text-align: center;
@@ -65,6 +70,9 @@
   img {
     max-height: 50px;
     margin-bottom: 20px;
+    @include mobile-media-query {
+      width: 100%;
+    }
   }
   h3 {
     font-size: 1em;
@@ -73,13 +81,6 @@
   }
   p {
     color: $text-grey;
-  }
-  @include mobile-media-query {
-    flex-direction: column;
-    align-items: center;
-    img {
-      width: 100%;
-    }
   }
 }
 
@@ -121,27 +122,29 @@
     min-width: 310px;
     padding: 20px;
     color: white;
-    h3 {
-      font-weight: 600;
-      color: currentColor;
-    }
-    div[data-slide] p {
-      color: white;
-    }
     @include mobile-media-query {
       width: 100%;
       padding: 0 20px;
+    }
 
-      h3[data-slideTarget] {
+    h3[data-slideTarget] {
+      font-weight: 600;
+      color: currentColor;
+      @include mobile-media-query {
         font-size: 1.3em;
         padding-left: 25px;
         background: transparent image-url("icons/plus-white.svg") no-repeat 0 50%;
         background-size: 15px;
         cursor: pointer;
       }
-      div[data-slide] {
+    }
+    div[data-slide] {
+      @include mobile-media-query {
         display: none;
         margin-bottom: 20px;
+      }
+      p {
+        color: white;
       }
     }
   }
