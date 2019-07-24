@@ -3,11 +3,11 @@
 </section>
 
 <section class="devise_page">
-  <article class="devise_page__panel">
-    <header class="devise_page__header">
-      <h2 class="devise_page__title">Edit <%= resource_name.to_s.humanize %></h2>
+  <article class="panel">
+    <header class="panel__header">
+      <h2 class="panel__title">Edit <%= resource_name.to_s.humanize %></h2>
     </header>
-    <div class="devise_page__body">
+    <div class="panel__body">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "devise_page__form" }) do |f| %>
         <%= f.error_notification %>
 

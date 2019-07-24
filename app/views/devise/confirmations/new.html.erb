@@ -3,11 +3,11 @@
 </section>
 
 <section class="devise_page">
-  <article class="devise_page__panel">
-    <header class="devise_page__header">
-      <h2 class="devise_page__title">Resend confirmation instructions</h2>
+  <article class="panel">
+    <header class="panel__header">
+      <h2 class="panel__title">Resend confirmation instructions</h2>
     </header>
-    <div class="devise_page__body">
+    <div class="panel__body">
       <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "devise_page__form" }) do |f| %>
         <%= f.error_notification %>
         <%= f.full_error :confirmation_token %>
