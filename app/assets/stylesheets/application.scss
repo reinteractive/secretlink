@@ -16,6 +16,7 @@
 
 // Layouts
 @import "layouts/dashboard";
+@import "layouts/devise";
 @import "layouts/home";
 @import "layouts/secrets";
 @import "layouts/settings";
@@ -25,7 +26,6 @@
 @import "components/footer";
 @import "components/header";
 @import "components/banner";
-@import "components/devise_form";
 @import "components/secret-item";
 @import "components/two-factor-fields";
 @import "components/email-preview";

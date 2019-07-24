@@ -1,0 +1,67 @@
+$label-width: 170px;
+
+.devise_page {
+  width: 80%;
+  max-width: 1200px;
+  margin: 40px auto;
+  @include mobile-media-query {
+    width: 95%
+  }
+
+  &__panel {
+    max-width: 500px;
+    border: $default_border;
+    margin: 0 auto 40px;
+  }
+
+  &__header {
+    background-color: $primary-color;
+    padding: 15px;
+    text-align: center;
+  }
+
+  &__title {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
+  &__body {
+    padding: 20px;
+  }
+
+  &__form {
+    .form-group {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      label {
+        width: $label-width;
+        text-align: right;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .checkbox {
+        width: calc(100% - #{$label-width} + 90px);
+      }
+    }
+
+    .form-actions {
+      margin-left: calc(#{$label-width} - 40px);
+    }
+  }
+
+  &__links {
+    text-align: center;
+    a {
+      display: inline-block;
+      padding: 0 1em;
+      border-right: $default_border;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
