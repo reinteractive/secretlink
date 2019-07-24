@@ -1,21 +1,26 @@
-<div class="devise-form">
-  <h2 class="heading">Sign up</h2>
+<section class="banner">
+  <h1 class="heading">My Account</h1>
+</section>
 
-  <div class="body">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.error_notification %>
+<section class="devise_page">
+  <article class="devise_page__panel">
+    <header class="devise_page__header">
+      <h2 class="devise_page__title">New User? Create an Account</h2>
+    </header>
+    <div class="devise_page__body">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "devise_page__form"}) do |f| %>
+        <%= f.error_notification %>
 
-      <div class="form-inputs">
         <%= f.input :email, required: true, autofocus: true %>
-      </div>
 
-      <div class="form-actions">
-        <%= invisible_recaptcha_tags text: 'Sign Up', class: 'btn btn-default' %>
-      </div>
-    <% end %>
-  </div>
+        <div class="form-actions">
+          <%= invisible_recaptcha_tags text: 'Register', class: 'button green' %>
+        </div>
+      <% end %>
+    </div>
+  </article>
 
-  <div class="shared-links">
+  <div class="devise_page__links">
     <%= render "devise/shared/links" %>
   </div>
-</div>
+</section>

@@ -10,11 +10,14 @@
   justify-content: center;
   &-large {
     min-height: 400px;
+    h1, h2 {
+      margin: 0 0 1em;
+    }
   }
   h1, h2 {
     color: white;
     font-weight: bold;
-    margin: 0 0 1em;
+    margin: 0;
     line-height: 1.2em;
     max-width: 700px;
     text-align: center;

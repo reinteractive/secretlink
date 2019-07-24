@@ -10,7 +10,7 @@
     color: white;
     border-color: white;
     background-color: transparent;
-    &:hover {
+    &:hover, &:focus {
       color: white;
       background-color: rgba(255,255,255,.25);
     }
@@ -19,9 +19,18 @@
     color: white;
     border-color: $green2;
     background-color: $green2;
-    &:hover {
+    &:hover, &:focus {
       background-color: $green3;
       border-color: $green3;
+    }
+  }
+  &.red {
+    color: white;
+    border-color: $red;
+    background-color: $red;
+    &:hover, &:focus {
+      background-color: darken($red, 20%);
+      border-color: darken($red, 20%);
     }
   }
 }
