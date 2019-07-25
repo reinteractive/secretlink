@@ -1,0 +1,7 @@
+---
+  default_monthly:
+    code: 'default_monthly'
+    name: 'Monthly'
+    price: 195
+    description: ''
+    stripe_id: 'plan_FRFnBoiKEQVXpE'

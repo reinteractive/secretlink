@@ -23,3 +23,4 @@
 //= require components/secret-item
 //= require components/two-factor-fields
 //= require components/new-secret-form
+//= require components/stripe-form
