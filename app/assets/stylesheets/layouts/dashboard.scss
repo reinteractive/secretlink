@@ -1,16 +1,17 @@
 .dashboard {
-  > .header {
+  padding: 40px 0;
+  &__secrets-list {
     display: flex;
-    align-items: center;
-    padding: 20px 0;
-    h2 {
-      display: inline-block;
-      margin: 0 20px 0 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    @include mobile-media-query {
+      flex-direction: column;
     }
-  }
-  .secrets-list {
     .secret-item {
-      margin: 20px 0;
+      width: 30%;
+      @include mobile-media-query {
+        width: 90%;
+      }
     }
   }
 }

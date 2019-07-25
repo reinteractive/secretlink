@@ -4,7 +4,7 @@
 </section>
 
 <div class="container dashboard">
-  <div class="secrets-list row">
+  <div class="dashboard__secrets-list">
     <% @secrets.each do |secret| %>
       <%= render 'secret_item', secret: secret %>
     <% end %>
