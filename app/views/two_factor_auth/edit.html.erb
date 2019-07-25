@@ -2,8 +2,8 @@
   <h1>Account Settings</h1>
 </section>
 
-<section class="devise_page">
-  <article class="panel">
+<section class="devise_page two-column">
+  <article class="panel large">
     <header class="panel__header">
       <h2 class="panel__title">Two Factor Auth (2FA)</h2>
     </header>
@@ -16,7 +16,7 @@
       } %>
 
       <%= f.input :current_password,
-              label: "Confirm your identity<br>(Enter your current password)".html_safe,
+              label: "Current password".html_safe,
               input_html: { autocomplete: "off" } %>
 
       <div class="form-actions">
@@ -25,6 +25,30 @@
     <% end %>
     </div>
   </article>
+
+  <aside class="secret__instructions">
+    <ol>
+      <li class="one">
+        <% if @tfa_service.user.otp_required_for_login %>
+          <%# User is already enrolled for 2fa. %>
+          Use the form below to connect a new device (this will disconnect your previous device).
+        <% else %>
+          <%# User is not enrolled for 2fa; show them how to get set up %>
+          Install a two-factor app, such as Google Authenticator, on your smartphone.
+          <div>
+            <a target="_blank" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">
+              <%= image_tag "apple-app-store.png", class: "app-store-icon store-icon", alt: "Download on the App store", width: 160 %>
+            </a>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
+              <%= image_tag "google-play-store.png", class: "app-store-icon store-icon", alt: "Get it on Google Play", width: 160 %>
+            </a>
+          </div>
+        <% end %>
+      </li>
+      <li class="two">Open your two-factor app and scan the barcode.</li>
+      <li class="three">Enter the 6 digit code from two-factor app.</li>
+    </ol>
+  </aside>
 
   <div class="devise_page__links">
     <%= render "shared/two_factor_links" %>

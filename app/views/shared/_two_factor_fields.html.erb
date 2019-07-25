@@ -6,34 +6,15 @@
   %>
 
   <div class="enable-otp-fields">
-    <div class="instructions">
-      <% if resource.otp_required_for_login %>
-        <%# User is already enrolled for 2fa. %>
-        <p>Use the form below to connect a new device (this will disconnect your previous device).</p>
-      <% else %>
-        <%# User is not enrolled for 2fa; show them how to get set up %>
-        <p>Install a two-factor app, such as Google Authenticator, on your smartphone.</p>
-        <div>
-          <a target="_blank" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">
-            <%= image_tag "apple-app-store.png", class: "app-store-icon store-icon", alt: "Download on the App store" %>
-          </a>
-          <a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
-            <%= image_tag "google-play-store.png", class: "app-store-icon store-icon", alt: "Get it on Google Play" %>
-          </a>
-        </div>
-      <% end %>
-    </div>
-
     <div class="form-group otp-step">
       <img
         class="qrcode"
         src="data:image/png;base64,<%= Base64.encode64(RQRCode.render_qrcode(otp_provisioning_uri, :png, {})).html_safe %>"
       />
-      <label class="control-label">STEP 1: Open your two-factor app and scan the barcode below.</label>
     </div>
 
     <%= f.input :otp_attempt,
-          label: 'STEP 2: Enter the 6 digit code from two-factor app',
+          label: '6 digit code',
           value: '',
           autocomplete: 'off'
         %>

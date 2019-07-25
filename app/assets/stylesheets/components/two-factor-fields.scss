@@ -1,10 +1,18 @@
 .two-factor-fields {
-  margin: 20px 0;
-  .form-group .boolean {
+  .form-group.boolean {
     width: 100%;
     text-align: left;
     .checkbox {
       cursor: pointer;
+      @include mobile-media-query {
+        width: 100%;
+      }
+      label {
+        width: auto;
+      }
+    }
+    @include mobile-media-query {
+      width: auto;
     }
   }
   .otp-step {
@@ -15,16 +23,9 @@
     width: 250px;
     height: 250px;
     border: 20px solid white;
+    margin: 0 auto;
   }
   .enable-otp-fields {
     display: none;
-  }
-  .instructions {
-    padding: 20px;
-    background-color: #F2F2F2;
-  }
-  .store-icon {
-    width: 30%;
-    margin-right: 10px;
   }
 }
