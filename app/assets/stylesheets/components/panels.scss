@@ -7,6 +7,25 @@
     background-color: $primary-color;
     padding: 15px;
     text-align: center;
+    &.light-green {
+      background-color: $green1;
+    }
+    &.mail-icon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      img {
+        width: 62px;
+      }
+      div {
+        width: calc(100% - 70px);
+      }
+    }
+    p.viewed-status {
+      color: white;
+      margin: 10px 0 0 0;
+    }
   }
 
   &__title {
