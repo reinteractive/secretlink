@@ -1,8 +1,15 @@
 //Sizing
 $mobile-switch: 768px;
+$tablet-switch: 1024px;
 
 @mixin mobile-media-query {
   @media(max-width: $mobile-switch) {
-    @content
+    @content;
+  }
+}
+
+@mixin tablet-media-query {
+  @media(max-width: $tablet-switch) {
+    @content;
   }
 }

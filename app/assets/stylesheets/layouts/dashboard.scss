@@ -3,14 +3,19 @@
   &__secrets-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     @include mobile-media-query {
       flex-direction: column;
     }
     .secret-item {
       width: 30%;
+      margin: 0 1% 20px;
+      @include tablet-media-query  {
+        width: 48%;
+      }
       @include mobile-media-query {
         width: 90%;
+        margin: 0 auto 20px;
       }
     }
   }
