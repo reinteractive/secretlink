@@ -7,6 +7,14 @@ $label-width: 170px;
   @include mobile-media-query {
     width: 95%
   }
+  &.two-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @include mobile-media-query {
+      flex-direction: column;
+    }
+  }
 
   &__form {
     .form-group {
@@ -32,6 +40,7 @@ $label-width: 170px;
   }
 
   &__links {
+    width: 100%;
     text-align: center;
     a {
       display: inline-block;

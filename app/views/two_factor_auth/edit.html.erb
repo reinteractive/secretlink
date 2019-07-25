@@ -1,22 +1,32 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h2>Two Factor Auth (2FA)</h2>
+<section class="banner">
+  <h1>Account Settings</h1>
+</section>
 
-    <%= simple_form_for(@tfa_service.user, url: two_factor_auth_path) do |f| %>
+<section class="devise_page">
+  <article class="panel">
+    <header class="panel__header">
+      <h2 class="panel__title">Two Factor Auth (2FA)</h2>
+    </header>
+    <div class="panel__body">
+    <%= simple_form_for(@tfa_service.user, url: two_factor_auth_path, html: {class: "devise_page__form"}) do |f| %>
       <%= render partial: 'shared/two_factor_fields', locals: {
         f: f,
         resource: @tfa_service.user,
         otp_provisioning_uri: @otp_provisioning_uri
       } %>
 
-      <div class="form-group otp-step">
-        <label class="control-label">Confirm your identity (Enter your current password)</label>
-        <%= f.input :current_password, label: false, input_html: { autocomplete: "off" } %>
-      </div>
+      <%= f.input :current_password,
+              label: "Confirm your identity<br>(Enter your current password)".html_safe,
+              input_html: { autocomplete: "off" } %>
 
-      <div class="form-group">
-        <%= f.button :submit, name: :two_factor, value: 'Save Settings', class: 'btn-enable-2fa' %>
+      <div class="form-actions">
+        <%= f.button :submit, name: :two_factor, value: 'Save Settings', class: 'btn-enable-2fa button green' %>
       </div>
     <% end %>
+    </div>
+  </article>
+
+  <div class="devise_page__links">
+    <%= render "shared/two_factor_links" %>
   </div>
-</div>
+</section>

@@ -1,5 +1,12 @@
 .two-factor-fields {
   margin: 20px 0;
+  .form-group .boolean {
+    width: 100%;
+    text-align: left;
+    .checkbox {
+      cursor: pointer;
+    }
+  }
   .otp-step {
     margin: 20px 0;
   }

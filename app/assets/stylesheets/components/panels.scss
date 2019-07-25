@@ -5,6 +5,10 @@
   max-width: 500px;
   border: $default_border;
   margin: 0 auto 40px;
+  &.large {
+    max-width: 600px;
+  }
+
 
   &__header {
     background-color: $primary-color;

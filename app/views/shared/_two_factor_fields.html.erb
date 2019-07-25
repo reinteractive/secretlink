@@ -1,8 +1,9 @@
 <div class="two-factor-fields">
-  <div class="form-group">
-    <%= f.hidden_field(:otp_secret) %>
-    <%= f.input :otp_required_for_login, label: 'Enable two factor authentication', input_html: { class: 'otp-required-for-login' } %>
-  </div>
+  <%= f.hidden_field(:otp_secret) %>
+  <%= f.input :otp_required_for_login,
+        label: 'Enable two factor authentication',
+        input_html: { class: 'otp-required-for-login' }
+  %>
 
   <div class="enable-otp-fields">
     <div class="instructions">
@@ -14,26 +15,27 @@
         <p>Install a two-factor app, such as Google Authenticator, on your smartphone.</p>
         <div>
           <a target="_blank" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">
-            <%= image_tag "apple-app-store.png", class: "app-store-icon store-icon" %>
+            <%= image_tag "apple-app-store.png", class: "app-store-icon store-icon", alt: "Download on the App store" %>
           </a>
           <a target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">
-            <%= image_tag "google-play-store.png", class: "app-store-icon store-icon" %>
+            <%= image_tag "google-play-store.png", class: "app-store-icon store-icon", alt: "Get it on Google Play" %>
           </a>
         </div>
       <% end %>
     </div>
 
     <div class="form-group otp-step">
-      <label class="control-label">STEP 1: Open your two-factor app and scan the barcode below.</label>
       <img
         class="qrcode"
         src="data:image/png;base64,<%= Base64.encode64(RQRCode.render_qrcode(otp_provisioning_uri, :png, {})).html_safe %>"
       />
+      <label class="control-label">STEP 1: Open your two-factor app and scan the barcode below.</label>
     </div>
 
-    <div class="form-group otp-step">
-      <label class="control-label">STEP 2: Enter the 6 digit code from two-factor app</label>
-      <%= f.input :otp_attempt, label: false, value: '', autocomplete: 'off' %>
-    </div>
+    <%= f.input :otp_attempt,
+          label: 'STEP 2: Enter the 6 digit code from two-factor app',
+          value: '',
+          autocomplete: 'off'
+        %>
   </div>
 </div>
