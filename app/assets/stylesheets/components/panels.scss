@@ -1,4 +1,7 @@
 .panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: 500px;
   border: $default_border;
   margin: 0 auto 40px;
@@ -35,6 +38,15 @@
   }
 
   &__body {
+    flex-grow: 1;
     padding: 20px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: $default_border;
   }
 }

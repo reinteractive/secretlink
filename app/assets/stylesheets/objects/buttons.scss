@@ -25,6 +25,15 @@
       border-color: $green3;
     }
   }
+  &.blue {
+    color: white;
+    border-color: $blue;
+    background-color: $blue;
+    &:hover, &:focus {
+      background-color: darken($blue, 20%);
+      border-color: darken($blue, 20%);
+    }
+  }
   &.red {
     color: white;
     border-color: $red;
