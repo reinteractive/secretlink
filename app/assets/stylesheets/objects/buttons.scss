@@ -43,6 +43,12 @@
       border-color: darken($red, 20%);
     }
   }
+  &.notes-trigger {
+    padding: 3px 6px;
+    font-size: 14px;
+    border-color: $blue;
+    color: $blue;
+  }
 }
 
 .btn-lead {
