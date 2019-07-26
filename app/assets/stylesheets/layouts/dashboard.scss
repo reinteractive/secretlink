@@ -48,7 +48,14 @@
         p {
           @include desktop-media-query {
             width: 30%;
+            word-break: break-word;
           }
+          @include tablet-media-query {
+            width: auto;
+          }
+        }
+        .notes {
+          display: none;
         }
       }
       .panel__footer {
