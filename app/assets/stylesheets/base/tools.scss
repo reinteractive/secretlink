@@ -13,3 +13,9 @@ $tablet-switch: 1024px;
     @content;
   }
 }
+
+@mixin desktop-media-query {
+  @media(min-width: $mobile-switch) {
+    @content;
+  }
+}
