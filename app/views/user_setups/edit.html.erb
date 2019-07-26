@@ -1,9 +1,14 @@
-<div class="container">
-  <div class= "row">
-    <div class="col-md-6 col-md-offset-3">
-      <h2>Setup login credentials</h2>
+<section class="banner">
+  <h1 class="heading">My Account</h1>
+</section>
 
-      <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put }) do |f| %>
+<section class="devise_page">
+  <article class="panel">
+    <header class="panel__header">
+      <h2 class="panel__title">Setup login credentials</h2>
+    </header>
+    <div class="panel__body">
+      <%= simple_form_for(@tfa_service.user, url: user_setup_path(reset_password_token: @original_token), html: { method: :put, class: "devise_page__form" }) do |f| %>
         <%= f.error_notification %>
 
         <%= f.input :reset_password_token, as: :hidden, input_html: { value: @original_token }%>
@@ -18,10 +23,10 @@
           otp_provisioning_uri: @otp_provisioning_uri
         } %>
 
-        <div class="form-group">
-          <%= f.button :submit, "Save" %>
+        <div class="form-actions">
+          <%= f.button :submit, "Save", class: "button green" %>
         </div>
       <% end %>
     </div>
-  </div>
-</div>
+  </article>
+</section>

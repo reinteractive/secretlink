@@ -1,4 +1,4 @@
-$label-width: 170px;
+$label-width: 120px;
 
 .devise_page {
   width: 80%;
@@ -32,6 +32,7 @@ $label-width: 170px;
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
+      flex-wrap: wrap;
 
       label {
         width: $label-width;
@@ -40,13 +41,23 @@ $label-width: 170px;
         cursor: pointer;
         margin-right: 10px;
       }
+      .form-control {
+        flex-grow: 1;
+        width: auto;
+      }
       .checkbox {
-        width: calc(100% - #{$label-width} + 90px);
+        width: calc(100% - #{$label-width} + 10px);
+        label {
+          width: auto;
+        }
+      }
+      .help-block {
+        width: 100%;
       }
     }
 
     .form-actions {
-      margin-left: calc(#{$label-width} - 40px);
+      margin-left: calc(#{$label-width} + 10px);
     }
   }
 
