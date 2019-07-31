@@ -40,7 +40,7 @@ describe 'User confirmation', js: true do
       fill_in 'user[password_confirmation]', with: 'password'
 
       check('Enable two factor authentication')
-      expect(page).to have_content('Install a two-factor')
+      expect(page).to have_content('Enable two factor authentication')
       fill_in 'user[otp_attempt]', with: user.current_otp
 
       click_on 'Save'
@@ -71,7 +71,7 @@ describe 'User confirmation', js: true do
       fill_in 'user[password_confirmation]', with: 'wrong password'
 
       check('Enable two factor authentication')
-      expect(page).to have_content('Install a two-factor')
+      expect(page).to have_content('Enable two factor authentication')
       fill_in 'user[otp_attempt]', with: user.current_otp
       click_on 'Save'
 
@@ -91,7 +91,7 @@ describe 'User confirmation', js: true do
       fill_in 'user[password_confirmation]', with: 'password'
 
       check('Enable two factor authentication')
-      expect(page).to have_content('Install a two-factor')
+      expect(page).to have_content('Enable two factor authentication')
       fill_in 'user[otp_attempt]', with: 'wrong otp'
       click_on 'Save'
 

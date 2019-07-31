@@ -1,9 +1,10 @@
+<section class="banner">
+  <h1>All Secrets</h1>
+  <%= link_to 'Create New', new_secret_path, class: 'button white top-buffer' %>
+</section>
+
 <div class="container dashboard">
-  <div class="row header">
-    <h2>All Secrets</h2>
-    <%= link_to 'Create New', new_secret_path, class: 'button green' %>
-  </div>
-  <div class="secrets-list row">
+  <div class="dashboard__secrets-list">
     <% @secrets.each do |secret| %>
       <%= render 'secret_item', secret: secret %>
     <% end %>

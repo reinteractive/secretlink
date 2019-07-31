@@ -1,0 +1,61 @@
+h1,h2,h3,h4,h5,h6,p {
+  margin-top: 0;
+}
+
+h2 {
+  margin-bottom: 1.5em;
+}
+
+h1, h2 {
+  font-size: 30px;
+}
+
+h3, h4 {
+  font-size: 24px;
+}
+
+h5, h5 {
+  font-size: 16px;
+}
+
+p, ul li, ol li, time {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+ul.nostyle {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: $blue;
+  text-decoration: underline;
+  font-size: inherit;
+  &:hover, &:focus {
+    text-decoration: none
+  }
+}
+
+strong, b {
+  font-size: inherit;
+  font-weight: bold;
+}
+
+em {
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: italic;
+}
+
+
+small {
+  font-size: 80%;
+  color: inherit;
+}
+
+span {
+  font-size: inherit;
+  color: inherit;
+}

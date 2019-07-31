@@ -1,0 +1,76 @@
+$label-width: 120px;
+
+.devise_page {
+  width: 80%;
+  max-width: 1200px;
+  margin: 40px auto;
+  @include mobile-media-query {
+    width: 95%
+  }
+  &.two-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @include mobile-media-query {
+      flex-direction: column;
+    }
+    .panel, .secret__instructions {
+      width: 48%;
+      max-width: 100%;
+      @include mobile-media-query {
+        width: 95%;
+        margin: 20px auto;
+      }
+      &.large {
+        width: auto;
+      }
+    }
+  }
+
+  &__form {
+    .form-group {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      flex-wrap: wrap;
+
+      label {
+        width: $label-width;
+        text-align: right;
+        font-weight: bold;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .form-control {
+        flex-grow: 1;
+        width: auto;
+      }
+      .checkbox {
+        width: calc(100% - #{$label-width} + 10px);
+        label {
+          width: auto;
+        }
+      }
+      .help-block {
+        width: 100%;
+      }
+    }
+
+    .form-actions {
+      margin-left: calc(#{$label-width} + 10px);
+    }
+  }
+
+  &__links {
+    width: 100%;
+    text-align: center;
+    a {
+      display: inline-block;
+      padding: 0 1em;
+      border-right: $default_border;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}

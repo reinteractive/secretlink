@@ -1,22 +1,27 @@
-<div class="devise-form">
-  <h2 class="heading">Log in</h2>
+<section class="banner">
+  <h1 class="heading">My Account</h1>
+</section>
 
-  <div class="body">
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
+<section class="devise_page">
+  <article class="panel">
+    <header class="panel__header">
+      <h2 class="panel__title">Returning User? Sign in</h2>
+    </header>
+    <div class="panel__body">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "devise_page__form"}) do |f| %>
         <%= f.input :email, required: false, autofocus: true %>
         <%= f.input :password, required: false %>
-        <%= f.input :otp_attempt, required: false, label: "2FA (for configured accounts)" %>
+        <%= f.input :otp_attempt, required: false, label: "2FA<br>(for configured accounts)".html_safe %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Log in" %>
-      </div>
-    <% end %>
-  </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Sign In", class: "button green" %>
+        </div>
+      <% end %>
+    </div>
+  </article>
 
-  <div class="shared-links">
+  <div class="devise_page__links">
     <%= render "devise/shared/links" %>
   </div>
-</div>
+</section>

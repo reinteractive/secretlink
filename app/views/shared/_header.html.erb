@@ -1,5 +1,8 @@
 <header class="main-nav">
-  <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-lg glyphicon-camera" aria-hidden="true"></span>SecretLink.org</a>
+  <a class="navbar-brand" href="/">
+    <span class="glyphicon glyphicon-lg glyphicon-camera" aria-hidden="true"></span>
+    SecretLink.org
+  </a>
   <ul class="main-nav__links">
     <li><%= link_to "How it works", home_path(anchor: "homepage-steps") %></li>
     <li><%= link_to "FAQ", home_path(anchor: "homepage-faq") %></li>
@@ -13,11 +16,11 @@
         <li><%= link_to 'Dashboard', dashboard_path %></li>
         <li><%= link_to 'Settings', edit_two_factor_auth_path %></li>
         <li role="separator" class="divider"></li>
-        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
       </ul>
     </li>
     <% else %>
-      <li><%= link_to('Login', new_user_session_path) %></li>
+      <li><%= link_to('Sign In', new_user_session_path) %></li>
     <% end %>
   </ul>
 </header>

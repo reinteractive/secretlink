@@ -40,7 +40,7 @@ describe 'Viewing Dashboard' do
         expect(page).to have_content(user.email)
         expect(page).to have_content('user@random.com')
         expect(page).to have_content("Sent: #{secret.created_at.strftime(dashboard_time_format)}")
-        expect(page).to have_content('not viewed')
+        expect(page).to have_content('Not viewed:')
         expect(page).to have_content("expiry: #{secret.expire_at.strftime(dashboard_time_format)}")
 
         find('.notes-trigger').click

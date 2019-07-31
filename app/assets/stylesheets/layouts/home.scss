@@ -1,0 +1,131 @@
+.application-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 40px auto;
+  @include mobile-media-query {
+    width: 95%
+  }
+}
+
+.homepage-features ul.nostyle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 20px;
+  @include mobile-media-query {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  li {
+    max-width: 350px;
+    text-align: center;
+    padding: 20px;
+  }
+  img {
+    max-height: 50px;
+    margin-bottom: 20px;
+    @include mobile-media-query {
+      width: 100%;
+    }
+  }
+  h3 {
+    font-size: 1em;
+    color: $green2;
+    font-weight: 700;
+  }
+  p {
+    color: $text-grey;
+  }
+}
+
+.homepage-behind-the-scenes {
+  text-align: center;
+  padding: 60px 20px;
+  color: $text-grey;
+  h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: currentColor;
+  }
+  p {
+    margin-bottom: 20px;
+    color: currentColor;
+  }
+}
+
+.homepage-faq {
+  background-color: $green2;
+  padding: 50px 20px;
+  color: white;
+  .flex-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+    &:hover, &:focus {
+      color: $green1;
+    }
+  }
+  &__question {
+    width: 50%;
+    min-width: 310px;
+    padding: 20px;
+    color: white;
+    @include mobile-media-query {
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    h3[data-slideTarget] {
+      font-weight: 600;
+      color: currentColor;
+      @include mobile-media-query {
+        font-size: 1.3em;
+        padding-left: 25px;
+        background: transparent image-url("icons/plus-white.svg") no-repeat 0 50%;
+        background-size: 15px;
+        cursor: pointer;
+      }
+    }
+    div[data-slide] {
+      @include mobile-media-query {
+        display: none;
+        margin-bottom: 20px;
+      }
+      p {
+        color: white;
+      }
+    }
+  }
+}
+
+.homepage-about-us {
+  padding: 50px 20px;
+  .flex-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  h3.full-width {
+    width: 100%;
+    font-weight: 600;
+    padding: 0 20px;
+  }
+  .flex-column {
+    width: 50%;
+    min-width: 310px;
+    padding: 20px;
+    @include mobile-media-query {
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
+}

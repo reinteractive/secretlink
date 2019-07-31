@@ -1,0 +1,31 @@
+.two-factor-fields {
+  .form-group.boolean {
+    width: 100%;
+    text-align: left;
+    .checkbox {
+      cursor: pointer;
+      @include mobile-media-query {
+        width: 100%;
+      }
+      label {
+        width: auto;
+      }
+    }
+    @include mobile-media-query {
+      width: auto;
+    }
+  }
+  .otp-step {
+    margin: 20px 0;
+  }
+  .qrcode {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border: 20px solid white;
+    margin: 0 auto;
+  }
+  .enable-otp-fields {
+    display: none;
+  }
+}

@@ -1,0 +1,56 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 500px;
+  border: $default_border;
+  margin: 0 auto 40px;
+  &.large {
+    max-width: 600px;
+  }
+
+
+  &__header {
+    background-color: $primary-color;
+    padding: 15px;
+    text-align: center;
+    &.light-green {
+      background-color: $green1;
+    }
+    &.mail-icon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      img {
+        width: 62px;
+      }
+      div {
+        width: calc(100% - 70px);
+      }
+    }
+    p.viewed-status {
+      color: white;
+      margin: 10px 0 0 0;
+    }
+  }
+
+  &__title {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
+  &__body {
+    flex-grow: 1;
+    padding: 20px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: $default_border;
+  }
+}

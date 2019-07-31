@@ -1,0 +1,70 @@
+.button {
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  text-decoration: none;
+  @include transition(all linear 50ms);
+
+  &.white {
+    color: white;
+    border-color: white;
+    background-color: transparent;
+    &:hover, &:focus {
+      color: white;
+      background-color: rgba(255,255,255,.25);
+    }
+  }
+  &.green {
+    color: white;
+    border-color: $green2;
+    background-color: $green2;
+    &:hover, &:focus {
+      background-color: $green3;
+      border-color: $green3;
+    }
+  }
+  &.blue {
+    color: white;
+    border-color: $blue;
+    background-color: $blue;
+    &:hover, &:focus {
+      background-color: darken($blue, 20%);
+      border-color: darken($blue, 20%);
+    }
+  }
+  &.red {
+    color: white;
+    border-color: $red;
+    background-color: $red;
+    &:hover, &:focus {
+      background-color: darken($red, 20%);
+      border-color: darken($red, 20%);
+    }
+  }
+  &.notes-trigger {
+    padding: 3px 6px;
+    font-size: 14px;
+    border-color: $blue;
+    color: $blue;
+  }
+}
+
+.btn-lead {
+  background-color: $primary-color;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5em 2em;
+
+  font-weight: 400;
+  cursor: pointer;
+  &:hover, &:focus {
+    background-color: #fff;
+    color: $primary-color;
+  }
+
+  &-outline {
+    margin: 1.5em 0;
+  }
+}
