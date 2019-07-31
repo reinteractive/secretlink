@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>SecretLink.org</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,10 @@
 <body>
   <%= render partial: 'shared/header' %>
   <%= render partial: 'shared/flash_messages' %>
-  <%= yield %>
+
+  <main>
+    <%= yield %>
+  </main>
 
   <%= render partial: 'shared/footer' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

@@ -1,8 +1,8 @@
-<section class="homepage-hero">
-  <h2>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h2>
+<section class="banner banner-large">
+  <h1>Share secrets such as passwords, API keys, and SSL certificates simply and securely.</h1>
 
   <% unless user_signed_in? %>
-    <%= simple_form_for(@user, url: registration_path(@user)) do |f| %>
+    <%= simple_form_for(@user, url: registration_path(@user), html: {class: "banner_form"}) do |f| %>
       <h3>Share a secret now...</h3>
       <%= f.input :email, required: true, label: false, placeholder: 'Enter your email address', input_html: { class: 'form-control center-block' } %>
       <%= invisible_recaptcha_tags text: 'Register', class: 'button white' %>
