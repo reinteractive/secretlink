@@ -7,7 +7,7 @@ describe 'Sending another secret' do
   before do
     login_as(user)
     visit dashboard_path
-    click_on 'Send Another'
+    click_on "Send\u00a0Another"
   end
 
   it 'navigates to new secret page' do

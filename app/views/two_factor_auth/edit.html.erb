@@ -31,7 +31,7 @@
       <li class="one">
         <% if @tfa_service.user.otp_required_for_login %>
           <%# User is already enrolled for 2fa. %>
-          Use the form below to connect a new device (this will disconnect your previous device).
+          Use the form to connect a new device (this will disconnect your previous device).
         <% else %>
           <%# User is not enrolled for 2fa; show them how to get set up %>
           Install a two-factor app, such as Google Authenticator, on your smartphone.
