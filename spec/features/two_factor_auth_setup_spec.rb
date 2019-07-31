@@ -53,7 +53,6 @@ describe 'Two Factor Auth Setup', js: true do
         expect(page).to have_content('Use the form below to connect a new device')
 
         uncheck('Enable two factor authentication')
-        expect(page).to_not have_content('Use the form below to connect a new device')
         fill_in 'user[current_password]', with: 'password'
         click_on 'Save Settings'
 
@@ -67,7 +66,6 @@ describe 'Two Factor Auth Setup', js: true do
         expect(page).to have_content('Use the form below to connect a new device')
 
         uncheck('Enable two factor authentication')
-        expect(page).to_not have_content('Use the form below to connect a new device')
         fill_in 'user[current_password]', with: 'wrong password'
         click_on 'Save Settings'
 
