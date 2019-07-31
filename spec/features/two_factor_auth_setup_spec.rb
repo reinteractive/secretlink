@@ -50,7 +50,7 @@ describe 'Two Factor Auth Setup', js: true do
 
     context 'successful' do
       it 'disables users two factor authentication' do
-        expect(page).to have_content('Use the form below to connect a new device')
+        expect(page).to have_content('Use the form to connect a new device')
 
         uncheck('Enable two factor authentication')
         fill_in 'user[current_password]', with: 'password'
@@ -63,7 +63,7 @@ describe 'Two Factor Auth Setup', js: true do
 
     context 'failed' do
       it 'does not enable users two factor authentication' do
-        expect(page).to have_content('Use the form below to connect a new device')
+        expect(page).to have_content('Use the form to connect a new device')
 
         uncheck('Enable two factor authentication')
         fill_in 'user[current_password]', with: 'wrong password'
