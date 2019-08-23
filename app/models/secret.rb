@@ -1,4 +1,7 @@
 class Secret < ActiveRecord::Base
+  ACTIVITY_LOG_KEYS = { created: 'created', consumed: 'consumed',
+                        extended: 'extended', deleted: 'deleted' }.freeze
+
   attr_accessor :secret_key
 
   attr_encrypted :secret, key: :secret_key, mode: :per_attribute_iv_and_salt
@@ -24,6 +27,7 @@ class Secret < ActiveRecord::Base
   }
 
   belongs_to :user, primary_key: 'email', foreign_key: 'from_email'
+  has_many :activity_logs, as: :trackable
 
   def sent_at
     # We're using creted_at as the send date

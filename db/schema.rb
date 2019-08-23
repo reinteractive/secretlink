@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190710042019) do
+ActiveRecord::Schema.define(version: 20190711044517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string   "key"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "activity_logs", ["owner_type", "owner_id"], name: "index_activity_logs_on_owner_type_and_owner_id", using: :btree
+  add_index "activity_logs", ["recipient_type", "recipient_id"], name: "index_activity_logs_on_recipient_type_and_recipient_id", using: :btree
+  add_index "activity_logs", ["trackable_type", "trackable_id"], name: "index_activity_logs_on_trackable_type_and_trackable_id", using: :btree
 
   create_table "auth_tokens", force: :cascade do |t|
     t.string   "email"

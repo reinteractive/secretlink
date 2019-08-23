@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_one :settings, class_name: 'UserSetting'
   has_many :secrets, primary_key: 'email', foreign_key: 'from_email'
+  has_many :activities, as: :owner, class_name: 'ActivityLog'
 
   protected
 

@@ -15,7 +15,7 @@ describe ViewBuilder do
   after { ViewBuilder::DEFAULT_DIR = 'app/views' }
 
   it "loads the template and converts to string" do
-    view = ViewBuilder.new(template, context.__binding__).run
+    view = ViewBuilder.new(template, context.instance_eval { binding }).run
     expect(view).to match(/This is a sample template/)
     expect(view).to match(/This depends on a user user@test.com/)
   end
