@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Generating auth tokens on a limited system" do
+describe "Generating auth tokens on a limited system", type: :feature do
 
   let(:from_email) { "from@example.com" }
   let(:disapproved_email) { "from@example.org" }
@@ -33,7 +33,6 @@ describe "Generating auth tokens on a limited system" do
       visit root_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: from_email
-      page.driver.scroll_to(0, 500)
       expect {
         click_button "Send SecretLink.org Token"
       }.to change(AuthToken, :count).by(1)
@@ -56,7 +55,6 @@ describe "Generating auth tokens on a limited system" do
       visit root_path
       expect(page).to have_content("Share a secret now...")
       fill_in "auth_token[email]", with: disapproved_email
-      page.driver.scroll_to(0, 500)
       expect {
         click_button "Send SecretLink.org Token"
       }.to_not change(AuthToken, :count)

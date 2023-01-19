@@ -1,4 +1,4 @@
-class Secret < ActiveRecord::Base
+class Secret < ApplicationRecord
   attr_accessor :secret_key
 
   attr_encrypted :secret, key: :secret_key, mode: :per_attribute_iv_and_salt

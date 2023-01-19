@@ -4,7 +4,7 @@
     <h3>Share a secret now...</h3>
     <%= f.input :email, label: false, placeholder: 'To send a secret, enter your email address...', input_html: { class: 'form-control center-block' } %>
     <%= invisible_recaptcha_tags text: 'Send SecretLink.org Token', class: 'button white' %>
-    <%= link_to "Send using Google", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
+    <%= link_to "Verify using your Google Account", '/auth/google_oauth2', id: 'oauth-google', class: "google-link" %>
   <% end %>
 
 </section>

@@ -1,4 +1,4 @@
-class AuthToken < ActiveRecord::Base
+class AuthToken < ApplicationRecord
   validates :email, email: { message: 'does not look like a valid email' }
   validate  :email_domain_authorised
 

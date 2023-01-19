@@ -1,4 +1,4 @@
-class AuthTokenMailer < BaseMailer
+class AuthTokenMailer < ApplicationMailer
 
   def auth_token(email, token)
     @email = email

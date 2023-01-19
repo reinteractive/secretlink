@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AuthToken do
+describe AuthToken, type: :feature do
 
   let(:from_email) { "from@example.com" }
 
@@ -17,7 +17,6 @@ describe AuthToken do
     visit root_path
     expect(page).to have_content("Share a secret now...")
     fill_in "auth_token[email]", with: from_email
-    page.driver.scroll_to(0, 500)
     expect {
       click_button "Send SecretLink.org Token"
     }.to change(AuthToken, :count).by(1)

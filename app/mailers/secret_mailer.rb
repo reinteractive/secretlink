@@ -1,4 +1,4 @@
-class SecretMailer < BaseMailer
+class SecretMailer < ApplicationMailer
 
   def secret_notification(secret)
     @secret = secret

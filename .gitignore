@@ -14,9 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-/tmp
+/tmp/*
+!/tmp/.keep
 /public/uploads/*
 /config/database.yml
 .DS_Store
 .env
 .ruby-gemset
+.byebug_history
