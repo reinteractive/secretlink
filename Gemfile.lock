@@ -241,7 +241,7 @@ GEM
     rdoc (4.3.0)
     recaptcha (5.12.3)
       json
-    regexp_parser (2.6.1)
+    regexp_parser (2.6.2)
     request_store (1.5.1)
       rack (>= 1.4)
     rexml (3.2.5)
@@ -395,4 +395,4 @@ RUBY VERSION
    ruby 2.7.7p221
 
 BUNDLED WITH
-   2.1.4
+   2.4.4
