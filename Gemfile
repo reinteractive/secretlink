@@ -20,7 +20,7 @@ gem "logstasher", "~> 0.6.5"
 gem 'puma', '~> 3.0'
 gem "recaptcha"
 gem "sassc-rails"
-gem "nokogiri", force_ruby_platform: true
+gem "nokogiri"
 
 gem "bugsnag"
 gem "okcomputer"
