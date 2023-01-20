@@ -167,10 +167,6 @@ GEM
     nokogiri (1.14.0)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.14.0-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.14.0-x86_64-linux)
-      racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
@@ -370,6 +366,7 @@ DEPENDENCIES
   launchy
   listen (~> 3.0.5)
   logstasher (~> 0.6.5)
+  nokogiri
   okcomputer
   omniauth-google-oauth2
   pg
