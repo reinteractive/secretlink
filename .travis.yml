@@ -1,14 +1,14 @@
 language: ruby
 rvm:
- - 2.3.8
+ - 2.7.7
 cache: bundler
 before_install:
   - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
 before_script:
   - cp config/database.travis.yml config/database.yml
   - bin/setup
 services:
+  - xvfb
   - redis-server
 script:
   - bin/rake
