@@ -11,8 +11,8 @@ application allows a secret to be shared and viewed via a unique url. After the
 secret is viewed once, it is deleted.
 
 secretlink.org is available for anyone to use at [https://secretlink.org/](https://secretlink.org/),
-it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.net/)
-and hosted through reinteractive's [OpsCare service](https://reinteractive.net/service/ops-care).
+it is a Ruby on Rails application created and built by [reinteractive](https://reinteractive.com/)
+and hosted through reinteractive's [OpsCare service](https://reinteractive.com/service/ops-care).
 It has been made open source to ensure transparency on the service and to encourage contribution
 to improve the security of the application.
 
