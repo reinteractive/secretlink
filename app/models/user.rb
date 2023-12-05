@@ -3,11 +3,11 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   after_create :create_settings
 
-  devise :registerable, :confirmable,
-          :recoverable, :rememberable, :trackable, :validatable
+  # devise :registerable, :confirmable,
+  #         :recoverable, :rememberable, :trackable, :validatable
 
-  devise :two_factor_authenticatable,
-          otp_secret_encryption_key: Rails.configuration.topsekrit_2fa_key
+  # devise :two_factor_authenticatable,
+  #         otp_secret_encryption_key: Rails.configuration.topsekrit_2fa_key
 
   validate :email_authorised?, on: :create
 
