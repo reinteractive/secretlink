@@ -1,7 +1,6 @@
 test:
   adapter: postgresql
-  database: enlight_test
+  database: travis_ci_test
   pool: 5
   timeout: 5000
   username: postgres
-

@@ -20,7 +20,7 @@ gem "logstasher", "~> 0.6.5"
 gem 'puma', '~> 3.0'
 gem "recaptcha"
 gem "sassc-rails"
-gem "nokogiri", force_ruby_platform: true
+gem "nokogiri", platform: :ruby
 
 gem "bugsnag"
 gem "okcomputer"
@@ -57,3 +57,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'unicorn'
