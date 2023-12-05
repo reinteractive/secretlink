@@ -9,6 +9,7 @@ before_script:
   - bin/setup
 services:
   - xvfb
+  - postgresql
   - redis-server
 script:
   - bin/rake
