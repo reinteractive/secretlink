@@ -1,9 +1,8 @@
 source "https://rubygems.org"
-ruby "2.7.7"
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 6.1.0"
 
 gem "attr_encrypted", "~> 3.1.0"
 gem "bootstrap-sass", "~> 3.3.4"
