@@ -13,12 +13,12 @@ describe Secret do
     end
 
     it 'is false if the expiry is in the future' do
-      secret.update_attributes(expire_at: Time.now + 2.days)
+      secret.update(expire_at: Time.now + 2.days)
       expect(secret.expired?).to be(false)
     end
 
     it 'is false if the expiry date is nil' do
-      secret.update_attributes(expire_at: nil)
+      secret.update(expire_at: nil)
       expect(secret.expired?).to be(false)
     end
 

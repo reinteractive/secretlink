@@ -1,7 +1,7 @@
 class SecretsController < ApplicationController
   include RetrieveSecret
-  before_filter :retrieve_secret, only: :show
-  before_filter :require_validated_email, only: [:new, :create]
+  before_action :retrieve_secret, only: :show
+  before_action :require_validated_email, only: [:new, :create]
 
   def show
     # As the receipient has now clicked a link, we know their email address is also
