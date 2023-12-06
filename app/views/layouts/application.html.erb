@@ -17,5 +17,11 @@
 
   <%= render partial: 'shared/footer' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <% unless ENV['DEFAULT_HOST'] == 'secretlink.org' %>
+    <p>
+      <small><em>Rails version</em> <%= Rails::VERSION::STRING %></small> |
+      <small><em>Ruby version</em> <%= RUBY_VERSION %></small>
+    </p>
+  <% end %>
 </body>
 </html>
