@@ -46,7 +46,7 @@ group :test do
   gem "database_cleaner"
   gem "faker"
   gem "launchy"
-  gem "show_me_the_cookies", '~> 5.0.1'
+  gem "show_me_the_cookies", '~> 6.0.0'
   gem "timecop"
 end
 
