@@ -2,14 +2,14 @@ source "https://rubygems.org"
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 7.0.0"
 
 gem "attr_encrypted"
 gem "bootstrap-sass", "~> 3.3.4"
 gem "bootstrap-scss"
 gem "carrierwave"
 gem "email_validator"
-gem "jbuilder", "~> 2.5"
+gem "jbuilder" #, "~> 2.5"
 gem "jquery-rails"
 gem "omniauth-google-oauth2"
 gem "pg"
