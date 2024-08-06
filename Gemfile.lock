@@ -171,9 +171,9 @@ GEM
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
-    listen (3.0.8)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    listen (3.9.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.6.0)
     logstash-event (1.2.02)
     logstasher (0.6.5)
@@ -440,7 +440,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   launchy
-  listen (~> 3.0.5)
+  listen (~> 3.5)
   logstasher (~> 0.6.5)
   nokogiri
   okcomputer
