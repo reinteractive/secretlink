@@ -20,5 +20,6 @@ module Topsekrit
     # -- all .rb files in that directory are automatically loaded.
 
     config.filter_parameters << :secret
+    #config.load_defaults 5.0
   end
 end
