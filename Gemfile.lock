@@ -125,6 +125,7 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.3.4)
     diff-lcs (1.5.1)
+    docile (1.4.1)
     dotenv (3.1.2)
     dotenv-rails (3.1.2)
       dotenv (= 3.1.2)
@@ -369,6 +370,12 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     skylight (6.0.4)
       activesupport (>= 5.2.0)
     snaky_hash (2.0.1)
@@ -464,6 +471,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   show_me_the_cookies (~> 5.0.1)
   simple_form
+  simplecov
   skylight
   spring-watcher-listen (~> 2.0.0)
   timecop

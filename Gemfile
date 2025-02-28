@@ -54,6 +54,7 @@ end
 group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
