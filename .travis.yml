@@ -1,6 +1,6 @@
 language: ruby
 rvm:
- - 2.7.7
+ - 3.2.2
 cache: bundler
 before_install:
   - "export DISPLAY=:99.0"
@@ -14,15 +14,9 @@ services:
 script:
   - bin/rake
 notifications:
-  flowdock: 70c3589190925ff6d817e318827ae484
   email: false
 env:
   global:
-    - TOPSEKRIT_AUTHORISATION_SETTING='open'
-    - TOPSEKRIT_AUTHORISED_DOMAIN='reinteractive.net'
-    - GOOGLE_OAUTH_CALLBACK_PATH='/auth/google_oauth2/callback'
-    - GOOGLE_CLIENT_ID='1234'
-    - GOOGLE_CLIENT_SECRET='1234'
     - BASE_URL='http://localhost:3000'
 addons:
   code_climate:
