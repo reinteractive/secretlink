@@ -18,6 +18,12 @@ notifications:
 env:
   global:
     - BASE_URL='http://localhost:3000'
+    - TOPSEKRIT_AUTHORISATION_SETTING='open'
+    - TOPSEKRIT_AUTHORISED_DOMAIN='reinteractive.net'
+    - GOOGLE_OAUTH_CALLBACK_PATH='/auth/google_oauth2/callback'
+    - GOOGLE_CLIENT_ID='<client_id>'
+    - GOOGLE_CLIENT_SECRET='<client_secret>'
+    - TOPSEKRIT_EXPIRY_DAYS='14'
 addons:
   code_climate:
     repo_token: 0c9d8e9e2db83bcc74dbdfe816f4f51ab8e14f63f6e2e7315457f48bb0f6f64c
