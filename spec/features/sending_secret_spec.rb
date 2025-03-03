@@ -82,7 +82,7 @@ describe "Sending a secret" do
     it "can handle a virus checker visiting the first page" do
       expect(page.html).to match("Click here to show the secret")
       expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
-      expire_cookies
+      Capybara.reset_sessions!
       visit link_to_secret
       expect(page.html).to match("Click here to show the secret")
       expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
