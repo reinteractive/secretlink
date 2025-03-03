@@ -28,7 +28,7 @@ gem "okcomputer"
 gem "skylight"
 gem 'rails_12factor', group: :production
 
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 2.6.1', group: :doc
 
 group :development do
   gem "better_errors"
@@ -37,6 +37,7 @@ group :development do
   gem 'web-console'
   gem 'listen', '~> 3.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -55,6 +56,8 @@ group :development, :test do
   gem "byebug"
   gem "dotenv-rails"
   gem 'simplecov'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
