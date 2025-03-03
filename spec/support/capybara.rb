@@ -16,24 +16,7 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_preference(:download, prompt_for_download: false, default_directory: Rails.root.join('tmp/capybara/downloads'))
   options.add_preference(:browser, set_download_behavior: { behavior: 'allow' })
 
-  service_options = ::Selenium::WebDriver::Service.chrome(
-    args: {
-      port: 9515,
-      read_timeout: 120
-    }
-  )
-
-  remote_caps = Selenium::WebDriver::Remote::Capabilities.chrome(
-    'goog:loggingPrefs': {
-      browser: ENV['JS_LOG'].to_s == 'true' ? 'ALL' : nil
-    }.compact
-  )
-
-  Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    capabilities: [remote_caps, options],
-    service: service_options,
-    timeout: 120
+  Capybara::Selenium::Driver.new(app, browser: :chrome, timeout: 120, options:)
 end
 
 Capybara.javascript_driver = :headless_chrome
