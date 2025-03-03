@@ -44,7 +44,7 @@ group :test do
   gem "capybara"
   gem "capybara-selenium"
   gem "rspec-rails"
-  gem "factory_girl_rails"
+  gem "factory_bot"
   gem "database_cleaner"
   gem "faker"
   gem "launchy"

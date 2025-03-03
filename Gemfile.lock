@@ -138,11 +138,8 @@ GEM
     encryptor (3.0.0)
     erubi (1.13.0)
     execjs (2.9.1)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     faraday (2.10.1)
@@ -467,7 +464,7 @@ DEPENDENCIES
   database_cleaner
   dotenv-rails
   email_validator
-  factory_girl_rails
+  factory_bot
   faker
   jbuilder
   jquery-rails
