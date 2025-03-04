@@ -43,12 +43,13 @@ The typlical workflow:
 Required Environment / Minimum Setup
 ----------------------------------------------
 
-* Ruby version 2.3.8 (old versions of ruby supported)
+* Ruby version 3.2.2
 * Any ActiveRecord supported database (must support large multi megabyte text fields)
 
 To setup the system locally, do the following:
 
 - Copy the `.env.example` file in Rails root to `.env`
+- Configure `Recaptcha` in [reCAPTCHA admin console](https://www.google.com/recaptcha/admin) and update the environment variable.
 - Copy the `config/database.example.yml` file to `config/database.yml` and edit
   appropriately
 - Run `./bin/setup`
