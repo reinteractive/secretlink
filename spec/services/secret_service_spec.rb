@@ -75,4 +75,39 @@ describe SecretService do
 
   end
 
+  describe '.correct_key?' do
+    let!(:secret) {
+      SecretService.encrypt_new_secret( { secret: secret_info,
+                                          to_email: to_email,
+                                          from_email: from_email,
+                                          expire_at: Time.now + 7.days})
+    }
+    let(:password) { secret.secret_key }
+
+    context 'when the password is correct' do
+      it 'returns true' do
+        expect(SecretService.correct_key?(secret, password)).to be true
+      end
+    end
+
+    context 'when decryption raises OpenSSL::Cipher::CipherError' do
+      before do
+        allow(secret).to receive(:secret).and_raise(OpenSSL::Cipher::CipherError)
+      end
+
+      it 'returns false' do
+        expect(SecretService.correct_key?(secret, 'any_password')).to be false
+      end
+    end
+
+    context 'when decryption raises ArgumentError' do
+      before do
+        allow(secret).to receive(:secret).and_raise(ArgumentError)
+      end
+
+      it 'returns false' do
+        expect(SecretService.correct_key?(secret, 'any_password')).to be false
+      end
+    end
+  end
 end

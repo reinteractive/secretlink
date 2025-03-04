@@ -38,7 +38,7 @@ describe AuthToken, type: :feature do
     it "finds the token and deletes it" do
       expect {
         visit auth_token_path(auth_token.hashed_token)
-        }.to change(AuthToken.where(hashed_token: auth_token.hashed_token), :count).by(-1)
+      }.to change(AuthToken.where(hashed_token: auth_token.hashed_token), :count).by(-1)
     end
 
     it "redirects to the new secret page with the sender's address filled in" do
@@ -60,7 +60,7 @@ describe AuthToken, type: :feature do
     it "finds the token and deletes it" do
       expect {
         visit auth_token_path(auth_token.hashed_token)
-        }.to change(AuthToken.where(hashed_token: auth_token.hashed_token), :count).by(-1)
+      }.to change(AuthToken.where(hashed_token: auth_token.hashed_token), :count).by(-1)
     end
 
     it "redirects to the new secret page with the sender's address filled in" do

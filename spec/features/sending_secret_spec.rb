@@ -82,7 +82,7 @@ describe "Sending a secret" do
     it "can handle a virus checker visiting the first page" do
       expect(page.html).to match("Click here to show the secret")
       expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
-      expire_cookies
+      Capybara.reset_sessions!
       visit link_to_secret
       expect(page.html).to match("Click here to show the secret")
       expect(Secret.find(secret.id).encrypted_secret).to_not be_nil
@@ -136,5 +136,24 @@ describe "Sending a secret" do
       expect(page).to_not have_content("Super Secret Message")
     end
 
+  end
+
+  describe 'trying to access already accessed secret' do
+    let!(:secret) {
+      SecretService.encrypt_new_secret({
+        from_email: from_email,
+        to_email: to_email,
+        secret: 'Super Secret Message',
+        expire_at: Time.current + 7.days
+      })
+    }
+    let!(:link_to_secret) { ActionMailer::Base.deliveries.last.text_part.to_s.match(/http[\S]+/)}
+
+    it 'informs the secret is not available' do
+      secret.update!(consumed_at: Time.now - 1, encrypted_secret: nil)
+      visit link_to_secret
+      expect(page).to have_content("Sorry, we couldn't find that secret")
+      expect(page).to_not have_content("Super Secret Message")
+    end
   end
 end
