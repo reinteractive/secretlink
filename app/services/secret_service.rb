@@ -13,9 +13,9 @@ class SecretService
     begin
       secret.secret_key = password
       secret.secret.present?
-    rescue OpenSSL::Cipher::CipherError => e
+    rescue OpenSSL::Cipher::CipherError => _e
       return false
-    rescue ArgumentError => e
+    rescue ArgumentError => _e
       return false
     end
   end

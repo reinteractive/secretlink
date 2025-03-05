@@ -12,7 +12,8 @@ services:
   - postgresql
   - redis-server
 script:
-  - bin/rake
+  - bundle exec rspec spec
+  - bundle exec rubocop
 notifications:
   email: false
 env:

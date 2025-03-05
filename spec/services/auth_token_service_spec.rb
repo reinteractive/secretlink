@@ -11,8 +11,8 @@ describe AuthTokenService do
 
     it "creates a token" do
       expect {
-          AuthTokenService.generate(params)
-        }.to change(AuthToken, :count).by(1)
+        AuthTokenService.generate(params)
+      }.to change(AuthToken, :count).by(1)
     end
 
     context "valid auth_token" do
