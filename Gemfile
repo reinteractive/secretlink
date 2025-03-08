@@ -6,7 +6,7 @@ gem "rails", "~> 7.0.0"
 
 #gem "attr_encrypted"
 gem "attr_encrypted", github: "PagerTree/attr_encrypted", branch: "rails-7-0-support"
-gem "bootstrap-sass", "~> 3.3.4"
+gem "bootstrap-sass", "~> 3.4.1"
 gem "bootstrap-scss"
 gem "carrierwave"
 gem "email_validator"
@@ -18,7 +18,7 @@ gem "pickadate-rails"
 gem 'uglifier', '>= 1.3.0'
 gem "simple_form"
 gem "logstasher", "~> 0.6.5"
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 6.4.3'
 gem "recaptcha"
 gem "sassc-rails"
 gem "nokogiri", platform: :ruby
