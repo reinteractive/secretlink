@@ -1,0 +1,42 @@
+require 'rails_helper'
+
+describe 'PrivacyPolicy', type: :feature do
+  it 'lists privacy policies' do
+    visit privacy_policy_path
+    expect(page).to have_content('Privacy Policy')
+    expect(page).to have_content('SecretLink.org is a service offered to you by reinteractive pty ltd (ABN 62 160 446 453) of Level 32, 101 Miller Street, North Sydney, NSW, 2060 Australia. We are the owner and author of the SecretLink.org Software as a Service (the Service).')
+    expect(page).to have_content('reinteractive is committed to your privacy. Please be sure to read our terms and conditions, by using our service you agree to be bound by these terms and conditions as well as the privacy policy below.')
+    expect(page).to have_content('Access to the Service Systems')
+    expect(page).to have_content('Our servers are accessed only by key employees of reinteractive and you have the right to your data at any time you wish.')
+    expect(page).to have_content('Your Personal Information')
+    expect(page).to have_content('We will collect information about you that you have provided to us, this may be obtained directly from you, or from another source.This information could include things such as your name, address, telephone numbers, twitter information and lifestyle information and any other information collected as a result of you using our services.')
+    expect(page).to have_content('We also collect other information relating to how and when you and our other users and public use our website. This could include information relating to what pages you visit, what internet address you are visiting from, the operating system and browser you are using and when you came to visit our site.')
+    expect(page).to have_content('We collect the above to help us improve our service to all our users and to make sure we know how our site is operating and functioning.')
+    expect(page).to have_content('Sometimes we might publish some of this information. But if we do publish, it will only ever be in an aggregated form and never publish information relating to you as an individual.')
+    expect(page).to have_content('We also make use of a browser "cookie" on our site. A cookie is a small piece of information stored on your computer by our site. Cookies help us improve the user experience of our site and help us track and target the interests of our users. You will need to enable cookies to make use of our site.')
+    expect(page).to have_content('You may ask to see all the personal information we have on you and ask for it to be updated, corrected or deleted. We will ask you to verify your identity for these requests, to protect your privacy and that of our users.')
+    expect(page).to have_content('We do not claim any right to any information you put into this site beyond storing it on your behalf at your implicit request. Should you wish, you can ask us to delete this information at any time and we will do so.')
+    expect(page).to have_content('Using Your Information')
+    expect(page).to have_content('We may keep and use the information outlined above for any number of purposes relating to the way we run our business. These can include (but are not limited to):')
+    expect(page).to have_content('Dealing with enquires from you or your authorised representative')
+    expect(page).to have_content('Handling complaints from you or your authorised representative')
+    expect(page).to have_content('Processing your service requests and service orders from you or your authorised representative')
+    expect(page).to have_content('Contacting you about your contact details')
+    expect(page).to have_content('Contacting you regarding maintenance of our site')
+    expect(page).to have_content('Contacting you regarding changes to any legal terms relating to the use of this site')
+    expect(page).to have_content('Sharing Your Information')
+    expect(page).to have_content('We will not share your specific personal or web application statistics information with anyone, except when:')
+    expect(page).to have_content('You explicitly tell us to')
+    expect(page).to have_content('We are reasonably required to do so by law')
+    expect(page).to have_content('We want to perform a credit check on you')
+    expect(page).to have_content('We want to list payment defaults with a collections agency')
+    expect(page).to have_content('It is needed so we can result a complaint made by you about us')
+    expect(page).to have_content('Your Username and Password')
+    expect(page).to have_content('As an reinteractive customer, you are solely responsible for the security and secrecy of your username and password. Your username and password are stored with one way encryption in our database and we can not tell you what it is.')
+    expect(page).to have_content('Our support staff will never ask you for your password and you should never give it out to anyone. Should you forget your password, you can reset it on our password reset page, or you can contact support who can help you.')
+    expect(page).to have_content('If you do give out your password, or make it available to other users, you agree to be responsible for paying for any products or services the person who has your username and password, purchase from us.')
+    expect(page).to have_content('Changes to This Policy')
+    expect(page).to have_content('We might change this policy at any time, but if we do, we will tell you about these changes by posting an updated policy on our website, and making note of what the changes were in summary form at the top of this document.')
+    expect(page).to have_content('Any change we make is effective from the date we post it on our website. Should you disagree with these changes, you are free to cease using our service and will be provided a refund per our refund policy.')
+  end
+end
