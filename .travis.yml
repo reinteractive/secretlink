@@ -6,6 +6,7 @@ before_install:
   - "export DISPLAY=:99.0"
 before_script:
   - cp config/database.travis.yml config/database.yml
+  - bundle config set force_ruby_platform true
   - bin/setup
 services:
   - xvfb
