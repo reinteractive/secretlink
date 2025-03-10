@@ -2,10 +2,10 @@ source "https://rubygems.org"
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 8.0.1"
 
 #gem "attr_encrypted"
-gem "attr_encrypted", github: "PagerTree/attr_encrypted", branch: "rails-7-0-support"
+gem "attr_encrypted", "~> 4.2.0"
 gem "bootstrap-sass", "~> 3.4.1"
 gem "bootstrap-scss"
 gem "carrierwave"
