@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :auth_tokens, only: [:show, :new, :create]
-  resources :secrets, only: [:show, :new, :create, :edit, :update]
+  resources :secrets, only: [:show, :new, :create]
   resources :decrypted_secrets, only: :create
 
   post '/decrypt_secret', to: 'decrypted_secrets#create'
