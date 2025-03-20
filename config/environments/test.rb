@@ -56,4 +56,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  if defined?(Bullet)
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.raise = true # Raises an error when N+1 queries are detected
+  end
 end

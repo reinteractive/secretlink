@@ -38,6 +38,8 @@ group :development do
   gem 'listen', '~> 3.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'binding_of_caller'
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 end
 
 group :test do
@@ -50,6 +52,9 @@ group :test do
   gem "launchy"
   gem "show_me_the_cookies", '~> 5.0.1'
   gem "timecop"
+  gem 'fasterer', require: false
+  gem 'rails_best_practices'
+
 end
 
 group :development, :test do
@@ -58,6 +63,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

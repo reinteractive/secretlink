@@ -2,18 +2,18 @@ Hello <%= @secret.from_email %>
 
 This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via SecretLink.org.
 
-<% if @secret.title.present? %>
+<% if @secret.title? %>
 The title of the viewed secret was: <%= @secret.title %>
 <% end %>
 
-<% if @secret.comments.present? %>
+<% if @secret.comments? %>
 The comments on the viewed secret were:
 ------------------------------------------
 <%= @secret.comments %>
 ------------------------------------------
 <% end %>
 
-This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
+This secret was created by you <%= distance_of_time_in_words(Time.now, @secret.created_at) %> ago.
 
 The encrypted information has now been deleted from the database.
 

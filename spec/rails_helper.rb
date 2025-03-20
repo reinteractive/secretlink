@@ -53,5 +53,15 @@ RSpec.configure do |config|
   # Add commands to the rspec DSL for manipulating cookies
   config.include ShowMeTheCookies, :type => :feature
 
+  if defined?(Bullet)
+    config.before(:each) do
+      Bullet.start_request
+    end
+
+    config.after(:each) do
+      Bullet.end_request
+    end
+  end
+
 end
 

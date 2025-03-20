@@ -4,12 +4,12 @@
 <p>
   This email is to notify you that <%= @secret.to_email %> viewed a secret that you shared with them via <%= link_to("SecretLink.org", "https://SecretLink.org") %>.
 </p>
-<% if @secret.title.present? %>
+<% if @secret.title? %>
 <p>
   The title of the viewed secret was: <%= @secret.title %>
 </p>
 <% end %>
-<% if @secret.comments.present? %>
+<% if @secret.comments? %>
 <p>
   The comments on the viewed secret were:
 </p>
@@ -18,7 +18,7 @@
 </pre>
 <% end %>
 <p>
-  This secret was created by you <%= time_ago_in_words(@secret.created_at) %> ago.
+  This secret was created by you <%= distance_of_time_in_words(Time.zone.now, @secret.created_at) %> ago.
 </p>
 <p>
   The encrypted information has now been deleted from the database.

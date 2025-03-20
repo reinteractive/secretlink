@@ -28,7 +28,8 @@ describe AuthTokenService do
 
       it "does not tell the auth_token to notify" do
         expect_any_instance_of(AuthToken).to_not receive(:notify)
-        AuthTokenService.generate(params.merge!(email: ''))
+        params[:email] = ''
+        AuthTokenService.generate(params)
       end
 
     end
