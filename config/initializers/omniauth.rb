@@ -8,6 +8,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            Rails.configuration.topsekrit_google_oauth_client_secret
 end
 
-OmniAuth.config.allowed_request_methods = %i[get]
+OmniAuth.config.allowed_request_methods = %i[post]
 
 

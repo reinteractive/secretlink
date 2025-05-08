@@ -262,6 +262,9 @@ GEM
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.2)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     parallel (1.26.3)
     parser (3.3.7.1)
       ast (~> 2.4.1)
@@ -496,6 +499,7 @@ DEPENDENCIES
   nokogiri
   okcomputer
   omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg
   pickadate-rails
   puma (~> 6.4.3)
