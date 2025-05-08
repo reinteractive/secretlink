@@ -35,7 +35,7 @@ describe "Generating auth tokens on a limited system", type: :feature do
       fill_in "auth_token[email]", with: from_email
       expect {
         click_button "Send SecretLink.org Token"
-        sleep 0.5
+        expect(page).to have_content("A token has been generated and sent to #{from_email}")
       }.to change(AuthToken, :count).by(1)
     end
   end
