@@ -20,7 +20,7 @@ module Topsekrit
     # -- all .rb files in that directory are automatically loaded.
 
     config.filter_parameters << :secret
-    config.active_support.to_time_preserves_timezone = :zone
-    #config.load_defaults 5.0
+
+    config.load_defaults 8.0
   end
 end
