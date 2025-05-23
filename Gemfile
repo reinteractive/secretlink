@@ -2,23 +2,24 @@ source "https://rubygems.org"
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 8.0.1"
 
 #gem "attr_encrypted"
-gem "attr_encrypted", github: "PagerTree/attr_encrypted", branch: "rails-7-0-support"
-gem "bootstrap-sass", "~> 3.3.4"
+gem "attr_encrypted", "~> 4.2.0"
+gem "bootstrap-sass", "~> 3.4.1"
 gem "bootstrap-scss"
 gem "carrierwave"
 gem "email_validator"
 gem "jbuilder" #, "~> 2.5"
 gem "jquery-rails"
 gem "omniauth-google-oauth2"
+gem 'omniauth-rails_csrf_protection'
 gem "pg"
 gem "pickadate-rails"
 gem 'uglifier', '>= 1.3.0'
 gem "simple_form"
 gem "logstasher", "~> 0.6.5"
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 6.4.3'
 gem "recaptcha"
 gem "sassc-rails"
 gem "nokogiri", platform: :ruby

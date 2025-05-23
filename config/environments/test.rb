@@ -1,3 +1,13 @@
+# Fix following error while running spec after upgrading puma to latest version
+# ----------------------------------
+#Failure/Error: register :puma, Puma
+# NoMethodError:
+# undefined method `register' for Rackup::Handler:Module
+# ----------------------------------
+require 'rack/handler/puma'
+Rack::Handler.register(:puma, Rack::Handler::Puma)
+# ----------------------------------
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

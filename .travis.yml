@@ -6,7 +6,8 @@ before_install:
   - "export DISPLAY=:99.0"
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - bin/setup
+  - bundle config set force_ruby_platform true
+  - bin/setup --skip-server
 services:
   - xvfb
   - postgresql
