@@ -73,6 +73,16 @@ describe SecretService do
       expect(retrieved_secret.consumed_at).to_not be_nil
     end
 
+    it 'enqueues a mail delivery job' do
+      expect { SecretService.decrypt_secret!(retrieved_secret, secret_key) }.
+        to enqueue_job(ActionMailer::MailDeliveryJob).
+        with do |mailer, action, _delivery_method, args|
+          expect(mailer).to eq("SecretMailer")
+          expect(action).to eq("consumnation_notification")
+          expect(args.first).to eq(secret)
+        end
+    end
+
   end
 
   describe '.correct_key?' do

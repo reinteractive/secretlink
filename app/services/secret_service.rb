@@ -25,8 +25,7 @@ class SecretService
     s = secret.secret
     secret.delete_encrypted_information
     secret.mark_as_consumed
-    # TODO: Mailers should be in the background
-    SecretMailer.consumnation_notification(secret).deliver_now
+    SecretMailer.consumnation_notification(secret).deliver_later
     s
   end
 

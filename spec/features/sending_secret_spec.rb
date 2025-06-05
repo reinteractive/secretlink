@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe "Sending a secret" do
+  include ActiveJob::TestHelper
 
   let(:to_email)   { "to@example.com" }
   let(:from_email) { "from@example.com" }
@@ -106,7 +107,9 @@ describe "Sending a secret" do
     it "deletes an attachment after it has been accessed"
 
     it "notifies the creator of the secret that it has been accessed and deleted" do
-      click_button "Click here to show the secret"
+      perform_enqueued_jobs do
+        click_button "Click here to show the secret"
+      end
       expect(page).to have_content("Super Secret Message")
       email = ActionMailer::Base.deliveries.last
       expect(email.to).to eq([from_email])

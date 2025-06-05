@@ -18,6 +18,9 @@ Rails.application.configure do
   config.action_controller.forgery_protection_origin_check = true
   config.server_timing = true
 
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true

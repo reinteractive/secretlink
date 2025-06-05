@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe AuthToken do
+  include ActiveJob::TestHelper
 
   let(:from_email) { "from@example.com" }
   let(:from_domain) { "example.com" }
@@ -25,16 +26,24 @@ describe AuthToken do
   end
 
   describe '#notify' do
+    subject { auth_token.notify }
 
     let!(:auth_token) { AuthToken.create!(email: from_email) }
 
-    before do
-      auth_token.notify
-    end
-
     let(:email) { ActionMailer::Base.deliveries.last }
 
+    it 'enqueues a mail delivery job' do
+      expect { subject }.to enqueue_job(ActionMailer::MailDeliveryJob).
+        with do |mailer, action, _delivery_method, args|
+          expect(mailer).to eq("AuthTokenMailer")
+          expect(action).to eq("auth_token_notification")
+          expect(args.first).to eq(from_email)
+          expect(args.second).to eq(auth_token.hashed_token)
+        end
+    end
+
     it 'sends an email to the recipient with a link auth link' do
+      perform_enqueued_jobs { subject }
       expect(email.to).to eq([from_email])
       expect(email.to_s).to match(/http:\/\/localhost:3000\/auth_tokens\/\S+/)
     end

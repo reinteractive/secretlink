@@ -4,8 +4,13 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
-  database: topsekrit_development
+  primary:
+    <<: *default
+    database: topsekrit_development
+  queue:
+    <<: *default
+    database: topsekrit_development_queue
+    migrations_paths: db/queue_migrate
 test:
   <<: *default
   database: topsekrit_test
